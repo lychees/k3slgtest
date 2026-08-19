@@ -6,6 +6,7 @@ import { Squad, setTechBonuses } from './js/game/squad.js';
 import * as Army from './js/game/army.js';
 import { openArmyUI } from './js/game/armyui.js';
 import * as Story from './js/game/story.js';
+import * as Inspect from './js/game/inspect.js';
 import { computeMove, computeAttackTiles, findPath } from './js/game/range.js';
 import { resolveCombat } from './js/game/combat.js';
 import { BattleScene } from './js/game/battlescene.js';
@@ -781,11 +782,21 @@ stage.addEventListener('contextmenu', e => {
 });
 
 window.addEventListener('keydown', e => {
-  // 选关/整备覆盖层打开时不响应游戏按键; 剧情播放由 story.js capture 拦截
-  if (Story.isPlaying()) return;
+  // 选关/整备/详情覆盖层打开时不响应游戏按键; 剧情播放由 story.js capture 拦截
+  if (Story.isPlaying() || Inspect.isOpen()) return;
   if ($('level-select').style.display === 'flex' || $('army-ui').style.display === 'flex') return;
   if (busy()) return;
   const c = state.cursor;
+
+  // C/Tab: 查看光标下部队详情 (敌我均可)
+  if (e.key === 'c' || e.key === 'C' || e.key === 'Tab') {
+    e.preventDefault();
+    if (!state.menuSquad) {
+      const u = squadAt(c.x, c.y);
+      if (u) Inspect.open(u, db);
+    }
+    return;
+  }
   const moves = { ArrowUp: [0, -1], ArrowDown: [0, 1], ArrowLeft: [-1, 0], ArrowRight: [1, 0] };
 
   if (state.menuSquad) {
@@ -1134,6 +1145,13 @@ async function boot(bootId, opts = {}) {
   // ?debug=army: 直接打开整备界面, 便于截图/验证
   if (DEBUG === 'army') {
     openArmy(false);
+    return;
+  }
+
+  // ?debug=inspect / inspectfoe: 直接弹出第一支我方/敌方部队详情, 便于截图
+  if (DEBUG === 'inspect' || DEBUG === 'inspectfoe') {
+    const s = DEBUG === 'inspect' ? first : squads.find(sq => sq.team === 1);
+    if (s) Inspect.open(s, db);
     return;
   }
 
