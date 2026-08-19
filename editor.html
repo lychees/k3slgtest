@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>SoW Tactics — 编辑器套件</title>
+<style>
+  @font-face {
+    font-family: 'FE Serif';
+    src: url('assets/NotoSerif-Regular.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'FE Serif SC';
+    src: url('assets/NotoSerifSC.otf') format('opentype');
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; }
+  body {
+    background: #06080f;
+    color: #eef1ff;
+    font-family: 'FE Serif SC', 'FE Serif', serif;
+    text-shadow: 1px 1px 0 #000;
+    display: flex; flex-direction: column;
+    overflow: hidden;
+  }
+
+  .fe-panel {
+    background: linear-gradient(180deg, #2a3d80 0%, #1a2650 55%, #101a3c 100%);
+    border: 2px solid #c99b2f;
+    outline: 1px solid #f5d878;
+    outline-offset: -4px;
+    box-shadow: 0 0 0 1px #080c20, 0 4px 10px rgba(0,0,0,.55), inset 0 0 18px rgba(8,12,40,.8);
+    border-radius: 3px;
+    color: #eef1ff;
+  }
+  .fe-label { color: #f0c75e; }
+  .fe-dim   { color: #93a0c8; }
+
+  /* ---------- top tab bar ---------- */
+  #tabbar {
+    flex: none;
+    display: flex; align-items: center; gap: 6px;
+    padding: 8px 12px;
+    background: linear-gradient(180deg, #101a3c, #0a1030);
+    border-bottom: 2px solid #c99b2f;
+  }
+  #tabbar .title {
+    font-size: 18px; font-weight: bold; letter-spacing: 2px;
+    color: #f0c75e; margin-right: 18px;
+  }
+  .tab-btn {
+    font-family: inherit; font-size: 15px;
+    padding: 6px 18px;
+    background: linear-gradient(180deg, #24336b, #141f45);
+    color: #b9c2e4;
+    border: 1px solid #c99b2f;
+    border-radius: 3px;
+    cursor: pointer;
+    text-shadow: 1px 1px 0 #000;
+  }
+  .tab-btn:hover { color: #eef1ff; background: linear-gradient(180deg, #2e4186, #1a2650); }
+  .tab-btn.active {
+    color: #101a3c; font-weight: bold;
+    background: linear-gradient(180deg, #f5d878, #c99b2f);
+    text-shadow: none;
+  }
+
+  /* ---------- tab pages ---------- */
+  #pages { flex: 1; min-height: 0; position: relative; }
+  .page { position: absolute; inset: 0; display: none; padding: 10px; gap: 10px; }
+  .page.active { display: flex; }
+
+  .col { display: flex; flex-direction: column; gap: 8px; min-height: 0; }
+  .panel { padding: 8px 10px; overflow: auto; }
+  .panel h3 {
+    font-size: 15px; color: #f0c75e;
+    border-bottom: 1px solid rgba(201,155,47,.5);
+    padding-bottom: 4px; margin-bottom: 6px;
+  }
+
+  /* ---------- list (left column) ---------- */
+  .item-list { flex: 1; overflow-y: auto; min-height: 0; }
+  .item-list .row {
+    padding: 4px 8px; font-size: 14px;
+    border-radius: 2px; cursor: pointer;
+    display: flex; align-items: center; gap: 6px;
+    white-space: nowrap;
+  }
+  .item-list .row:hover { background: rgba(240,199,94,.12); }
+  .item-list .row.sel { background: rgba(240,199,94,.22); outline: 1px solid #f0c75e; }
+  .item-list .row img { width: 24px; height: 24px; image-rendering: pixelated; flex: none; }
+
+  /* ---------- form ---------- */
+  .form-grid { display: grid; grid-template-columns: auto 1fr; gap: 6px 10px; align-items: center; font-size: 14px; }
+  .form-grid label { color: #93a0c8; text-align: right; }
+  .stat-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .stat-box { display: flex; flex-direction: column; align-items: center; font-size: 12px; color: #93a0c8; }
+  .stat-box input { width: 56px; }
+
+  input, select, textarea, button {
+    font-family: inherit;
+    text-shadow: none;
+  }
+  input[type=text], input[type=number], select, textarea {
+    background: #0a0e24;
+    color: #eef1ff;
+    border: 1px solid #4a5a9a;
+    border-radius: 2px;
+    padding: 3px 6px;
+    font-size: 14px;
+  }
+  input[type=text]:focus, input[type=number]:focus, select:focus, textarea:focus {
+    outline: 1px solid #f0c75e;
+  }
+  textarea { resize: vertical; min-height: 40px; width: 100%; }
+
+  .btn {
+    font-size: 13px;
+    padding: 4px 12px;
+    background: linear-gradient(180deg, #24336b, #141f45);
+    color: #eef1ff;
+    border: 1px solid #c99b2f;
+    border-radius: 3px;
+    cursor: pointer;
+    text-shadow: 1px 1px 0 #000;
+  }
+  .btn:hover { background: linear-gradient(180deg, #2e4186, #1a2650); }
+  .btn.gold {
+    color: #101a3c; font-weight: bold; text-shadow: none;
+    background: linear-gradient(180deg, #f5d878, #c99b2f);
+  }
+  .btn.danger { border-color: #a03a3a; color: #ffb9b9; }
+  .btn-row { display: flex; gap: 6px; flex-wrap: wrap; }
+
+  .preview-img {
+    width: 32px; height: 32px;
+    image-rendering: pixelated;
+    background: #0a0e24;
+    border: 1px solid #4a5a9a;
+    vertical-align: middle;
+  }
+  .preview-img.big { width: 64px; height: 64px; image-rendering: auto; }
+
+  .check-list { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 13px; max-height: 120px; overflow-y: auto; flex: none; }
+  .check-list label { display: flex; align-items: center; gap: 4px; color: #eef1ff; cursor: pointer; }
+
+  /* ---------- squad formation grid ---------- */
+  .formation {
+    display: grid; grid-template-columns: repeat(3, 72px); grid-template-rows: repeat(3, 72px);
+    gap: 6px; justify-content: center; padding: 8px 0;
+  }
+  .fcell {
+    background: #0a0e24;
+    border: 1px solid #4a5a9a;
+    border-radius: 3px;
+    position: relative;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    cursor: pointer; font-size: 11px; color: #93a0c8;
+    overflow: hidden;
+  }
+  .fcell:hover { border-color: #f0c75e; }
+  .fcell.filled { border-color: #c99b2f; background: #141f45; }
+  .fcell img { width: 32px; height: 32px; image-rendering: pixelated; }
+  .fcell .slot-no { position: absolute; left: 3px; top: 2px; font-size: 10px; color: #4a5a9a; }
+  .fcell .uname { font-size: 11px; color: #eef1ff; text-align: center; line-height: 1.1; }
+  .fcell.leader-cell { outline: 2px solid #f5d878; outline-offset: -2px; }
+
+  /* ---------- map editor ---------- */
+  #map-canvas-wrap { overflow: auto; flex: 1; min-height: 0; background: #05070f; border: 1px solid #4a5a9a; }
+  #map-canvas { image-rendering: pixelated; display: block; cursor: crosshair; }
+  .terrain-pal { display: flex; flex-direction: column; gap: 4px; }
+  .terrain-pal .trow {
+    display: flex; align-items: center; gap: 8px;
+    padding: 3px 6px; border-radius: 2px; cursor: pointer; font-size: 13px;
+    border: 1px solid transparent;
+  }
+  .terrain-pal .trow:hover { background: rgba(240,199,94,.12); }
+  .terrain-pal .trow.sel { background: rgba(240,199,94,.22); border-color: #f0c75e; }
+  .terrain-pal img { width: 32px; height: 32px; image-rendering: pixelated; background: #0a0e24; }
+  .mode-btn { width: 100%; text-align: left; }
+  .mode-btn.active { color: #101a3c; font-weight: bold; text-shadow: none; background: linear-gradient(180deg, #f5d878, #c99b2f); }
+
+  table.kv { border-collapse: collapse; font-size: 13px; width: 100%; }
+  table.kv td, table.kv th { border: 1px solid #4a5a9a; padding: 3px 6px; }
+  table.kv th { color: #f0c75e; font-weight: normal; background: rgba(8,12,40,.6); }
+
+  /* ---------- toast ---------- */
+  #toast {
+    position: fixed; left: 50%; top: 48px; transform: translateX(-50%);
+    padding: 8px 24px; font-size: 15px; z-index: 999;
+    display: none; pointer-events: none;
+  }
+  #toast.ok { display: block; border-color: #5fae4a; }
+  #toast.err { display: block; border-color: #a03a3a; color: #ffb9b9; }
+
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: #0a0e24; }
+  ::-webkit-scrollbar-thumb { background: #2a3d80; border: 1px solid #c99b2f; }
+</style>
+</head>
+<body>
+  <div id="tabbar">
+    <span class="title">SoW 编辑器</span>
+    <button class="tab-btn" data-tab="map">关卡编辑器</button>
+    <button class="tab-btn" data-tab="squad">部队编辑器</button>
+    <button class="tab-btn" data-tab="unit">单位编辑器</button>
+    <button class="tab-btn" data-tab="skill">技能编辑器</button>
+    <button class="tab-btn" data-tab="item">物品编辑器</button>
+  </div>
+  <div id="pages">
+    <div class="page" id="page-map"></div>
+    <div class="page" id="page-squad"></div>
+    <div class="page" id="page-unit"></div>
+    <div class="page" id="page-skill"></div>
+    <div class="page" id="page-item"></div>
+  </div>
+  <div id="toast" class="fe-panel"></div>
+  <script type="module" src="js/editor/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "terrains": [
+    { "id": "plain",  "char": ".", "name": "平原", "avo": 0,  "def": 0, "cost": 1,  "pass": true,  "tile": "tile_grass" },
+    { "id": "bush",   "char": ",", "name": "草丛", "avo": 5,  "def": 0, "cost": 1,  "pass": true,  "tile": "tile_grass_dark" },
+    { "id": "road",   "char": "d", "name": "道路", "avo": 0,  "def": 0, "cost": 1,  "pass": true,  "tile": "tile_dirt" },
+    { "id": "water",  "char": "w", "name": "河流", "avo": 0,  "def": 0, "cost": 99, "pass": false, "tile": "tile_water" },
+    { "id": "forest", "char": "t", "name": "森林", "avo": 20, "def": 1, "cost": 2,  "pass": true,  "tile": "tree1" },
+    { "id": "wall",   "char": "s", "name": "城墙", "avo": 0,  "def": 0, "cost": 99, "pass": false, "tile": "tile_stone" },
+    { "id": "fort",   "char": "g", "name": "要塞", "avo": 10, "def": 2, "cost": 1,  "pass": true,  "tile": "tile_stone" }
+  ]
+}

@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>SoW Tactics — Three.js</title>
+<style>
+  @font-face {
+    font-family: 'FE Serif';
+    src: url('assets/NotoSerif-Regular.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'FE Serif SC';
+    src: url('assets/NotoSerifSC.otf') format('opentype');
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; background: #06080f; overflow: hidden; }
+  body { display: flex; align-items: center; justify-content: center; }
+
+  /* stage: fixed logical size, scaled to fit window */
+  #stage {
+    position: relative;
+    width: 960px; height: 540px;
+    transform-origin: center center;
+    flex: none;
+  }
+  #game-canvas {
+    position: absolute; inset: 0;
+    width: 960px; height: 540px;
+    image-rendering: pixelated;
+  }
+
+  /* ---------- Fire Emblem panel style ---------- */
+  .fe-panel {
+    position: absolute;
+    background: linear-gradient(180deg, #2a3d80 0%, #1a2650 55%, #101a3c 100%);
+    border: 2px solid #c99b2f;
+    outline: 1px solid #f5d878;
+    outline-offset: -4px;
+    box-shadow: 0 0 0 1px #080c20, 0 4px 10px rgba(0,0,0,.55), inset 0 0 18px rgba(8,12,40,.8);
+    border-radius: 3px;
+    color: #eef1ff;
+    font-family: 'FE Serif SC', 'FE Serif', serif;
+    text-shadow: 1px 1px 0 #000;
+  }
+  .fe-label { color: #f0c75e; }
+  .fe-dim   { color: #93a0c8; }
+
+  /* squad info (top-left, FE GBA style) */
+  #unit-panel {
+    left: 8px; top: 8px;
+    width: 252px;
+    padding: 8px 10px 10px;
+    display: none;
+    z-index: 15;
+  }
+  #unit-panel .name-row {
+    display: flex; align-items: baseline; gap: 8px;
+    border-bottom: 1px solid rgba(201,155,47,.5);
+    padding-bottom: 4px; margin-bottom: 6px;
+  }
+  #unit-panel .uname { font-size: 18px; font-weight: bold; letter-spacing: 1px; }
+  #unit-panel .uteam { font-size: 13px; color: #8fb8ff; margin-left: auto; }
+  #unit-panel .uteam.enemy { color: #ff9a8a; }
+  #unit-panel .squad-mid { display: flex; gap: 10px; }
+  .mini-grid {
+    flex: none;
+    display: grid; grid-template-columns: repeat(3, 26px); gap: 2px;
+  }
+  .mg-cell {
+    width: 26px; height: 26px;
+    background: rgba(8,12,32,.6);
+    border: 1px solid rgba(201,155,47,.3);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .mg-cell img { width: 24px; height: 24px; image-rendering: pixelated; }
+  .mg-cell.dead img { filter: grayscale(1) brightness(.5); opacity: .4; }
+  #unit-panel .stat-grid {
+    flex: 1;
+    display: grid; grid-template-columns: 1fr 1fr;
+    font-size: 13px; row-gap: 2px; align-content: start;
+  }
+  .hp-row { display: flex; align-items: center; gap: 6px; margin-top: 7px; font-size: 13px; }
+  .hp-bar-outer {
+    flex: 1; height: 9px;
+    background: #0a0e24;
+    border: 1px solid #05070f;
+    box-shadow: inset 0 1px 2px #000;
+  }
+  .hp-bar-inner {
+    height: 100%;
+    background: linear-gradient(180deg, #8fe07a 0%, #3fae4a 45%, #1e7a2e 100%);
+    box-shadow: inset 0 -1px 0 rgba(0,0,0,.4);
+    transition: width .25s;
+  }
+  .hp-num { min-width: 58px; text-align: right; font-size: 13px; }
+
+  /* terrain info (top-right) */
+  #terrain-panel {
+    right: 8px; top: 8px;
+    width: 150px;
+    padding: 7px 10px 8px;
+    font-size: 13px;
+    z-index: 15;
+  }
+  #terrain-panel .tname {
+    font-size: 15px; font-weight: bold;
+    border-bottom: 1px solid rgba(201,155,47,.5);
+    padding-bottom: 3px; margin-bottom: 4px;
+  }
+  #terrain-panel .trow { display: flex; justify-content: space-between; }
+
+  /* turn / phase indicator (top-center) */
+  #turn-panel {
+    left: 50%; top: 8px; transform: translateX(-50%);
+    padding: 4px 18px;
+    font-size: 14px;
+    white-space: nowrap;
+    z-index: 15;
+  }
+
+  /* action menu */
+  #action-menu {
+    display: none;
+    min-width: 132px;
+    padding: 6px;
+    font-size: 15px;
+    z-index: 25;
+  }
+  #action-menu .item {
+    padding: 4px 10px;
+    border-radius: 2px;
+    cursor: default;
+    white-space: nowrap;
+  }
+  #action-menu .item.sel {
+    background: rgba(240,199,94,.22);
+    outline: 1px solid #f0c75e;
+  }
+  #action-menu .item.disabled { color: #6a76a0; }
+
+  /* phase banner */
+  #phase-banner {
+    position: absolute;
+    left: 0; right: 0; top: 218px;
+    height: 104px;
+    display: none;
+    align-items: center; justify-content: center;
+    background: linear-gradient(90deg, transparent, rgba(6,10,30,.92) 18%, rgba(6,10,30,.92) 82%, transparent);
+    z-index: 30;
+  }
+  #phase-banner .inner {
+    font-family: 'FE Serif SC', serif;
+    font-size: 44px;
+    letter-spacing: 12px;
+    color: #eef1ff;
+    text-shadow: 0 0 14px rgba(90,140,255,.9), 2px 2px 0 #000;
+    border-top: 2px solid #c99b2f;
+    border-bottom: 2px solid #c99b2f;
+    padding: 8px 60px;
+  }
+  #phase-banner.enemy .inner {
+    color: #ffd9d9;
+    text-shadow: 0 0 14px rgba(255,80,80,.9), 2px 2px 0 #000;
+  }
+
+  /* intro banner (map name + intro text) */
+  #intro-banner {
+    position: absolute; inset: 0;
+    display: none;
+    flex-direction: column; align-items: center; justify-content: center;
+    background: rgba(4,6,16,.78);
+    z-index: 50;
+  }
+  #intro-banner .map-name {
+    font-family: 'FE Serif SC', serif;
+    font-size: 42px; letter-spacing: 8px;
+    color: #eef1ff;
+    text-shadow: 0 0 16px rgba(90,140,255,.9), 2px 2px 0 #000;
+    border-top: 2px solid #c99b2f;
+    border-bottom: 2px solid #c99b2f;
+    padding: 10px 60px;
+  }
+  #intro-banner .intro-text {
+    margin-top: 18px;
+    font-family: 'FE Serif SC', serif;
+    font-size: 17px; line-height: 1.8;
+    color: #c8d0f0;
+    max-width: 660px; text-align: center;
+    text-shadow: 1px 1px 0 #000;
+  }
+
+  /* victory / defeat banner */
+  #end-banner {
+    position: absolute; inset: 0;
+    display: none;
+    flex-direction: column; align-items: center; justify-content: center;
+    background: rgba(4,6,16,.72);
+    z-index: 60;
+    cursor: pointer;
+  }
+  #end-banner .end-title {
+    font-family: 'FE Serif SC', serif;
+    font-size: 56px; letter-spacing: 16px;
+    border-top: 2px solid #c99b2f;
+    border-bottom: 2px solid #c99b2f;
+    padding: 10px 70px;
+  }
+  #end-banner.win  .end-title { color: #ffe9a8; text-shadow: 0 0 18px rgba(255,200,80,.9), 2px 2px 0 #000; }
+  #end-banner.lose .end-title { color: #ff9a8a; text-shadow: 0 0 18px rgba(255,80,60,.9), 2px 2px 0 #000; }
+  #end-banner .end-hint {
+    margin-top: 20px;
+    font-family: 'FE Serif SC', serif;
+    font-size: 15px; color: #b9c2e4;
+    text-shadow: 1px 1px 0 #000;
+  }
+
+  /* atmosphere: 斜向日光 + vignette (在 canvas 之上, UI 之下) */
+  #atmosphere {
+    position: absolute; inset: 0;
+    z-index: 5;
+    pointer-events: none;
+    background:
+      linear-gradient(135deg,
+        rgba(255,238,196,.13) 0%, rgba(255,238,196,.03) 32%,
+        rgba(10,14,40,.06) 68%, rgba(6,8,24,.20) 100%),
+      radial-gradient(ellipse at center, transparent 52%, rgba(4,6,18,.36) 100%);
+  }
+
+  /* battle scene UI (全屏战斗的 DOM 覆盖层) */
+  #battle-ui {
+    position: absolute; inset: 0;
+    display: none;
+    z-index: 45;
+    cursor: pointer;
+  }
+  .bu-side {
+    position: absolute; top: 12px;
+    width: 330px;
+  }
+  .bu-side.atk { left: 18px; }
+  .bu-side.def { right: 18px; }
+  .bu-name {
+    font-size: 19px;
+    color: #dfe9ff;
+    text-shadow: 1px 1px 0 #000, 0 0 10px rgba(80,130,255,.6);
+    margin-bottom: 4px;
+  }
+  .bu-side.def .bu-name {
+    text-align: right;
+    color: #ffd0c4;
+    text-shadow: 1px 1px 0 #000, 0 0 10px rgba(255,80,60,.6);
+  }
+  .bu-bar {
+    height: 14px;
+    background: rgba(8,12,32,.85);
+    border: 1px solid #c99b2f;
+    box-shadow: 0 0 0 1px #080c20, inset 0 2px 3px #000;
+    overflow: hidden;
+  }
+  .bu-bar i { display: block; height: 100%; transition: width .2s; }
+  .bu-side.atk .bu-bar i { background: linear-gradient(180deg, #8fbaff 0%, #2f6fd0 50%, #1a4a9e 100%); }
+  .bu-side.def .bu-bar i { background: linear-gradient(180deg, #ffa08a 0%, #d0402f 50%, #9e2418 100%); float: right; }
+  .bu-hp-num { font-size: 13px; color: #f0c75e; text-shadow: 1px 1px 0 #000; margin-top: 2px; }
+  .bu-side.def .bu-hp-num { text-align: right; }
+  .bu-hint {
+    position: absolute; bottom: 10px; left: 50%;
+    transform: translateX(-50%);
+    font-size: 13px; color: #b9c2e4;
+    text-shadow: 1px 1px 0 #000;
+  }
+  #battle-floats { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 46; display: none; }
+  .bu-float {
+    position: absolute;
+    transform: translate(-50%, -100%);
+    font-family: 'FE Serif SC', serif;
+    font-size: 34px; font-weight: bold;
+    color: #ffe2d8;
+    text-shadow: 0 0 10px rgba(255,60,30,.85), 2px 2px 0 #000;
+    pointer-events: none;
+    animation: bufloat 1.05s ease-out forwards;
+  }
+  .bu-float.heal { color: #b8ffb0; text-shadow: 0 0 10px rgba(60,255,80,.85), 2px 2px 0 #000; }
+  .bu-float.miss { font-size: 22px; color: #cdd5f5; text-shadow: 2px 2px 0 #000; }
+  .bu-float.kill { color: #ffd24a; text-shadow: 0 0 12px rgba(255,190,40,.9), 2px 2px 0 #000; }
+  @keyframes bufloat {
+    0%   { opacity: 0; margin-top: 14px; }
+    12%  { opacity: 1; }
+    100% { opacity: 0; margin-top: -44px; }
+  }
+  #battle-fade {
+    position: absolute; inset: 0;
+    background: #000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .3s;
+    z-index: 44;
+  }
+
+  /* 战斗期间隐藏地图 UI */
+  #stage.in-battle #turn-panel,
+  #stage.in-battle #terrain-panel,
+  #stage.in-battle #unit-panel,
+  #stage.in-battle #hint,
+  #stage.in-battle #cursor,
+  #stage.in-battle #action-menu { display: none !important; }
+
+  /* map cursor (gold brackets) */
+  #cursor {
+    position: absolute;
+    width: 48px; height: 48px;
+    display: none;
+    z-index: 20;
+    pointer-events: none;
+  }
+  #cursor .c { position: absolute; width: 14px; height: 14px; border: 3px solid #f5d878; filter: drop-shadow(1px 1px 0 #000); }
+  #cursor .tl { left: 0; top: 0; border-right: none; border-bottom: none; }
+  #cursor .tr { right: 0; top: 0; border-left: none; border-bottom: none; }
+  #cursor .bl { left: 0; bottom: 0; border-right: none; border-top: none; }
+  #cursor .br { right: 0; bottom: 0; border-left: none; border-top: none; }
+
+  #hint {
+    left: 8px; bottom: 8px;
+    padding: 5px 12px;
+    font-size: 12px;
+    color: #b9c2e4;
+  }
+
+  #zoom-label {
+    right: 8px; bottom: 8px;
+    padding: 3px 10px;
+    font-size: 12px;
+    color: #93a0c8;
+    z-index: 15;
+  }
+
+  #script-result {
+    left: 50%; bottom: 40px;
+    transform: translateX(-50%);
+    max-width: 900px;
+    padding: 6px 14px;
+    font-size: 12px;
+    display: none;
+    z-index: 70;
+    white-space: normal;
+    line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+  <div id="stage">
+    <canvas id="game-canvas" width="960" height="540"></canvas>
+
+    <div id="unit-panel" class="fe-panel">
+      <div class="name-row">
+        <span class="uname">—</span>
+        <span class="uteam">我军</span>
+      </div>
+      <div class="squad-mid">
+        <div class="mini-grid">
+          <div class="mg-cell"></div><div class="mg-cell"></div><div class="mg-cell"></div>
+          <div class="mg-cell"></div><div class="mg-cell"></div><div class="mg-cell"></div>
+          <div class="mg-cell"></div><div class="mg-cell"></div><div class="mg-cell"></div>
+        </div>
+        <div class="stat-grid">
+          <span class="fe-dim">队长 <span class="uleader fe-label">—</span></span>
+          <span class="fe-dim">人数 <span class="ucount fe-label">—</span></span>
+          <span class="fe-dim">移动 <span class="umov">—</span></span>
+          <span class="fe-dim">射程 <span class="urange">—</span></span>
+          <span class="fe-dim">威胁 <span class="uscore fe-label">—</span></span>
+        </div>
+      </div>
+      <div class="hp-row">
+        <span class="fe-label">HP</span>
+        <div class="hp-bar-outer"><div class="hp-bar-inner" style="width:100%"></div></div>
+        <span class="hp-num">—</span>
+      </div>
+    </div>
+
+    <div id="terrain-panel" class="fe-panel">
+      <div class="tname">平原</div>
+      <div class="trow"><span class="fe-dim">回避</span><span class="t-avo fe-label">+0</span></div>
+      <div class="trow"><span class="fe-dim">防御</span><span class="t-def fe-label">+0</span></div>
+      <div class="trow"><span class="fe-dim">移动</span><span class="t-cost fe-label">1</span></div>
+    </div>
+
+    <div id="turn-panel" class="fe-panel">第 <span id="turn-num" class="fe-label">1</span> 回合 — <span id="phase-name">玩家阶段</span></div>
+
+    <div id="action-menu" class="fe-panel"></div>
+
+    <div id="atmosphere"></div>
+
+    <div id="battle-ui">
+      <div class="bu-side atk">
+        <div class="bu-name">—</div>
+        <div class="bu-bar"><i style="width:100%"></i></div>
+        <div class="bu-hp-num">—</div>
+      </div>
+      <div class="bu-side def">
+        <div class="bu-name">—</div>
+        <div class="bu-bar"><i style="width:100%"></i></div>
+        <div class="bu-hp-num">—</div>
+      </div>
+      <div class="bu-hint">点击 / 按键 加速战斗</div>
+    </div>
+    <div id="battle-floats"></div>
+    <div id="battle-fade"></div>
+
+    <div id="phase-banner"><div class="inner">玩家阶段</div></div>
+
+    <div id="intro-banner">
+      <div class="map-name">—</div>
+      <div class="intro-text">—</div>
+    </div>
+
+    <div id="end-banner">
+      <div class="end-title">胜利</div>
+      <div class="end-hint">点击或按 Enter 重新开始</div>
+    </div>
+
+    <div id="cursor"><div class="c tl"></div><div class="c tr"></div><div class="c bl"></div><div class="c br"></div></div>
+
+    <div id="hint" class="fe-panel">方向键/鼠标移动 · Z/点击确认 · X/Esc 取消 · 滚轮缩放 · 双击空地结束回合</div>
+    <div id="zoom-label" class="fe-panel">2x</div>
+    <div id="script-result" class="fe-panel"></div>
+  </div>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>

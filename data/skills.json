@@ -1,0 +1,10 @@
+{
+  "skills": [
+    { "id": "discipline", "name": "纪律",   "icon": "tech_1",  "type": "passive", "target": "self",  "effect": { "stat": "skl", "mod": 2 }, "flag": "",         "description": "技巧 +2。" },
+    { "id": "vanguard",   "name": "先攻",   "icon": "tech_2",  "type": "combat",  "target": "self",  "effect": { "stat": "",    "mod": 0 }, "flag": "vanguard", "description": "战斗开始时总是率先出手。" },
+    { "id": "doubles",    "name": "追击",   "icon": "tech_3",  "type": "combat",  "target": "self",  "effect": { "stat": "",    "mod": 0 }, "flag": "doubles",  "description": "技巧高于对手时额外攻击一次。" },
+    { "id": "rally",      "name": "鼓舞",   "icon": "tech_4",  "type": "aura",    "target": "squad", "effect": { "stat": "str", "mod": 1 }, "flag": "",         "description": "全队力量 +1。" },
+    { "id": "bulwark",    "name": "壁垒",   "icon": "tech_5",  "type": "aura",    "target": "squad", "effect": { "stat": "arm", "mod": 1 }, "flag": "",         "description": "全队护甲 +1。" },
+    { "id": "medic",      "name": "急救",   "icon": "tech_6",  "type": "combat",  "target": "squad", "effect": { "stat": "",    "mod": 3 }, "flag": "healer",   "description": "行动中改为治疗己方生命最低的单位, 恢复 3 + 魔力 点。" }
+  ]
+}

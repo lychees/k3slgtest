@@ -1,0 +1,9902 @@
+{
+ "__class__": "RPG::Map",
+ "parallax_name": "",
+ "height": 26,
+ "events": {
+  "3": {
+   "__class__": "RPG::Event",
+   "id": 3,
+   "name": "EV003",
+   "x": 15,
+   "y": 3,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "!&city_red",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": false,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<objective id 6>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<objective name Eastwall>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<objective owner 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<objective type base>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<objective econ 1824>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<OBC switch 641>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<objective fxp 50>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<OBC victory ch1win>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "4": {
+   "__class__": "RPG::Event",
+   "id": 4,
+   "name": "EV004",
+   "x": 9,
+   "y": 15,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "!&tradetown_red",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": false,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<objective id 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<objective name Kallenberg>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<objective owner 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<objective type town>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<OBC switch 502>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<objective econ 1424>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<objective fxp 15>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<OBC challenge ch1c>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<OBC switch 791>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "6": {
+   "__class__": "RPG::Event",
+   "id": 6,
+   "name": "EV006",
+   "x": 21,
+   "y": 4,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "!&town_red",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": false,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<objective id 5>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<objective name Grodaal>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<objective owner 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<objective type village>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<objective econ 504>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<objective fxp 5>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<OBC challenge ch1c>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "7": {
+   "__class__": "RPG::Event",
+   "id": 7,
+   "name": "EV007",
+   "x": 18,
+   "y": 14,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "$minered_iron",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": true,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 1,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<objective id 4>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<objective name Iron Mine>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<objective owner 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<objective type ironmine>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<OBC challenge ch1c>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<OBC switch 858>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "2": {
+   "__class__": "RPG::Event",
+   "id": 2,
+   "name": "EV002",
+   "x": 15,
+   "y": 10,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "!&fort_red",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<objective id 3>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<objective name Fort>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<objective owner 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<objective type fort>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 121,
+       "parameters": [
+        503,
+        503,
+        0
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "8": {
+   "__class__": "RPG::Event",
+   "id": 8,
+   "name": "EV008",
+   "x": 15,
+   "y": 1,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "$flag_rebels",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 4,
+     "move_frequency": 4,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": true,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 2,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<sprite only>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    },
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": true,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 641,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "$flag_veridia",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 4,
+     "move_frequency": 4,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": true,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 2,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<sprite only>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "10": {
+   "__class__": "RPG::Event",
+   "id": 10,
+   "name": "EV010",
+   "x": 8,
+   "y": 8,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "!&town_red",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": false,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<objective id 2>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<objective name Edennes>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<objective owner 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<objective type village>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<objective econ 421>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<objective fxp 4>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<OBC challenge ch1c>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "11": {
+   "__class__": "RPG::Event",
+   "id": 11,
+   "name": "EV011",
+   "x": 0,
+   "y": 25,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": true,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 501,
+      "switch2_id": 1,
+      "variable_id": 41,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 3,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:zelos, true)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "init_mood(3)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<DIALOGUE 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<DIALOGUE SETTINGS>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":actor_name 9"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":source_character 8765"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":right"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 101,
+       "parameters": [
+        "faces_zelos",
+        0,
+        0,
+        2
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 401,
+       "parameters": [
+        "Good, looks like they haven't sent much out yet."
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:zelos, false)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 111,
+       "parameters": [
+        0,
+        5,
+        0
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 0,
+       "parameters": []
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 411,
+       "parameters": []
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:zelos, false)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 355,
+       "parameters": [
+        "move_camera(4, :squad_id, \"tut1\")"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 230,
+       "parameters": [
+        1
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 250,
+       "parameters": [
+        {
+         "__class__": "RPG::SE",
+         "name": "ui_positive2",
+         "pitch": 100,
+         "volume": 85
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 121,
+       "parameters": [
+        13,
+        13,
+        0
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 121,
+       "parameters": [
+        635,
+        635,
+        0
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 355,
+       "parameters": [
+        "animation_to_squad(\"tut1\", 398, false)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:zelos, true)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 355,
+       "parameters": [
+        "init_mood(3)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 108,
+       "parameters": [
+        "<DIALOGUE 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 408,
+       "parameters": [
+        "<DIALOGUE SETTINGS>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 408,
+       "parameters": [
+        ":actor_name 9"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 408,
+       "parameters": [
+        ":source_character 8765"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 408,
+       "parameters": [
+        ":right"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 101,
+       "parameters": [
+        "faces_zelos",
+        0,
+        0,
+        2
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 401,
+       "parameters": [
+        "You should take these guys out to get some battle experience.\\! You can move your squad next to the enemy soldiers and attack.\\! If you run into trouble, I'm right behind you."
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 355,
+       "parameters": [
+        "animation_to_squad(\"tut1\", 0)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 121,
+       "parameters": [
+        13,
+        13,
+        1
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 121,
+       "parameters": [
+        635,
+        635,
+        1
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:zelos, false)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:hero, true)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 355,
+       "parameters": [
+        "init_mood(3)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 108,
+       "parameters": [
+        "<DIALOGUE 2>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 408,
+       "parameters": [
+        "<DIALOGUE SETTINGS>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 408,
+       "parameters": [
+        ":actor_name 8"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 408,
+       "parameters": [
+        ":source_character 8765"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 408,
+       "parameters": [
+        ":left"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 101,
+       "parameters": [
+        "faces_hero_f[f]",
+        2,
+        0,
+        2
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 401,
+       "parameters": [
+        "Take a break, Zelos, I've got this!"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:hero, false)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 242,
+       "parameters": [
+        2
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 355,
+       "parameters": [
+        "move_camera_back(4) "
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 241,
+       "parameters": [
+        {
+         "__class__": "RPG::BGM",
+         "name": "",
+         "volume": 100,
+         "pitch": 100
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 230,
+       "parameters": [
+        1
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 0,
+       "parameters": []
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 412,
+       "parameters": []
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 123,
+       "parameters": [
+        "A",
+        0
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    },
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": true,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 502,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 3,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    },
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": true,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 552,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 3,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 111,
+       "parameters": [
+        0,
+        5,
+        0
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 355,
+       "parameters": [
+        "quest(17)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 0,
+       "parameters": []
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 411,
+       "parameters": []
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 111,
+       "parameters": [
+        0,
+        887,
+        0
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 2,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 2,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:zelos, true)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 2,
+       "code": 355,
+       "parameters": [
+        "init_mood(3)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 2,
+       "code": 108,
+       "parameters": [
+        "<DIALOGUE 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 2,
+       "code": 408,
+       "parameters": [
+        "<DIALOGUE SETTINGS>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 2,
+       "code": 408,
+       "parameters": [
+        ":actor_name 9"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 2,
+       "code": 408,
+       "parameters": [
+        ":source_character 8765"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 2,
+       "code": 408,
+       "parameters": [
+        ":right"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 2,
+       "code": 101,
+       "parameters": [
+        "faces_zelos",
+        0,
+        0,
+        2
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 2,
+       "code": 401,
+       "parameters": [
+        "We took some damage in that fighting, but we can heal it back by having Support units, such as the Medic in your squad.\\! While they cannot attack, Support units help greatly to keep soldier losses to a minimum."
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 2,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:zelos, false)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 2,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 2,
+       "code": 0,
+       "parameters": []
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 411,
+       "parameters": []
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 2,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 2,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:zelos, true)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 2,
+       "code": 355,
+       "parameters": [
+        "init_mood(3)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 2,
+       "code": 108,
+       "parameters": [
+        "<DIALOGUE 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 2,
+       "code": 408,
+       "parameters": [
+        "<DIALOGUE SETTINGS>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 2,
+       "code": 408,
+       "parameters": [
+        ":actor_name 9"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 2,
+       "code": 408,
+       "parameters": [
+        ":source_character 8765"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 2,
+       "code": 408,
+       "parameters": [
+        ":right"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 2,
+       "code": 101,
+       "parameters": [
+        "faces_zelos",
+        0,
+        0,
+        2
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 2,
+       "code": 401,
+       "parameters": [
+        "We took some damage in that fighting, but we can heal it back by having Support units, such as the Medic in your squad.\\! While they cannot attack, Support units help greatly to keep soldier losses to a minimum."
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 2,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:zelos, false)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 2,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 2,
+       "code": 0,
+       "parameters": []
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 412,
+       "parameters": []
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 355,
+       "parameters": [
+        "move_camera(4, :objective_id, 1)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 230,
+       "parameters": [
+        10
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 121,
+       "parameters": [
+        13,
+        13,
+        0
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 250,
+       "parameters": [
+        {
+         "__class__": "RPG::SE",
+         "name": "ui_positive2",
+         "pitch": 100,
+         "volume": 85
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:zelos, true)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 355,
+       "parameters": [
+        "animation_to_objective(1, 399, false)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 355,
+       "parameters": [
+        "init_mood(3)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 108,
+       "parameters": [
+        "<DIALOGUE 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 408,
+       "parameters": [
+        "<DIALOGUE SETTINGS>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 408,
+       "parameters": [
+        ":actor_name 9"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 408,
+       "parameters": [
+        ":source_character 8765"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 408,
+       "parameters": [
+        ":right"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 101,
+       "parameters": [
+        "faces_zelos",
+        0,
+        0,
+        2
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 401,
+       "parameters": [
+        "Next, we need to capture that town, so we can liberate it from the rebels.\\! Move any Squad to the town's front gate, and \"Seize\"."
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 355,
+       "parameters": [
+        "animation_to_squad(\"tut1\", 0)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:zelos, false)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 355,
+       "parameters": [
+        "quest(17)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 121,
+       "parameters": [
+        13,
+        13,
+        1
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 230,
+       "parameters": [
+        10
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 230,
+       "parameters": [
+        10
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 355,
+       "parameters": [
+        "move_camera_back(4) "
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 230,
+       "parameters": [
+        10
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 0,
+       "parameters": []
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 412,
+       "parameters": []
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 123,
+       "parameters": [
+        "B",
+        0
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    },
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": true,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "B",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    },
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": true,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 502,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 3,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 111,
+       "parameters": [
+        0,
+        5,
+        0
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 0,
+       "parameters": []
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 411,
+       "parameters": []
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 230,
+       "parameters": [
+        90
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 355,
+       "parameters": [
+        "init_mood(3)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 108,
+       "parameters": [
+        "<DIALOGUE 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 408,
+       "parameters": [
+        "<DIALOGUE SETTINGS>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 408,
+       "parameters": [
+        ":actor_name 9"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 408,
+       "parameters": [
+        ":source_character 8765"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 408,
+       "parameters": [
+        ":right"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 101,
+       "parameters": [
+        "faces_zelos",
+        0,
+        0,
+        2
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 401,
+       "parameters": [
+        "Good, we liberated a town, and got some Gold and Faction XP (stars) for our trouble.\\! We'll need Gold for a lot of things. Recruiting new troops, hiring Mercenaries, buying Artifacts, among others.\\! Faction XP allows us to increase Faction Rank.\\! As Faction Rank increases, our reputation will improve among the people.\\! This will yield better shop prices, discover new technology, attract new recruits, and intimidate our enemies.\\! The squad who captures objectives gets Leadership (LDR) and Loyalty XP as well!"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 0,
+       "parameters": []
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 412,
+       "parameters": []
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 242,
+       "parameters": [
+        3
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "move_camera(6, :squad_id, \"wolfgar\")"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "MOVE TO EASTWALL"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 241,
+       "parameters": [
+        {
+         "__class__": "RPG::BGM",
+         "name": "Harmonic-scene2",
+         "volume": 100,
+         "pitch": 100
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "init_mood(-2)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<DIALOGUE 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<DIALOGUE SETTINGS>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":actor_name 31"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":source_character 8765"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":right"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 101,
+       "parameters": [
+        "faces_single",
+        1,
+        0,
+        2
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 401,
+       "parameters": [
+        "The Imperial Army has already arrived...\\| much sooner than I expected.\\! Wolfgar, I'm trusting you to lead our troops here.\\! If you hold the river fortress, we should be safe here."
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:wolfgar, true)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "init_mood(-1)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<DIALOGUE 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<DIALOGUE SETTINGS>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":actor_name 121"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":source_character 8765"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":right"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 101,
+       "parameters": [
+        "",
+        0,
+        0,
+        2
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 401,
+       "parameters": [
+        "I'll make them regret coming here, don't worry, General."
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:wolfgar, false)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 242,
+       "parameters": [
+        2
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "move_camera(8, :xy, [19, 18])"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        1
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 121,
+       "parameters": [
+        704,
+        704,
+        0
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        1
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "queue_batch_move(:tag, :sybil, [23, 20])"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        10
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 121,
+       "parameters": [
+        705,
+        705,
+        0
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        1
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "queue_batch_move(:tag, :jules, [24, 20])"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "init_batch_move"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "MOVE TO JULES AND SYBIL"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 241,
+       "parameters": [
+        {
+         "__class__": "RPG::BGM",
+         "name": "Harmonic-recruit",
+         "volume": 100,
+         "pitch": 115
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 121,
+       "parameters": [
+        549,
+        549,
+        0
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:jules, true)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "init_mood(2)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<DIALOGUE 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<DIALOGUE SETTINGS>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":actor_name 9999"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":source_character 8765"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":left"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 101,
+       "parameters": [
+        "faces_single",
+        3,
+        0,
+        2
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 401,
+       "parameters": [
+        "Looks like we made it just in time!\\! Are you ready for this, Sybil?"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:jules, false)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "clear_batch_move"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:sybil, true)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "init_mood(2)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<DIALOGUE 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<DIALOGUE SETTINGS>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":actor_name 11"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":source_character 8765"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":left"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 101,
+       "parameters": [
+        "faces_sybil",
+        0,
+        0,
+        2
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 401,
+       "parameters": [
+        "Are you kidding, Jules?\\! I've been waiting ages for a chance to prove my mettle!\\! Come and get it, rebel scum!"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:sybil, false)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:jules, true)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "init_mood(2)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<DIALOGUE 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<DIALOGUE SETTINGS>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":actor_name 10"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":source_character 8765"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":left"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 101,
+       "parameters": [
+        "faces_single",
+        3,
+        0,
+        2
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 401,
+       "parameters": [
+        "Your squad has tougher soldiers, so should stay in front.\\! Mine will provide long-range archer attacks from a safe distance."
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:jules, false)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "SHOW HILLS"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 111,
+       "parameters": [
+        0,
+        5,
+        0
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 0,
+       "parameters": []
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 411,
+       "parameters": []
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 121,
+       "parameters": [
+        13,
+        13,
+        0
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 250,
+       "parameters": [
+        {
+         "__class__": "RPG::SE",
+         "name": "ui_positive2",
+         "pitch": 100,
+         "volume": 85
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 355,
+       "parameters": [
+        "animation_to_tile([22, 18], 400, false)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:jules, true)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 355,
+       "parameters": [
+        "init_mood(2)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 108,
+       "parameters": [
+        "<DIALOGUE 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 408,
+       "parameters": [
+        "<DIALOGUE SETTINGS>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 408,
+       "parameters": [
+        ":actor_name 10"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 408,
+       "parameters": [
+        ":source_character 8765"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 408,
+       "parameters": [
+        ":left"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 101,
+       "parameters": [
+        "faces_single",
+        3,
+        0,
+        2
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 401,
+       "parameters": [
+        "See that hill?\\! That's high ground, very useful, especially for archers like me!\\! Move me onto the hill so I can shoot further than normal!"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 355,
+       "parameters": [
+        "animation_to_squad(\"tut1\", 0)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:jules, false)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 121,
+       "parameters": [
+        13,
+        13,
+        1
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 108,
+       "parameters": [
+        "MOVE TO PROTAG"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 0,
+       "parameters": []
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 412,
+       "parameters": []
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "move_camera_back(6) "
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:hero, true)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "init_mood(3)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<DIALOGUE 2>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<DIALOGUE SETTINGS>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":actor_name 8"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":source_character 8765"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":left"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 101,
+       "parameters": [
+        "faces_hero_f[f]",
+        0,
+        0,
+        2
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 401,
+       "parameters": [
+        "Over there, to the East.\\! I think that's Jules, a fellow Imperial Academy cadet of mine.\\! We should meet up with them and join all our forces together."
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:hero, false)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 242,
+       "parameters": [
+        3
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "quest(22)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "quest(21)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "start_variable_turn_count(83)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 241,
+       "parameters": [
+        {
+         "__class__": "RPG::BGM",
+         "name": "Harmonic-mission2",
+         "volume": 90,
+         "pitch": 100
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 123,
+       "parameters": [
+        "C",
+        0
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    },
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": true,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "C",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    },
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": true,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 502,
+      "switch2_id": 1,
+      "variable_id": 83,
+      "variable_value": 1,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 3,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "quest(20)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 111,
+       "parameters": [
+        0,
+        5,
+        0
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 0,
+       "parameters": []
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 411,
+       "parameters": []
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 108,
+       "parameters": [
+        "SHOW RIVER FORT"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 355,
+       "parameters": [
+        "move_camera(4, :objective_id, 3)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 230,
+       "parameters": [
+        10
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 121,
+       "parameters": [
+        13,
+        13,
+        0
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 250,
+       "parameters": [
+        {
+         "__class__": "RPG::SE",
+         "name": "ui_positive2",
+         "pitch": 100,
+         "volume": 85
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:hero, true)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 355,
+       "parameters": [
+        "animation_to_objective(3, 399, false)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 355,
+       "parameters": [
+        "init_mood(3)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 108,
+       "parameters": [
+        "<DIALOGUE 2>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 408,
+       "parameters": [
+        "<DIALOGUE SETTINGS>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 408,
+       "parameters": [
+        ":actor_name 8"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 408,
+       "parameters": [
+        ":source_character 8765"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 408,
+       "parameters": [
+        ":left"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 101,
+       "parameters": [
+        "faces_hero_f[f]",
+        0,
+        0,
+        2
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 401,
+       "parameters": [
+        "If we can take that river fortress, the path to the main enemy base will be clear.\\! Forts give defense bonuses and allows archers to shoot farther.\\! And that goes for both sides, so we can't underestimate those defenders!"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 355,
+       "parameters": [
+        "animation_to_squad(\"tut1\", 0)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:hero, false)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 121,
+       "parameters": [
+        13,
+        13,
+        1
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 355,
+       "parameters": [
+        "move_camera_back(6) "
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 0,
+       "parameters": []
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 412,
+       "parameters": []
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 123,
+       "parameters": [
+        "D",
+        0
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    },
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": true,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "D",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    },
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": true,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 503,
+      "switch2_id": 1,
+      "variable_id": 106,
+      "variable_value": 1,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 3,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 242,
+       "parameters": [
+        3
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "move_camera(6, :objective_id, 3)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:zelos, true)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "init_mood(3)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<DIALOGUE 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<DIALOGUE SETTINGS>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":actor_name 9"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":source_character 8765"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":right"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 101,
+       "parameters": [
+        "faces_zelos",
+        0,
+        0,
+        2
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 401,
+       "parameters": [
+        "We've really got them on the run now!\\! The river fortress is ours. Time to take down the local rebel commander at Eastwall."
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:zelos, false)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "move_camera(4, :objective_id, 6)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:wolfgar, true)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 241,
+       "parameters": [
+        {
+         "__class__": "RPG::BGM",
+         "name": "",
+         "volume": 100,
+         "pitch": 100
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "init_mood(-1)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<DIALOGUE 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<DIALOGUE SETTINGS>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":actor_name 121"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":source_character 8765"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":right"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 101,
+       "parameters": [
+        "",
+        0,
+        0,
+        2
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 401,
+       "parameters": [
+        "Damned Imperial dogs...\\| they are really this ruthless?\\! The rest of you, get out there and stop them!\\! Our cause will not be snuffed out here!"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:wolfgar, false)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<MOVE TO EASTWALL>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "lookup_reinforcements_by(:garrison_id, 6)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 655,
+       "parameters": [
+        "squad_appear_anim($reinforcements)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<DEPLOY TROOPS>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 241,
+       "parameters": [
+        {
+         "__class__": "RPG::BGM",
+         "name": "Harmonic-scene9",
+         "volume": 95,
+         "pitch": 100
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:zelos, true)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "init_mood(3)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<DIALOGUE 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<DIALOGUE SETTINGS>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":actor_name 9"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":source_character 8765"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":right"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 101,
+       "parameters": [
+        "faces_zelos",
+        0,
+        0,
+        2
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 401,
+       "parameters": [
+        "Looks like we've got another fight on our hands.\\! \\n[8], we're counting on you as the army leader to destroy the enemy.\\! Hopefully their leaders will get the message and lay down their weapons."
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:zelos, false)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 242,
+       "parameters": [
+        3
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 121,
+       "parameters": [
+        553,
+        553,
+        0
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 241,
+       "parameters": [
+        {
+         "__class__": "RPG::BGM",
+         "name": "Harmonic-mission2",
+         "volume": 90,
+         "pitch": 100
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "move_camera_back(6) "
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    },
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": true,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 553,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "12": {
+   "__class__": "RPG::Event",
+   "id": 12,
+   "name": "EV012",
+   "x": 1,
+   "y": 25,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": true,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 504,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 3,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 242,
+       "parameters": [
+        2
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "move_camera(6, :tag, :jules)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 241,
+       "parameters": [
+        {
+         "__class__": "RPG::BGM",
+         "name": "Harmonic-recruit",
+         "volume": 100,
+         "pitch": 110
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:hero, true)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "init_mood(2)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<DIALOGUE 2>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<DIALOGUE SETTINGS>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":actor_name 8"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":source_character 8765"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":left"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 101,
+       "parameters": [
+        "faces_hero_f[f]",
+        2,
+        0,
+        2
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 401,
+       "parameters": [
+        "We just can't help crossing paths, Jules!\\! Looks like we're in this together, huh?!"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:hero, false)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:jules, true)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "init_mood(2)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<DIALOGUE 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<DIALOGUE SETTINGS>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":actor_name 10"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":source_character 8765"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":left"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 101,
+       "parameters": [
+        "faces_single",
+        3,
+        0,
+        2
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 401,
+       "parameters": [
+        "\\n[8]!\\! What an honor to fight by your side in our first mission, but...\\| Central Command didn't say you'd be here!\\! Was there some sort of mistake?"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:jules, false)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:hero, true)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "init_mood(2)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<DIALOGUE 2>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<DIALOGUE SETTINGS>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":actor_name 8"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":source_character 8765"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":left"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 101,
+       "parameters": [
+        "faces_hero_f[f]",
+        4,
+        0,
+        2
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 401,
+       "parameters": [
+        "We...\\| decided to improvise."
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:hero, false)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        10
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        10
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        10
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:hero, true)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "init_mood(2)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<DIALOGUE 2>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<DIALOGUE SETTINGS>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":actor_name 8"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":source_character 8765"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":left"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 101,
+       "parameters": [
+        "faces_hero_f[f]",
+        0,
+        0,
+        2
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 401,
+       "parameters": [
+        "Anyway, glad to have your rangers here among us.\\! With clever planning, your troops can pick off enemies without fear of a counter-attack... unless they have their own archers of course."
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:hero, false)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:jules, true)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "init_mood(2)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<DIALOGUE 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<DIALOGUE SETTINGS>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":actor_name 10"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":source_character 8765"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":left"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 101,
+       "parameters": [
+        "faces_single",
+        3,
+        0,
+        2
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 401,
+       "parameters": [
+        "So you're leading this mission?\\! Wow, I always knew you'd do great things, \\n[8]."
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:jules, false)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:hero, true)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "init_mood(2)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<DIALOGUE 2>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<DIALOGUE SETTINGS>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":actor_name 8"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":source_character 8765"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":left"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 101,
+       "parameters": [
+        "faces_hero_f[f]",
+        5,
+        0,
+        2
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 401,
+       "parameters": [
+        "Oh, come on, Jules.\\! You'd say that no matter what I end up doing."
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:hero, false)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 242,
+       "parameters": [
+        4
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "move_camera_back(4) "
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "quest(23)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 123,
+       "parameters": [
+        "A",
+        0
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 241,
+       "parameters": [
+        {
+         "__class__": "RPG::BGM",
+         "name": "Harmonic-mission2",
+         "volume": 90,
+         "pitch": 100
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    },
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": true,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "13": {
+   "__class__": "RPG::Event",
+   "id": 13,
+   "name": "EV013",
+   "x": 2,
+   "y": 25,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": true,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 505,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 3,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 242,
+       "parameters": [
+        2
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "move_camera(6, :tag, :sybil)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 241,
+       "parameters": [
+        {
+         "__class__": "RPG::BGM",
+         "name": "Harmonic-recruit",
+         "volume": 100,
+         "pitch": 110
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:hero, true)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "init_mood(1)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<DIALOGUE 2>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<DIALOGUE SETTINGS>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":actor_name 8"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":source_character 8765"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":left"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 101,
+       "parameters": [
+        "faces_hero_f[f]",
+        0,
+        0,
+        2
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 401,
+       "parameters": [
+        "Well met... you're with the Imperial Army?"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:hero, false)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "init_mood(1)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<DIALOGUE 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<DIALOGUE SETTINGS>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":actor_name 11"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":source_character 8765"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":left"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 101,
+       "parameters": [
+        "faces_sybil",
+        1,
+        0,
+        2
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 401,
+       "parameters": [
+        "Name's Sybil, battle maiden of Veridia!\\! Jules and I were sent up the river to try and outflank the rebels."
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:sybil, false)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:hero, true)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "init_mood(1)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<DIALOGUE 2>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<DIALOGUE SETTINGS>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":actor_name 8"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":source_character 8765"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":left"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 101,
+       "parameters": [
+        "faces_hero_f[f]",
+        2,
+        0,
+        2
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 401,
+       "parameters": [
+        "That's an impressive title...\\| but you wear the garb of a Temple priestess."
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:hero, false)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "init_mood(1)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<DIALOGUE 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<DIALOGUE SETTINGS>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":actor_name 11"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":source_character 8765"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":left"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 101,
+       "parameters": [
+        "faces_sybil",
+        0,
+        0,
+        2
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 401,
+       "parameters": [
+        "Yeah, so what?\\! Healing's just as important as hurting, isn't it?!"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:sybil, false)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:hero, true)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "init_mood(1)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<DIALOGUE 2>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<DIALOGUE SETTINGS>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":actor_name 8"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":source_character 8765"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":left"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 101,
+       "parameters": [
+        "faces_hero_f[f]",
+        0,
+        0,
+        2
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 401,
+       "parameters": [
+        "Of course.\\! We're fortunate to have a priestess among us."
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:hero, false)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 242,
+       "parameters": [
+        4
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "quest(24)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "move_camera_back(4) "
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 123,
+       "parameters": [
+        "A",
+        0
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 241,
+       "parameters": [
+        {
+         "__class__": "RPG::BGM",
+         "name": "Harmonic-mission2",
+         "volume": 90,
+         "pitch": 100
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    },
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": true,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "5": {
+   "__class__": "RPG::Event",
+   "id": 5,
+   "name": "EV005",
+   "x": 3,
+   "y": 25,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": true,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 582,
+      "switch2_id": 1,
+      "variable_id": 83,
+      "variable_value": 2,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 3,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 111,
+       "parameters": [
+        0,
+        5,
+        0
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 355,
+       "parameters": [
+        "quest(18)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 355,
+       "parameters": [
+        "quest(19)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 0,
+       "parameters": []
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 411,
+       "parameters": []
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 355,
+       "parameters": [
+        "move_camera(4, :objective_id, 2)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 108,
+       "parameters": [
+        "MOVE TO GREEN TOWN"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 230,
+       "parameters": [
+        1
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 250,
+       "parameters": [
+        {
+         "__class__": "RPG::SE",
+         "name": "ui_positive2",
+         "pitch": 100,
+         "volume": 85
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 121,
+       "parameters": [
+        13,
+        13,
+        0
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 355,
+       "parameters": [
+        "animation_to_objective(2, 399, false)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:zelos, true)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 355,
+       "parameters": [
+        "init_mood(3)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 108,
+       "parameters": [
+        "<DIALOGUE 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 408,
+       "parameters": [
+        "<DIALOGUE SETTINGS>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 408,
+       "parameters": [
+        ":actor_name 9"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 408,
+       "parameters": [
+        ":source_character 8765"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 408,
+       "parameters": [
+        ":right"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 101,
+       "parameters": [
+        "faces_zelos",
+        0,
+        0,
+        2
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 401,
+       "parameters": [
+        "See that town?\\! To win wars, we must secure objectives.\\! Objectives can be towns, mines, stables, or military bases.\\! Towns like this, or gold mines, provide gold.\\! Any of our squads can capture objectives."
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:zelos, false)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 355,
+       "parameters": [
+        "animation_to_squad(\"tut1\", 0)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 121,
+       "parameters": [
+        13,
+        13,
+        1
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 355,
+       "parameters": [
+        "animation_to_squad(\"tut1\", 0)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 355,
+       "parameters": [
+        "move_camera(4, :objective_id, 6)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 108,
+       "parameters": [
+        "MOVE TO ENEMY BASE"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 250,
+       "parameters": [
+        {
+         "__class__": "RPG::SE",
+         "name": "ui_positive2",
+         "pitch": 100,
+         "volume": 85
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 121,
+       "parameters": [
+        13,
+        13,
+        0
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 355,
+       "parameters": [
+        "animation_to_objective(6, 399, false)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 355,
+       "parameters": [
+        "init_mood(3)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 108,
+       "parameters": [
+        "<DIALOGUE 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 408,
+       "parameters": [
+        "<DIALOGUE SETTINGS>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 408,
+       "parameters": [
+        ":actor_name 9"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 408,
+       "parameters": [
+        ":source_character 8765"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 408,
+       "parameters": [
+        ":right"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 101,
+       "parameters": [
+        "faces_zelos",
+        1,
+        0,
+        2
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 401,
+       "parameters": [
+        "There. That's Eastwall Fortress, home base of the enemy."
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 355,
+       "parameters": [
+        "init_mood(3)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 108,
+       "parameters": [
+        "<DIALOGUE 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 408,
+       "parameters": [
+        "<DIALOGUE SETTINGS>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 408,
+       "parameters": [
+        ":actor_name 9"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 408,
+       "parameters": [
+        ":source_character 8765"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 408,
+       "parameters": [
+        ":right"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 101,
+       "parameters": [
+        "faces_zelos",
+        0,
+        0,
+        2
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 401,
+       "parameters": [
+        "That's a heavily-fortified castle, like most home bases.\\! It provides defensive bonuses to soldiers stationed there.\\! Do not underestimate any base defender...\\| even these clowns.\\! There will be times when we are operating out of a Home Base. When that happens, you must defend it at all costs.\\! If an enemy reaches our Home Bases, it will force us into defeat."
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 355,
+       "parameters": [
+        "quest(19)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 121,
+       "parameters": [
+        13,
+        13,
+        1
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 355,
+       "parameters": [
+        "animation_to_squad(\"tut1\", 0)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 355,
+       "parameters": [
+        "move_camera_back(6) "
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 0,
+       "parameters": []
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 412,
+       "parameters": []
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 123,
+       "parameters": [
+        "B",
+        0
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    },
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": true,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 502,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "B",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 3,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "1": {
+   "__class__": "RPG::Event",
+   "id": 1,
+   "name": "EV001",
+   "x": 4,
+   "y": 25,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": true,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 727,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 3,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "command_chal(:finish, :ch1a)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 123,
+       "parameters": [
+        "A",
+        0
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    },
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": true,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "9": {
+   "__class__": "RPG::Event",
+   "id": 9,
+   "name": "EV009",
+   "x": 5,
+   "y": 25,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": true,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 786,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 3,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "start_variable_turn_count(106)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 123,
+       "parameters": [
+        "A",
+        0
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    },
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": true,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "15": {
+   "__class__": "RPG::Event",
+   "id": 15,
+   "name": "EV015",
+   "x": 9,
+   "y": 13,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "$flag_rebels",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 4,
+     "move_frequency": 4,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": true,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 2,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<sprite only>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    },
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": true,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 791,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "$flag_veridia",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 4,
+     "move_frequency": 4,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": true,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 2,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<sprite only>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "14": {
+   "__class__": "RPG::Event",
+   "id": 14,
+   "name": "EV014",
+   "x": 6,
+   "y": 25,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": true,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 858,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 3,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 111,
+       "parameters": [
+        0,
+        5,
+        0
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 123,
+       "parameters": [
+        "A",
+        0
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 0,
+       "parameters": []
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 411,
+       "parameters": []
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:zelos, true)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 355,
+       "parameters": [
+        "init_mood(3)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 108,
+       "parameters": [
+        "<DIALOGUE 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 408,
+       "parameters": [
+        "<DIALOGUE SETTINGS>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 408,
+       "parameters": [
+        ":actor_name 9"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 408,
+       "parameters": [
+        ":source_character 8765"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 408,
+       "parameters": [
+        ":right"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 101,
+       "parameters": [
+        "faces_zelos",
+        0,
+        0,
+        2
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 401,
+       "parameters": [
+        "We've secured an Iron Mine.\\! With the 3 Iron we just gained, we can upgrade our troops to more advanced classes when between chapters.\\! The resources are not consumed, just allocated, meaning we can change classes without any risk at all - feel free to experiment!"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 355,
+       "parameters": [
+        "squad_step_by_tag(:zelos, false)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 355,
+       "parameters": [
+        "quest(18)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 123,
+       "parameters": [
+        "A",
+        0
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 0,
+       "parameters": []
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 412,
+       "parameters": []
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    },
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": true,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "parallax_sx": 0,
+ "bgm": {
+  "__class__": "RPG::BGM",
+  "name": "Harmonic-mission2",
+  "volume": 85,
+  "pitch": 100
+ },
+ "tileset_id": 2,
+ "encounter_step": 30,
+ "width": 27,
+ "data": {
+  "__class__": "Table",
+  "dim": 3,
+  "x": 27,
+  "y": 26,
+  "z": 4,
+  "data": [
+   1597,
+   1598,
+   1599,
+   1598,
+   1599,
+   1598,
+   1599,
+   1605,
+   2928,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2936,
+   1604,
+   1598,
+   1599,
+   1598,
+   1599,
+   1598,
+   1599,
+   1598,
+   1599,
+   1605,
+   1604,
+   1605,
+   2946,
+   2913,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2914,
+   2948,
+   1604,
+   1598,
+   1599,
+   1598,
+   1597,
+   1596,
+   1597,
+   1605,
+   2673,
+   2674,
+   2946,
+   2913,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2916,
+   2940,
+   2940,
+   2920,
+   2914,
+   2948,
+   1604,
+   1598,
+   1599,
+   1598,
+   1599,
+   1598,
+   2954,
+   2673,
+   2674,
+   2928,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2936,
+   2082,
+   2084,
+   2928,
+   2912,
+   2914,
+   2948,
+   1604,
+   1598,
+   1599,
+   1598,
+   1597,
+   2944,
+   2088,
+   2073,
+   2928,
+   2916,
+   2940,
+   2940,
+   2940,
+   2940,
+   2920,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2936,
+   2088,
+   2086,
+   2928,
+   2912,
+   2912,
+   2936,
+   1598,
+   1599,
+   1598,
+   1599,
+   1605,
+   2929,
+   2948,
+   2675,
+   2952,
+   2950,
+   2083,
+   2081,
+   2081,
+   2085,
+   2952,
+   2920,
+   2912,
+   2912,
+   2912,
+   2912,
+   2914,
+   2932,
+   2932,
+   2913,
+   2912,
+   2912,
+   2936,
+   1604,
+   1598,
+   1597,
+   1605,
+   2946,
+   2917,
+   2950,
+   2067,
+   2081,
+   2081,
+   2087,
+   2946,
+   2948,
+   2089,
+   2085,
+   2928,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2936,
+   1598,
+   1599,
+   2932,
+   2932,
+   2913,
+   2936,
+   2082,
+   2074,
+   2946,
+   2933,
+   2945,
+   2941,
+   2942,
+   2957,
+   2675,
+   2952,
+   2920,
+   2912,
+   2916,
+   2940,
+   2940,
+   2940,
+   2920,
+   2912,
+   2912,
+   2912,
+   2936,
+   1604,
+   1598,
+   2912,
+   2912,
+   2912,
+   2936,
+   2088,
+   2073,
+   2928,
+   2936,
+   4010,
+   2082,
+   2069,
+   2081,
+   2079,
+   2085,
+   2952,
+   2940,
+   2950,
+   2083,
+   2081,
+   2085,
+   2952,
+   2940,
+   2920,
+   2912,
+   2936,
+   1598,
+   1599,
+   2912,
+   2912,
+   2912,
+   2914,
+   2948,
+   2675,
+   2952,
+   2950,
+   4000,
+   2088,
+   2073,
+   2946,
+   2948,
+   2089,
+   2081,
+   2081,
+   2081,
+   2087,
+   2954,
+   2089,
+   2070,
+   2084,
+   2952,
+   2940,
+   1598,
+   1599,
+   1598,
+   2912,
+   2912,
+   2912,
+   2912,
+   2936,
+   2089,
+   2081,
+   2085,
+   4009,
+   4001,
+   2080,
+   2921,
+   2914,
+   2932,
+   2932,
+   2915,
+   2932,
+   2932,
+   2919,
+   2957,
+   2088,
+   2078,
+   2093,
+   1598,
+   1599,
+   1598,
+   1599,
+   2912,
+   2912,
+   2912,
+   2912,
+   2914,
+   2932,
+   2948,
+   2089,
+   2085,
+   2958,
+   2080,
+   2928,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2916,
+   1605,
+   1604,
+   1598,
+   1599,
+   1598,
+   1599,
+   1598,
+   1599,
+   1598,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2914,
+   2948,
+   2089,
+   2081,
+   2075,
+   2952,
+   2920,
+   2912,
+   2912,
+   2912,
+   2912,
+   2936,
+   1604,
+   1605,
+   1604,
+   1598,
+   1599,
+   1598,
+   1599,
+   1598,
+   1599,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2914,
+   2932,
+   2948,
+   2089,
+   2085,
+   2928,
+   2912,
+   2912,
+   2912,
+   2912,
+   2914,
+   2948,
+   1604,
+   1605,
+   1604,
+   1598,
+   1599,
+   1598,
+   1599,
+   1605,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2914,
+   2948,
+   2080,
+   2928,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2914,
+   2948,
+   2673,
+   2674,
+   1604,
+   1598,
+   1599,
+   1605,
+   2954,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2936,
+   2675,
+   2952,
+   2920,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2936,
+   2673,
+   2674,
+   2954,
+   1604,
+   1605,
+   2946,
+   2913,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2936,
+   2089,
+   2085,
+   2928,
+   2912,
+   2912,
+   2912,
+   2916,
+   2940,
+   2950,
+   2066,
+   2086,
+   2929,
+   2932,
+   2932,
+   2913,
+   2912,
+   2940,
+   2940,
+   2940,
+   2920,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2918,
+   2945,
+   2080,
+   2941,
+   2920,
+   2912,
+   2912,
+   2936,
+   2083,
+   2081,
+   2087,
+   2946,
+   2913,
+   2912,
+   2912,
+   2912,
+   2912,
+   1599,
+   1598,
+   1599,
+   2952,
+   2920,
+   2916,
+   2940,
+   2940,
+   2920,
+   2912,
+   2936,
+   2082,
+   2051,
+   2084,
+   2952,
+   2940,
+   2920,
+   2918,
+   2080,
+   2945,
+   2934,
+   2913,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   1598,
+   1599,
+   1596,
+   1597,
+   2930,
+   2950,
+   2082,
+   2084,
+   2952,
+   2940,
+   2950,
+   2064,
+   2048,
+   2050,
+   2068,
+   2084,
+   2952,
+   2950,
+   2067,
+   2093,
+   2928,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   1599,
+   1598,
+   2955,
+   2945,
+   2951,
+   2082,
+   2049,
+   2050,
+   2068,
+   2068,
+   2068,
+   2049,
+   2048,
+   2048,
+   2048,
+   2050,
+   2068,
+   2068,
+   2074,
+   2955,
+   2921,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   1598,
+   2958,
+   2082,
+   2068,
+   2068,
+   2049,
+   2048,
+   2048,
+   2048,
+   2048,
+   2048,
+   2052,
+   2076,
+   2076,
+   2056,
+   2048,
+   2048,
+   2048,
+   2050,
+   2084,
+   2952,
+   2940,
+   2920,
+   2916,
+   2940,
+   2940,
+   2940,
+   2957,
+   2082,
+   2049,
+   2048,
+   2048,
+   2048,
+   2048,
+   2052,
+   2076,
+   2076,
+   2076,
+   2086,
+   2946,
+   2948,
+   2088,
+   2076,
+   2076,
+   2056,
+   2048,
+   2050,
+   2068,
+   2084,
+   2952,
+   2950,
+   2082,
+   2068,
+   2068,
+   2068,
+   2049,
+   2048,
+   2048,
+   2048,
+   2052,
+   2076,
+   2086,
+   2946,
+   2932,
+   2932,
+   2933,
+   2941,
+   2942,
+   2934,
+   2932,
+   2948,
+   2088,
+   2076,
+   2056,
+   2048,
+   2050,
+   2068,
+   2068,
+   2049,
+   2048,
+   2048,
+   2048,
+   2048,
+   2048,
+   2052,
+   2076,
+   2086,
+   2946,
+   2932,
+   2913,
+   2912,
+   2912,
+   2936,
+   1605,
+   1604,
+   2952,
+   2940,
+   2922,
+   2932,
+   2948,
+   2088,
+   2076,
+   2076,
+   2056,
+   2048,
+   2048,
+   2048,
+   2048,
+   2048,
+   2048,
+   2048,
+   2072,
+   2946,
+   2932,
+   2913,
+   2912,
+   2912,
+   2912,
+   2912,
+   2936,
+   1597,
+   1596,
+   1597,
+   1605,
+   2928,
+   2912,
+   2914,
+   2932,
+   2932,
+   2948,
+   2064,
+   2048,
+   2048,
+   2048,
+   2048,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3196,
+   4272,
+   4256,
+   4260,
+   4294,
+   3048,
+   3016,
+   3008,
+   3008,
+   3008,
+   3008,
+   3008,
+   3032,
+   3196,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3198,
+   3050,
+   4296,
+   4284,
+   4294,
+   4242,
+   4244,
+   3048,
+   3036,
+   3036,
+   3016,
+   3008,
+   3008,
+   3010,
+   3044,
+   3198,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3198,
+   3042,
+   3011,
+   3044,
+   0,
+   4251,
+   4237,
+   4233,
+   0,
+   0,
+   0,
+   3024,
+   3012,
+   3036,
+   3036,
+   3018,
+   3044,
+   3198,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3102,
+   0,
+   0,
+   3042,
+   3009,
+   3008,
+   3032,
+   0,
+   0,
+   0,
+   4252,
+   0,
+   0,
+   0,
+   3048,
+   3046,
+   0,
+   0,
+   3048,
+   3018,
+   3044,
+   3198,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3194,
+   0,
+   0,
+   3024,
+   3012,
+   3036,
+   3046,
+   3198,
+   0,
+   0,
+   0,
+   0,
+   2994,
+   2996,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3048,
+   3046,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3196,
+   3050,
+   0,
+   3048,
+   3046,
+   0,
+   0,
+   0,
+   0,
+   0,
+   2994,
+   2980,
+   2961,
+   2984,
+   0,
+   0,
+   0,
+   0,
+   0,
+   4243,
+   4253,
+   3198,
+   0,
+   0,
+   0,
+   0,
+   3198,
+   3043,
+   3047,
+   0,
+   0,
+   0,
+   0,
+   3051,
+   3053,
+   0,
+   0,
+   3000,
+   2988,
+   2968,
+   2962,
+   2996,
+   0,
+   3198,
+   0,
+   0,
+   4252,
+   0,
+   0,
+   0,
+   0,
+   3185,
+   3197,
+   3042,
+   3034,
+   0,
+   0,
+   3042,
+   3029,
+   3053,
+   0,
+   0,
+   3198,
+   0,
+   3198,
+   0,
+   3000,
+   2988,
+   2998,
+   0,
+   0,
+   4290,
+   4292,
+   0,
+   3050,
+   3198,
+   0,
+   0,
+   3028,
+   3028,
+   3009,
+   3032,
+   0,
+   0,
+   3048,
+   3046,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   4296,
+   4294,
+   3042,
+   3011,
+   3044,
+   0,
+   0,
+   3008,
+   3008,
+   3008,
+   3014,
+   3053,
+   0,
+   4251,
+   4253,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3050,
+   0,
+   0,
+   0,
+   3048,
+   3036,
+   0,
+   0,
+   0,
+   3008,
+   3012,
+   3036,
+   3046,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3857,
+   3857,
+   3861,
+   0,
+   3856,
+   0,
+   3042,
+   3015,
+   3053,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3036,
+   3046,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3042,
+   3044,
+   3843,
+   3857,
+   3863,
+   0,
+   3048,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   2994,
+   2980,
+   2996,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3048,
+   3033,
+   3856,
+   0,
+   0,
+   3198,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   2994,
+   2961,
+   2960,
+   2962,
+   2996,
+   0,
+   0,
+   3042,
+   3044,
+   0,
+   0,
+   3052,
+   3865,
+   3861,
+   0,
+   0,
+   0,
+   3198,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3000,
+   2988,
+   2968,
+   2960,
+   2962,
+   2996,
+   0,
+   3026,
+   3038,
+   3045,
+   0,
+   0,
+   3198,
+   3856,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3000,
+   2988,
+   2968,
+   2984,
+   0,
+   3052,
+   3866,
+   3052,
+   0,
+   0,
+   0,
+   3856,
+   0,
+   0,
+   0,
+   0,
+   3050,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3042,
+   0,
+   3042,
+   3044,
+   0,
+   0,
+   3000,
+   2998,
+   0,
+   0,
+   3856,
+   0,
+   0,
+   0,
+   0,
+   3856,
+   0,
+   0,
+   0,
+   3051,
+   3047,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3042,
+   3009,
+   3041,
+   3037,
+   3038,
+   3030,
+   3044,
+   0,
+   0,
+   0,
+   0,
+   3865,
+   3857,
+   3857,
+   0,
+   3857,
+   3855,
+   3861,
+   3198,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3051,
+   3017,
+   3008,
+   0,
+   0,
+   0,
+   3048,
+   3018,
+   3044,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3865,
+   3857,
+   3857,
+   0,
+   3857,
+   3857,
+   3861,
+   3198,
+   0,
+   0,
+   3048,
+   3036,
+   0,
+   0,
+   0,
+   0,
+   3048,
+   3046,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3865,
+   3857,
+   3857,
+   3861,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3198,
+   0,
+   0,
+   0,
+   0,
+   3865,
+   3857,
+   3857,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3042,
+   3044,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3042,
+   3028,
+   3028,
+   3029,
+   3037,
+   3038,
+   3030,
+   3028,
+   3044,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3042,
+   3028,
+   3009,
+   3008,
+   3008,
+   3032,
+   0,
+   0,
+   3048,
+   3036,
+   3018,
+   3028,
+   3044,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3042,
+   3028,
+   3009,
+   3008,
+   3008,
+   3008,
+   3008,
+   3032,
+   0,
+   0,
+   0,
+   0,
+   3024,
+   3008,
+   3010,
+   3028,
+   3028,
+   3044,
+   0,
+   0,
+   0,
+   0,
+   0,
+   128,
+   129,
+   128,
+   129,
+   0,
+   0,
+   0,
+   0,
+   35,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   34,
+   0,
+   0,
+   128,
+   129,
+   128,
+   0,
+   128,
+   129,
+   0,
+   0,
+   0,
+   0,
+   35,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   9,
+   9,
+   9,
+   0,
+   0,
+   0,
+   0,
+   0,
+   34,
+   0,
+   0,
+   128,
+   129,
+   0,
+   42,
+   43,
+   0,
+   35,
+   34,
+   35,
+   0,
+   0,
+   0,
+   338,
+   0,
+   0,
+   0,
+   9,
+   9,
+   9,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   34,
+   0,
+   0,
+   0,
+   0,
+   0,
+   51,
+   35,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   360,
+   339,
+   0,
+   9,
+   0,
+   9,
+   0,
+   0,
+   0,
+   0,
+   9,
+   0,
+   0,
+   34,
+   0,
+   0,
+   128,
+   129,
+   43,
+   27,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   346,
+   0,
+   333,
+   0,
+   0,
+   0,
+   26,
+   0,
+   0,
+   0,
+   0,
+   0,
+   35,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   360,
+   0,
+   0,
+   0,
+   34,
+   0,
+   0,
+   0,
+   0,
+   35,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   698,
+   26,
+   0,
+   0,
+   34,
+   35,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   9,
+   698,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   698,
+   0,
+   34,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   333,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   26,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   391,
+   0,
+   0,
+   321,
+   0,
+   0,
+   0,
+   0,
+   330,
+   0,
+   0,
+   26,
+   0,
+   128,
+   129,
+   0,
+   0,
+   0,
+   0,
+   698,
+   0,
+   0,
+   0,
+   0,
+   0,
+   329,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   26,
+   27,
+   26,
+   27,
+   26,
+   0,
+   128,
+   129,
+   0,
+   0,
+   0,
+   346,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   360,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   26,
+   0,
+   0,
+   0,
+   128,
+   129,
+   128,
+   129,
+   128,
+   129,
+   391,
+   0,
+   0,
+   0,
+   0,
+   360,
+   0,
+   698,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   34,
+   0,
+   0,
+   0,
+   0,
+   128,
+   129,
+   128,
+   129,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   360,
+   9,
+   9,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   360,
+   34,
+   9,
+   0,
+   0,
+   0,
+   128,
+   129,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   9,
+   9,
+   9,
+   0,
+   360,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   34,
+   35,
+   34,
+   0,
+   0,
+   0,
+   0,
+   35,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   9,
+   0,
+   9,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   34,
+   0,
+   0,
+   35,
+   0,
+   698,
+   0,
+   0,
+   346,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   339,
+   0,
+   0,
+   0,
+   0,
+   360,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   698,
+   34,
+   35,
+   0,
+   0,
+   27,
+   26,
+   27,
+   0,
+   0,
+   0,
+   0,
+   0,
+   360,
+   0,
+   0,
+   0,
+   329,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   698,
+   0,
+   0,
+   0,
+   0,
+   0,
+   128,
+   129,
+   0,
+   27,
+   0,
+   0,
+   698,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   346,
+   0,
+   0,
+   0,
+   329,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   129,
+   0,
+   0,
+   0,
+   27,
+   0,
+   0,
+   0,
+   391,
+   347,
+   346,
+   0,
+   0,
+   0,
+   0,
+   0,
+   346,
+   0,
+   0,
+   0,
+   360,
+   0,
+   0,
+   0,
+   0,
+   0,
+   346,
+   128,
+   129,
+   35,
+   34,
+   35,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   698,
+   360,
+   0,
+   0,
+   0,
+   0,
+   0,
+   129,
+   35,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   346,
+   391,
+   0,
+   0,
+   0,
+   360,
+   0,
+   35,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   336,
+   337,
+   0,
+   0,
+   0,
+   0,
+   0,
+   346,
+   338,
+   0,
+   331,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   336,
+   337,
+   0,
+   0,
+   0,
+   0,
+   26,
+   27,
+   0,
+   344,
+   345,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   344,
+   345,
+   0,
+   0,
+   0,
+   26,
+   0,
+   26,
+   27,
+   26,
+   27,
+   0,
+   0,
+   0,
+   336,
+   337,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   26,
+   27,
+   34,
+   0,
+   0,
+   0,
+   0,
+   35,
+   26,
+   27,
+   0,
+   344,
+   345,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   2560,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   2304,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ]
+ },
+ "bgs": {
+  "__class__": "RPG::BGS",
+  "name": "",
+  "volume": 80,
+  "pitch": 100
+ },
+ "parallax_loop_y": false,
+ "autoplay_bgm": false,
+ "encounter_list": [],
+ "autoplay_bgs": false,
+ "parallax_show": false,
+ "scroll_type": 0,
+ "parallax_loop_x": false,
+ "disable_dashing": false,
+ "parallax_sy": 0,
+ "display_name": "Chapter 1: Rebellion",
+ "specify_battleback": false,
+ "note": "",
+ "battleback1_name": "",
+ "battleback2_name": ""
+}

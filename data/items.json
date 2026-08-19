@@ -1,0 +1,12 @@
+{
+  "items": [
+    { "id": "iron_sword",  "name": "铁剑",   "type": "weapon",   "weapon": "sword", "might": 5, "hit": 90, "crit": 0,  "range": 1, "price": 520,  "bonuses": {},                 "description": "标准的铁制长剑。" },
+    { "id": "iron_lance",  "name": "铁枪",   "type": "weapon",   "weapon": "lance", "might": 6, "hit": 85, "crit": 0,  "range": 1, "price": 560,  "bonuses": {},                 "description": "步骑通用的铁枪。" },
+    { "id": "iron_axe",    "name": "铁斧",   "type": "weapon",   "weapon": "axe",   "might": 8, "hit": 75, "crit": 0,  "range": 1, "price": 600,  "bonuses": {},                 "description": "沉重但威力可观。" },
+    { "id": "short_bow",   "name": "短弓",   "type": "weapon",   "weapon": "bow",   "might": 4, "hit": 85, "crit": 0,  "range": 2, "price": 540,  "bonuses": {},                 "description": "射程 2 的轻弓。" },
+    { "id": "fire_tome",   "name": "火焰书", "type": "weapon",   "weapon": "fire",  "might": 6, "hit": 80, "crit": 0,  "range": 2, "price": 620,  "bonuses": {},                 "description": "记载火焰术式的魔导书。" },
+    { "id": "claw",        "name": "利爪",   "type": "weapon",   "weapon": "claw",  "might": 6, "hit": 85, "crit": 0,  "range": 1, "price": 0,    "bonuses": {},                 "description": "复生者与野兽的爪牙。" },
+    { "id": "banner_of_valor", "name": "勇气战旗", "type": "artifact", "weapon": "", "might": 0, "hit": 0, "crit": 0, "range": 0, "price": 1500, "bonuses": { "str": 1 },       "description": "部队全员力量 +1。" },
+    { "id": "ward_charm",  "name": "守护护符", "type": "artifact", "weapon": "", "might": 0, "hit": 0, "crit": 0, "range": 0, "price": 1500, "bonuses": { "arm": 1 },       "description": "部队全员护甲 +1。" }
+  ]
+}
