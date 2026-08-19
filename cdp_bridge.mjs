@@ -5,7 +5,7 @@ import { writeFileSync } from 'node:fs';
 
 const CHROME = 'C:/Program Files/Google/Chrome/Application/chrome.exe';
 const PORT = 9336;
-const URL = 'http://localhost:8931/index.html?map=rm004';
+const URL = 'http://localhost:8931/index.html?map=rm004&nostory=1';   // nostory: 跳过战前剧情
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const chrome = spawn(CHROME, [
   '--headless=new', '--disable-gpu', '--use-angle=swiftshader',

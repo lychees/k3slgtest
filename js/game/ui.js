@@ -96,20 +96,33 @@ export function showIntro(map) {
   });
 }
 
-// 胜负横幅: 胜利 -> 点击进整备 (onWin); 败北 -> 点击或 Enter 刷新重开
-export function showEnd(win, onWin) {
+// 胜负横幅: 胜利 -> [整备] [下一章/回选关]; 败北 -> 点击或 Enter 刷新重开
+export function showEnd(win, opts = {}) {
   const b = $('end-banner');
   b.className = win ? 'win' : 'lose';
   b.querySelector('.end-title').textContent = win ? '胜 利' : '败 北';
-  b.querySelector('.end-hint').textContent = win && onWin ? '点击进入整备' : '点击或按 Enter 重新开始';
+  const hint = b.querySelector('.end-hint');
+  const btns = b.querySelector('.end-btns');
   b.style.display = 'flex';
   endOn = true;
-  if (win && onWin) {
-    b.addEventListener('click', () => { endOn = false; onWin(); }, { once: true });
+  if (win) {
+    hint.textContent = '';
+    btns.style.display = 'flex';
+    $('end-army').onclick = e => {
+      e.stopPropagation();
+      endOn = false;
+      b.style.display = 'none';
+      opts.onArmy && opts.onArmy();
+    };
+    const nextBtn = $('end-next');
+    nextBtn.textContent = opts.nextLabel || '下一章 »';
+    nextBtn.onclick = e => { e.stopPropagation(); opts.onNext && opts.onNext(); };
     return;
   }
+  btns.style.display = 'none';
+  hint.textContent = '点击或按 Enter 重新开始';
   const reload = () => location.reload();
-  b.addEventListener('click', reload);
+  b.onclick = reload;
   window.addEventListener('keydown', e => {
     if (endOn && (e.key === 'Enter' || e.key === 'z' || e.key === 'Z')) reload();
   });

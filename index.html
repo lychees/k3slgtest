@@ -466,6 +466,68 @@
   .ls-foot span { padding: 4px 16px; border: 1px solid #c99b2f; font-size: 13px; }
   .ls-foot span:hover { background: rgba(240,199,94,.18); }
 
+  /* story 剧情播放器 */
+  #story-ui {
+    position: absolute; inset: 0;
+    display: none;
+    z-index: 58;
+    background: linear-gradient(180deg, rgba(4,6,16,0) 55%, rgba(4,6,16,.55) 100%);
+  }
+  #story-skip {
+    position: absolute; right: 12px; top: 40px;
+    padding: 4px 12px;
+    font-size: 13px; color: #c8d0f0;
+    border: 1px solid rgba(201,155,47,.5);
+    background: rgba(8,12,32,.8);
+    cursor: default;
+    z-index: 2;
+  }
+  #story-skip:hover { color: #f0c75e; }
+  #story-face {
+    position: absolute; left: 36px; bottom: 24px;
+    width: 128px; height: 128px;
+    overflow: hidden;
+    border: 2px solid #c99b2f;
+    outline: 1px solid #f5d878;
+    outline-offset: -4px;
+    background: #101a3c;
+  }
+  #story-face-img {
+    position: absolute;
+    width: 512px; height: 256px;
+    max-width: none; max-height: none;
+  }
+  #story-box {
+    position: absolute; left: 180px; right: 36px; bottom: 24px;
+    min-height: 108px;
+    padding: 16px 20px 14px;
+    font-size: 16px; line-height: 1.7;
+  }
+  #story-name {
+    position: absolute; left: 16px; top: -14px;
+    padding: 1px 14px;
+    font-size: 14px; color: #f0c75e;
+    background: linear-gradient(180deg, #2a3d80, #1a2650);
+    border: 1px solid #c99b2f;
+  }
+  #story-ui.narrate #story-box {
+    left: 36px;
+    text-align: center;
+  }
+  #story-ui.narrate #story-text { color: #c8d0f0; font-style: italic; }
+  /* 终局横幅按钮 */
+  .end-btns { display: flex; gap: 14px; margin-top: 22px; justify-content: center; }
+  .end-btns span {
+    padding: 6px 22px;
+    font-size: 15px;
+    border: 1px solid #c99b2f;
+    color: #eef1ff;
+    cursor: pointer;
+  }
+  .end-btns span:hover { background: rgba(240,199,94,.2); color: #f0c75e; }
+  /* 选关列表剧情标记 */
+  .ls-story { color: #f0c75e; font-size: 12px; margin-right: 6px; }
+
   #script-result {
     left: 50%; bottom: 40px;
     transform: translateX(-50%);
@@ -548,6 +610,19 @@
     <div id="end-banner">
       <div class="end-title">胜利</div>
       <div class="end-hint">点击或按 Enter 重新开始</div>
+      <div class="end-btns" style="display:none">
+        <span id="end-army">整 备</span>
+        <span id="end-next">下一章 »</span>
+      </div>
+    </div>
+
+    <div id="story-ui">
+      <div id="story-skip">跳过剧情 »</div>
+      <div id="story-face"><img id="story-face-img"></div>
+      <div id="story-box" class="fe-panel">
+        <div id="story-name"></div>
+        <div id="story-text"></div>
+      </div>
     </div>
 
     <div id="cursor"><div class="c tl"></div><div class="c tr"></div><div class="c bl"></div><div class="c br"></div></div>

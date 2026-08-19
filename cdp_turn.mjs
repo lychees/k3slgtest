@@ -5,7 +5,7 @@ import { writeFileSync } from 'node:fs';
 
 const CHROME = 'C:/Program Files/Google/Chrome/Application/chrome.exe';
 const PORT = 9334;
-const URL = 'http://localhost:8931/index.html?map=rm004';
+const URL = 'http://localhost:8931/index.html?map=rm004&nostory=1';   // nostory: 跳过战前剧情
 const SHOT = process.argv[2] || 'D:/dev/k3/zq/verify7_cdp_turn.png';
 
 const sleep = ms => new Promise(r => setTimeout(r, ms));

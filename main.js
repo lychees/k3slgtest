@@ -5,6 +5,7 @@ import { loadData } from './js/game/data.js';
 import { Squad, setTechBonuses } from './js/game/squad.js';
 import * as Army from './js/game/army.js';
 import { openArmyUI } from './js/game/armyui.js';
+import * as Story from './js/game/story.js';
 import { computeMove, computeAttackTiles, findPath } from './js/game/range.js';
 import { resolveCombat } from './js/game/combat.js';
 import { BattleScene } from './js/game/battlescene.js';
@@ -400,7 +401,7 @@ const state = {
 };
 
 // 调试钩子: 供 CDP/手动测试读取内部状态 (只读引用, 不影响逻辑)
-window.__tactics = { cam, state, squads: () => squads, realMap: () => realMap };
+window.__tactics = { cam, state, squads: () => squads, realMap: () => realMap, nextChapter: () => nextChapterId };
 
 function busy() {
   return state.moving || state.battle || state.ai || state.over || UI.locked();
@@ -597,7 +598,11 @@ function checkEnd() {
   if (obj.type === 'rout' && enemies === 0) {
     state.over = true;
     Army.addVictory();   // 胜利 +5 科技点
-    UI.showEnd(true, () => openArmy(true));   // 胜利后提示进整备
+    UI.showEnd(true, {
+      onArmy: () => openArmy(true),
+      nextLabel: nextChapterId ? '下一章 »' : '回选关',
+      onNext: () => { location.href = nextChapterId ? `?map=${nextChapterId}` : location.pathname; },
+    });
     return true;
   }
   if (players === 0) {
@@ -776,7 +781,8 @@ stage.addEventListener('contextmenu', e => {
 });
 
 window.addEventListener('keydown', e => {
-  // 选关/整备覆盖层打开时不响应游戏按键
+  // 选关/整备覆盖层打开时不响应游戏按键; 剧情播放由 story.js capture 拦截
+  if (Story.isPlaying()) return;
   if ($('level-select').style.display === 'flex' || $('army-ui').style.display === 'flex') return;
   if (busy()) return;
   const c = state.cursor;
@@ -1021,7 +1027,22 @@ async function runScript() {
 }
 
 // ---------------------------------------------------------------- boot
-async function boot(bootId) {
+let nextChapterId = null;   // 胜利后「下一章」目标 (按 catalog order 的下一个有剧情章节)
+
+async function computeNextChapter(bootId) {
+  nextChapterId = null;
+  try {
+    const cat = await fetch('data/rm/catalog.json').then(r => r.json());
+    const cur = cat.find(e => e.id === bootId);
+    if (!cur) return;
+    const nxt = cat
+      .filter(e => e.order > cur.order && Story.hasStory(e.id))
+      .sort((a, b) => a.order - b.order)[0];
+    nextChapterId = nxt ? nxt.id : null;
+  } catch { /* 无目录则没有下一章 */ }
+}
+
+async function boot(bootId, opts = {}) {
   stage.classList.add('booted');
   db = await loadData(bootId);
   // 战役养成: 载入/初始化军队存档, 进图满血, 应用科技加成
@@ -1029,6 +1050,7 @@ async function boot(bootId) {
   db.army = Army.army;
   Army.healAll();
   setTechBonuses(Army.techBonuses(db.techs));
+  computeNextChapter(bootId);   // 后台算好, 胜利时用
   if (!db.map) {
     // 真实 VX Ace 地图模式 (?map=rmNNN, 数据在 data/rm/)
     realMap = await loadRealMap(parseInt(bootId.slice(2), 10));
@@ -1115,10 +1137,12 @@ async function boot(bootId) {
     return;
   }
 
+  // 战前剧情 (有剧情文件的 rm 图; &nostory=1 跳过; debug 模式在上方已 return, 不受影响)
+  if (!params.has('nostory')) await Story.playStory(bootId, opts.storyStart);
+
   await UI.showIntro(db.map);
   UI.showPhaseBanner('玩家阶段', false);
 }
-
 // 打开整备界面; fromVictory=true 时关闭后回选关
 async function openArmy(fromVictory) {
   await openArmyUI(db, {
@@ -1160,6 +1184,12 @@ async function showLevelSelect() {
       div.className = 'ls-item';
       const name = document.createElement('span');
       name.textContent = e.name;
+      if (Story.hasStory(e.id)) {
+        const tag = document.createElement('span');
+        tag.className = 'ls-story';
+        tag.textContent = '★剧情';
+        name.prepend(tag);
+      }
       const meta = document.createElement('span');
       meta.className = 'ls-meta';
       meta.textContent = e.w ? `${e.w}×${e.h} · ${e.tileset}` : e.tileset;
@@ -1212,7 +1242,11 @@ $('level-btn').addEventListener('click', e => {
 });
 
 // 带 ?map= 或 ?debug= 直链直接进图; 否则先进选关界面
-if (params.has('map') || DEBUG) {
+// ?debug=story=rmNNN: 进图并直接从第 3 行播剧情 (截图钩子); storyend= 从最后一行
+if (DEBUG && /^story(end)?=rm\d+$/.test(DEBUG)) {
+  const id = DEBUG.split('=')[1];
+  boot(id, { storyStart: DEBUG.startsWith('storyend') ? 'end' : 2 }).catch(bootFail);
+} else if (params.has('map') || DEBUG) {
   boot(mapId).catch(bootFail);
 } else {
   showLevelSelect();

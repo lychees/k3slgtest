@@ -65,9 +65,18 @@ async function main() {
   const shot = await send('Page.captureScreenshot', { format: 'png' });
   writeFileSync('D:/dev/k3/zq/verify9_select_search.png', Buffer.from(shot.data, 'base64'));
 
-  // 3. 点击条目 -> 原地 boot (不刷新)
+  // 3. 点击条目 -> 原地 boot (不刷新); 若播战前剧情则跳过
   await evaljs(`document.querySelector('#ls-list .ls-item').dispatchEvent(new MouseEvent('click', { bubbles: true }))`);
-  await sleep(4000);
+  for (let i = 0; i < 20; i++) {
+    await sleep(300);
+    const st = await evaljs(`document.getElementById('story-ui').style.display`);
+    if (st === 'block') {
+      await evaljs(`document.getElementById('story-skip').dispatchEvent(new MouseEvent('click', { bubbles: true }))`);
+      break;
+    }
+    if (await evaljs(`document.getElementById('intro-banner').style.display`) === 'flex') break;
+  }
+  await sleep(2500);
   check(await evaljs(`getComputedStyle(document.getElementById('level-select')).display`) === 'none', '选关层已关闭');
   const booted = await evaljs(`(() => { const T = window.__tactics; const rm = T.realMap && T.realMap();
     return rm ? { id: rm.mapMeta.id, name: rm.mapMeta.name, n: T.squads().length } : null; })()`);
