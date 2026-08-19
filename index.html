@@ -596,6 +596,127 @@
   .in-skill img { width: 14px; height: 14px; }
   .in-foot { text-align: center; font-size: 11px; color: #6a76a0; margin-top: 8px; }
 
+  /* forecast 战斗预测面板 */
+  #forecast-ui {
+    position: absolute; inset: 0;
+    display: none;
+    align-items: center; justify-content: center;
+    background: rgba(4,6,16,.45);
+    z-index: 26;
+  }
+  .fc-panel { width: 520px; padding: 14px 18px; }
+  .fc-title {
+    font-size: 18px; letter-spacing: 4px; text-align: center;
+    color: #f0c75e;
+    border-bottom: 1px solid rgba(201,155,47,.5);
+    padding-bottom: 6px; margin-bottom: 10px;
+  }
+  .fc-sides { display: flex; gap: 12px; }
+  .fc-side { flex: 1; }
+  .fc-vs { align-self: center; color: #f0c75e; font-size: 18px; }
+  .fc-name { font-size: 16px; font-weight: bold; margin-bottom: 4px; }
+  .fc-name.atk { color: #8fb8ff; }
+  .fc-name.def { color: #ff9a8a; }
+  .fc-hp { display: flex; align-items: center; gap: 8px; font-size: 12px; }
+  .fc-hp-outer {
+    position: relative;
+    flex: 1; height: 12px;
+    background: #0a0e24;
+    border: 1px solid #05070f;
+    overflow: hidden;
+  }
+  .fc-hp-now { position: absolute; inset: 0; opacity: .35; }
+  .fc-hp-now.atk { background: #2f6fd0; }
+  .fc-hp-now.def { background: #d0402f; }
+  .fc-hp-end {
+    position: absolute; left: 0; top: 0; bottom: 0;
+    background: linear-gradient(180deg, #8fe07a, #1e7a2e);
+    transition: width .2s;
+  }
+  .fc-line { font-size: 14px; margin-top: 4px; color: #eef1ff; }
+  .fc-misc {
+    display: flex; justify-content: space-between; align-items: center;
+    margin: 12px 0 4px; font-size: 13px; color: #c8d0f0;
+  }
+  .fc-target { color: #f0c75e; }
+  .fc-btns { display: flex; gap: 12px; justify-content: center; margin-top: 10px; }
+  .fc-btns span {
+    padding: 6px 26px;
+    font-size: 16px;
+    border: 1px solid #c99b2f;
+    cursor: pointer;
+  }
+  .fc-btns span:hover { background: rgba(240,199,94,.2); color: #f0c75e; }
+
+  /* 标题画面 */
+  #title-ui {
+    position: absolute; inset: 0;
+    display: none;
+    z-index: 59;
+    background:
+      linear-gradient(180deg, rgba(6,8,20,.45) 0%, rgba(6,8,20,.82) 78%),
+      url('assets/plains_backdrop.png') center/cover;
+  }
+  .ti-inner {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+  }
+  .ti-title {
+    font-family: 'FE Serif SC', serif;
+    font-size: 52px; letter-spacing: 10px;
+    color: #eef1ff;
+    text-shadow: 0 0 18px rgba(90,140,255,.9), 2px 2px 0 #000;
+    border-top: 2px solid #c99b2f;
+    border-bottom: 2px solid #c99b2f;
+    padding: 10px 60px;
+  }
+  .ti-sub {
+    margin-top: 10px;
+    font-size: 16px; letter-spacing: 6px;
+    color: #c8d0f0; text-shadow: 1px 1px 0 #000;
+  }
+  .ti-btns { display: flex; flex-direction: column; gap: 10px; margin-top: 42px; width: 240px; }
+  .ti-btns span {
+    text-align: center;
+    padding: 8px 0;
+    font-size: 17px; letter-spacing: 4px;
+    color: #eef1ff;
+    background: linear-gradient(180deg, #2a3d80 0%, #1a2650 55%, #101a3c 100%);
+    border: 2px solid #c99b2f;
+    outline: 1px solid #f5d878;
+    outline-offset: -4px;
+    cursor: pointer;
+  }
+  .ti-btns span:hover { color: #f0c75e; }
+
+  /* 设置 */
+  #settings-ui {
+    position: absolute; inset: 0;
+    display: none;
+    align-items: center; justify-content: center;
+    background: rgba(4,6,16,.7);
+    z-index: 61;
+  }
+  .st-panel { width: 420px; padding: 16px 22px; }
+  .st-title {
+    font-size: 20px; letter-spacing: 6px; text-align: center; color: #f0c75e;
+    border-bottom: 2px solid #c99b2f;
+    padding-bottom: 8px; margin-bottom: 12px;
+  }
+  .st-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 8px 0; font-size: 15px;
+  }
+  .st-row > span:first-child { width: 90px; color: #c8d0f0; }
+  .st-row input[type=range] { flex: 1; }
+  .st-toggle {
+    padding: 3px 18px;
+    border: 1px solid #c99b2f;
+    cursor: pointer;
+  }
+  .st-toggle:hover { background: rgba(240,199,94,.18); }
+  .st-row.center { justify-content: center; margin-top: 8px; }
+
   #script-result {
     left: 50%; bottom: 40px;
     transform: translateX(-50%);
@@ -697,12 +818,51 @@
       <div class="in-panel fe-panel" id="in-panel"></div>
     </div>
 
+    <div id="forecast-ui">
+      <div class="fc-panel fe-panel">
+        <div class="fc-title">战 斗 预 测</div>
+        <div class="fc-sides">
+          <div class="fc-side" id="fc-atk"></div>
+          <div class="fc-vs">VS</div>
+          <div class="fc-side" id="fc-def"></div>
+        </div>
+        <div class="fc-misc" id="fc-misc"></div>
+        <div class="fc-btns">
+          <span id="fc-go">开 战 !</span>
+          <span id="fc-cancel">取 消</span>
+        </div>
+      </div>
+    </div>
+
     <div id="cursor"><div class="c tl"></div><div class="c tr"></div><div class="c bl"></div><div class="c br"></div></div>
 
     <div id="hint" class="fe-panel">方向键/鼠标移动 · Z/点击确认 · X/Esc 取消 · C=部队详情 · 滚轮缩放 · 双击空地结束回合</div>
-    <div id="level-btn" class="fe-panel">选关</div>
+    <div id="level-btn" class="fe-panel">标题</div>
     <div id="zoom-label" class="fe-panel">2x</div>
     <div id="script-result" class="fe-panel"></div>
+
+    <div id="title-ui">
+      <div class="ti-inner">
+        <div class="ti-title">战争交响曲 · 战棋</div>
+        <div class="ti-sub">— SoW Tactics —</div>
+        <div class="ti-btns">
+          <span id="ti-continue">继续战役</span>
+          <span id="ti-new">开始战役</span>
+          <span id="ti-select">选 关</span>
+          <span id="ti-settings">设 置</span>
+        </div>
+      </div>
+    </div>
+
+    <div id="settings-ui">
+      <div class="st-panel fe-panel">
+        <div class="st-title">设 置</div>
+        <div class="st-row"><span>主音量</span><input type="range" id="st-vol" min="0" max="100" step="1"><span id="st-vol-num"></span></div>
+        <div class="st-row"><span>战斗速度</span><span class="st-toggle" id="st-speed">正常</span></div>
+        <div class="st-row"><span>战斗动画</span><span class="st-toggle" id="st-anim">开</span></div>
+        <div class="st-row center"><span class="st-toggle" id="st-close">关 闭</span></div>
+      </div>
+    </div>
 
     <div id="level-select">
       <div class="ls-panel fe-panel">
@@ -723,7 +883,9 @@
           <span class="au-tabs">
             <span class="au-tab" data-tab="formation">编队</span>
             <span class="au-tab" data-tab="promote">转职</span>
+            <span class="au-tab" data-tab="recruit">招募</span>
             <span class="au-tab" data-tab="artifact">神器</span>
+            <span class="au-tab" data-tab="shop">商店</span>
             <span class="au-tab" data-tab="tech">科技树</span>
           </span>
           <span class="au-close">关闭 ✕</span>

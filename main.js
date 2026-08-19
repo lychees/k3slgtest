@@ -8,7 +8,8 @@ import { openArmyUI } from './js/game/armyui.js';
 import * as Story from './js/game/story.js';
 import * as Inspect from './js/game/inspect.js';
 import { computeMove, computeAttackTiles, findPath } from './js/game/range.js';
-import { resolveCombat } from './js/game/combat.js';
+import { resolveCombat, simulate, previewStrike } from './js/game/combat.js';
+import * as Audio from './js/game/audio.js';
 import { BattleScene } from './js/game/battlescene.js';
 import { planAction } from './js/game/ai.js';
 import * as UI from './js/game/ui.js';
@@ -40,6 +41,7 @@ camera.position.set(0, 0, 10);
 camera.lookAt(0, 0, 0);
 
 const battleScene = new BattleScene(renderer);
+let seizeMesh = null;   // seize 占领点标记 (boot 时创建)
 
 let db = null;          // 数据索引
 let COLS = 0, ROWS = 0;
@@ -397,15 +399,18 @@ const state = {
   menuItems: [],
   menuSel: 0,
   pending: null,       // {squad, ox, oy} 移动后待确认
+  forecast: null,      // {squad, x, y, targets, idx, info} 战斗预测面板
+  seizePoint: null,    // {x, y} 占领点 (seize 目标)
   phase: 0,            // 0 player, 1 enemy
   turn: 1,
 };
 
-// 调试钩子: 供 CDP/手动测试读取内部状态 (只读引用, 不影响逻辑)
-window.__tactics = { cam, state, squads: () => squads, realMap: () => realMap, nextChapter: () => nextChapterId };
+// 调试钩子: 供 CDP/手动测试读取内部状态 (只读引用 + 置胜/终局检查, 不影响逻辑)
+window.__tactics = { cam, state, squads: () => squads, realMap: () => realMap, nextChapter: () => nextChapterId,
+  win: () => winGame(), checkEnd: () => checkEnd() };
 
 function busy() {
-  return state.moving || state.battle || state.ai || state.over || UI.locked();
+  return state.moving || state.battle || state.ai || state.over || !!state.forecast || UI.locked();
 }
 
 function selectSquad(s) {
@@ -440,12 +445,16 @@ function openMenu(squad, tileX, tileY) {
   snapCamera();   // 停住相机, 菜单位置不再漂移
   state.menuSquad = squad;
   const target = pickTarget(squad, tileX, tileY);
+  // seize: 站上占领点的部队出现「占领」项
+  const onSeize = state.seizePoint && squad.team === 0
+    && tileX === state.seizePoint.x && tileY === state.seizePoint.y;
   state.menuItems = [
-    { label: target ? `攻击 ${target.name}` : '攻击', enabled: !!target, act: () => doAttack(squad, target) },
+    ...(onSeize ? [{ label: '占领', enabled: true, act: () => winGame() }] : []),
+    { label: target ? `攻击 ${target.name}` : '攻击', enabled: !!target, act: () => openForecast(squad, tileX, tileY) },
     { label: '待机', enabled: true, act: () => { state.pending = null; endAction(squad); } },
     { label: '取消', enabled: true, act: () => cancelMove() },
   ];
-  state.menuSel = target ? 0 : 1;
+  state.menuSel = (target || onSeize) ? 0 : 1;
   renderMenu(tileX, tileY);
 }
 
@@ -475,6 +484,7 @@ function hideMenu() {
 
 function cancelMove() {
   const p = state.pending;
+  Audio.sfx('cancel');
   hideMenu();
   state.pending = null;
   if (p) {
@@ -484,6 +494,86 @@ function cancelMove() {
 }
 
 // ---------------------------------------------------------------- combat flow
+// 战斗预测面板: 选「攻击」后弹出; 多目标可 ◀▶ 切换; [开战!] 才真正结算
+function openForecast(squad, x, y) {
+  const range = squad.rangeMax();
+  const targets = squads
+    .filter(e => e.team !== squad.team && Math.abs(e.x - x) + Math.abs(e.y - y) <= range)
+    .sort((a, b) =>
+      (Math.abs(a.x - x) + Math.abs(a.y - y)) - (Math.abs(b.x - x) + Math.abs(b.y - y)) ||
+      a.totalHp() - b.totalHp());
+  if (!targets.length) return;
+  hideMenu();
+  state.forecast = { squad, x, y, targets, idx: 0, info: null };
+  renderForecast();
+}
+
+function renderForecast() {
+  const f = state.forecast;
+  const target = f.targets[f.idx];
+  const sim = simulate(f.squad, target, ctx);
+  const atkPrev = previewStrike(f.squad, target, ctx);
+  // 守方被全歼则无法还击 (以模拟终态为准)
+  const defPrev = sim.d.aliveMembers().length ? previewStrike(target, f.squad, ctx) : null;
+  f.info = { sim, atkPrev, defPrev };   // CDP 断言用
+
+  const sideHtml = (label, squad, endSquad, line, cls) => {
+    const hp0 = squad.totalHp(), max0 = squad.totalMaxHp();
+    const hp1 = endSquad.totalHp();
+    return `<div class="fc-name ${cls}">${squad.name}</div>
+      <div class="fc-hp"><div class="fc-hp-outer">
+        <div class="fc-hp-now ${cls}" style="width:${max0 ? hp0 / max0 * 100 : 0}%"></div>
+        <div class="fc-hp-end" style="width:${max0 ? hp1 / max0 * 100 : 0}%"></div>
+      </div><span>${hp0} → ${hp1}</span></div>
+      <div class="fc-line">${line}</div>`;
+  };
+  $('fc-atk').innerHTML = sideHtml('攻', f.squad, sim.a,
+    atkPrev ? `伤害 ${atkPrev.dmg} · 命中 ${atkPrev.hit}%` : '无法攻击', 'atk');
+  $('fc-def').innerHTML = sideHtml('守', target, sim.d,
+    defPrev ? `反击 ${defPrev.dmg} · 命中 ${defPrev.hit}%` : '无法反击', 'def');
+  $('fc-misc').innerHTML =
+    `<span>预计阵亡 — 我方 ${sim.stats.def.kills} / 敌方 ${sim.stats.atk.kills}</span>` +
+    (f.targets.length > 1
+      ? `<span class="fc-target">◀ 目标: ${target.name} (${f.idx + 1}/${f.targets.length}) ▶</span>`
+      : '');
+  $('forecast-ui').style.display = 'flex';
+}
+
+function forecastSwitch(d) {
+  const f = state.forecast;
+  f.idx = (f.idx + d + f.targets.length) % f.targets.length;
+  Audio.sfx('cursor');
+  renderForecast();
+}
+
+function forecastConfirm() {
+  const f = state.forecast;
+  const target = f.targets[f.idx];
+  state.forecast = null;
+  $('forecast-ui').style.display = 'none';
+  Audio.sfx('confirm');
+  doAttack(f.squad, target);
+}
+
+function forecastCancel() {
+  const f = state.forecast;
+  state.forecast = null;
+  $('forecast-ui').style.display = 'none';
+  Audio.sfx('cancel');
+  if (f) {   // 回动作菜单
+    state.menuSquad = f.squad;
+    state.menuSel = 0;
+    renderMenu(f.x, f.y);
+  }
+}
+
+// 地图 BGM: rm 图按章节号交替 map1/map2; ch1 用 map1
+function mapBgmName() {
+  if (realMap) return (parseInt(mapId.slice(2), 10) % 2) ? 'map1' : 'map2';
+  return 'map1';
+}
+let battleCount = 0;   // 战斗 BGM battle1/2 交替
+
 function battleTheme() {
   if (realMap) {
     // 按 tileset 主题选战斗背景 (没有雪原背景, 雪原沿用草原)
@@ -500,8 +590,13 @@ function battleTheme() {
 
 async function playCombat(atkSquad, defSquad) {
   state.battle = true;
+  Audio.bgm(`battle${1 + (battleCount++ % 2)}`);
   const playback = resolveCombat(atkSquad, defSquad, ctx);
-  await battleScene.play(playback, battleTheme());
+  window.__tactics.lastPlayback = playback;   // CDP 断言用
+  window.__tactics.defStrikes = (window.__tactics.defStrikes || 0)
+    + playback.events.filter(e => e.side === 'def' && e.kind === 'strike').length;
+  if (battleAnimOn) await battleScene.play(playback, battleTheme());
+  else await sleep(300);   // 设置里关了战斗动画: 直接结算
   afterCombat(atkSquad);
   afterCombat(defSquad);
   state.battle = false;
@@ -517,7 +612,9 @@ async function playCombat(atkSquad, defSquad) {
     if (s.team === 0) for (const m of s.members) Army.syncMemberHp(s.template.id, m.slot, m.hp);
   }
   Army.saveArmy();
-  return checkEnd();
+  const ended = checkEnd();
+  if (!ended) Audio.bgm(mapBgmName());   // 战斗结束回地图 BGM (终局由 checkEnd 接管)
+  return ended;
 }
 
 async function doAttack(squad, target) {
@@ -549,7 +646,12 @@ function endAction(squad) {
 // ---------------------------------------------------------------- phases
 function updateTurnPanel() {
   $('turn-num').textContent = state.turn;
-  $('phase-name').textContent = state.phase === 0 ? '玩家阶段' : '敌方阶段';
+  // 目标提示: 全歼 / 占领要点 / 坚守剩 N 回合
+  const obj = (db && db.map.objective) || { type: 'rout' };
+  let objTxt = '全歼';
+  if (obj.type === 'seize') objTxt = '占领要点';
+  else if (obj.type === 'survive') objTxt = `坚守 剩${Math.max(0, 9 - state.turn)}回合`;
+  $('phase-name').textContent = `${state.phase === 0 ? '玩家阶段' : '敌方阶段'} · ${objTxt}`;
 }
 
 function startEnemyPhase() {
@@ -563,6 +665,8 @@ function startEnemyPhase() {
     state.ai = false;
     if (state.over) return;
     state.turn++;
+    // survive: 撑过第 8 回合的敌方阶段即胜利
+    if (((db.map.objective || {}).type) === 'survive' && state.turn > 8) { winGame(); return; }
     state.phase = 0;
     squads.forEach(s => s.setDone(false));
     updateTurnPanel();
@@ -590,27 +694,42 @@ async function runEnemyAI() {
   }
 }
 
-// TODO: objective seize / survive 暂未实现, 目前只识别 rout (SPEC「玩法规则」第 5 条)
+// 统一胜利出口 (rout 全歼 / seize 占领 / survive 坚守)
+function winGame() {
+  if (state.over) return true;
+  state.over = true;
+  hideMenu();
+  state.forecast = null;
+  $('forecast-ui').style.display = 'none';
+  Army.addVictory();        // +5 科技点, +1000 金币
+  Army.markCleared(mapId);  // 通关记录
+  Audio.sfx('gold');
+  Audio.bgm('victory', { loop: false, onEnded: () => Audio.bgm(mapBgmName()) });
+  UI.showEnd(true, {
+    hint: '+1000 金币 · 通关已记录',
+    onArmy: () => openArmy(true),
+    nextLabel: nextChapterId ? '下一章 »' : '回选关',
+    onNext: () => { location.href = nextChapterId ? `?map=${nextChapterId}` : location.pathname; },
+  });
+  return true;
+}
+
+function loseGame() {
+  state.over = true;
+  Audio.bgm('defeat', { loop: false });
+  UI.showEnd(false);
+  return true;
+}
+
 function checkEnd() {
   if (state.over) return true;
   const players = squads.filter(s => s.team === 0).length;
   const enemies = squads.filter(s => s.team === 1).length;
   const obj = db.map.objective || { type: 'rout' };
-  if (obj.type === 'rout' && enemies === 0) {
-    state.over = true;
-    Army.addVictory();   // 胜利 +5 科技点
-    UI.showEnd(true, {
-      onArmy: () => openArmy(true),
-      nextLabel: nextChapterId ? '下一章 »' : '回选关',
-      onNext: () => { location.href = nextChapterId ? `?map=${nextChapterId}` : location.pathname; },
-    });
-    return true;
-  }
-  if (players === 0) {
-    state.over = true;
-    UI.showEnd(false);
-    return true;
-  }
+  if (obj.type === 'rout' && enemies === 0) return winGame();
+  // 泽洛斯亲卫队被全歼 -> 立即败北
+  if (!squads.some(s => s.team === 0 && s.template.id === 'zelos_guard' && !s.wiped)) return loseGame();
+  if (players === 0) return loseGame();
   return false;
 }
 
@@ -686,6 +805,7 @@ function eventToTile(e) {
 // follow: true = 相机立即以光标为目标 (键盘/点击); false = 仅边缘推移 (鼠标悬停)
 function updateCursor(x, y, follow = true) {
   state.cursor = { x, y };
+  Audio.sfx('cursor');
   cursorEl.style.display = 'block';
   UI.updateTerrainPanel(terrainAt(x, y));
   if (follow) setCamTargetTile(x, y);
@@ -730,7 +850,7 @@ stage.addEventListener('click', e => {
       const r = items[i].getBoundingClientRect();
       if (e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom) {
         const it = state.menuItems[i];
-        if (it.enabled) it.act();
+        if (it.enabled) { Audio.sfx(it.label === '取消' ? 'cancel' : 'confirm'); it.act(); }
         return;
       }
     }
@@ -748,6 +868,15 @@ stage.addEventListener('click', e => {
     const u = squadAt(t.x, t.y);
     if (state.range.move.has(key) && !u) {
       startMove(state.selected, t.x, t.y);
+      return;
+    }
+    if (u === state.selected) {   // B0: 点自己 = 原地动作菜单 (攻击/待机/取消)
+      const s = state.selected;
+      state.selected = null;
+      state.range = null;
+      clearRange();
+      state.pending = null;
+      openMenu(s, t.x, t.y);
       return;
     }
     deselect();
@@ -782,9 +911,22 @@ stage.addEventListener('contextmenu', e => {
 });
 
 window.addEventListener('keydown', e => {
-  // 选关/整备/详情覆盖层打开时不响应游戏按键; 剧情播放由 story.js capture 拦截
+  // 覆盖层打开时不响应游戏按键; 剧情播放由 story.js capture 拦截
   if (Story.isPlaying() || Inspect.isOpen()) return;
-  if ($('level-select').style.display === 'flex' || $('army-ui').style.display === 'flex') return;
+  if (['title-ui', 'settings-ui', 'level-select', 'army-ui'].some(id => {
+    const d = $(id).style.display;
+    return d === 'flex' || d === 'block';
+  })) return;
+
+  // 战斗预测面板: Enter/Z 开战, Esc/X 取消, ←/→ 切换目标
+  if (state.forecast) {
+    if (e.key === 'Enter' || e.key === 'z' || e.key === 'Z') forecastConfirm();
+    else if (e.key === 'Escape' || e.key === 'x' || e.key === 'X') forecastCancel();
+    else if (e.key === 'ArrowLeft') forecastSwitch(-1);
+    else if (e.key === 'ArrowRight') forecastSwitch(1);
+    return;
+  }
+
   if (busy()) return;
   const c = state.cursor;
 
@@ -806,7 +948,7 @@ window.addEventListener('keydown', e => {
       renderMenu(state.menuSquad.x, state.menuSquad.y);
     } else if (e.key === 'Enter' || e.key === 'z' || e.key === 'Z') {
       const it = state.menuItems[state.menuSel];
-      if (it.enabled) it.act();
+      if (it.enabled) { Audio.sfx(it.label === '取消' ? 'cancel' : 'confirm'); it.act(); }
     } else if (e.key === 'Escape' || e.key === 'x' || e.key === 'X') {
       cancelMove();
     }
@@ -826,6 +968,13 @@ window.addEventListener('keydown', e => {
       const key = `${c.x},${c.y}`;
       if (state.range.move.has(key) && !squadAt(c.x, c.y)) {
         startMove(state.selected, c.x, c.y);
+      } else if (c.x === state.selected.x && c.y === state.selected.y) {   // B0: 原地菜单
+        const s = state.selected;
+        state.selected = null;
+        state.range = null;
+        clearRange();
+        state.pending = null;
+        openMenu(s, c.x, c.y);
       }
     } else {
       const u = squadAt(c.x, c.y);
@@ -861,6 +1010,11 @@ function animate() {
   // cursor pulse
   const p = 1 + Math.sin(t * 6) * 0.05;
   cursorEl.style.transform = `scale(${p})`;
+  // 占领点脉冲
+  if (seizeMesh) {
+    seizeMesh.material.opacity = 0.55 + Math.sin(t * 4) * 0.25;
+    seizeMesh.rotation.z = t * 0.8;
+  }
   renderer.render(scene, camera);
 }
 
@@ -1082,6 +1236,17 @@ async function boot(bootId, opts = {}) {
     unitGroup.add(s.group);
   }
 
+  // seize 占领点: 金色旋转印记
+  state.seizePoint = db.map.seizePoint || null;
+  if (state.seizePoint) {
+    seizeMesh = new THREE.Mesh(
+      new THREE.CircleGeometry(0.44, 6),
+      new THREE.MeshBasicMaterial({ color: 0xf5c542, transparent: true, opacity: 0.8, depthWrite: false })
+    );
+    seizeMesh.position.set(state.seizePoint.x + 0.5, -(state.seizePoint.y + 0.5), 0.15);
+    scene.add(seizeMesh);
+  }
+
   const first = squads.find(s => s.team === 0);
   if (first) {
     cam.cx = cam.tx = first.x + 0.5;
@@ -1125,8 +1290,9 @@ async function boot(bootId, opts = {}) {
     if (first && foe) {
       state.battle = true;
       const pb = resolveCombat(first, foe, ctx);
-      const freeze = parseInt(params.get('freeze') || '', 10);
-      battleScene.play(pb, battleTheme(), Number.isFinite(freeze) ? freeze : null);   // 不 await, 不结算, 仅供截图
+      let freeze = parseInt(params.get('freeze') || '', 10);
+      if (freeze === -1) freeze = pb.events.findIndex(e => e.side === 'def' && e.kind === 'strike');   // 守方反击帧
+      battleScene.play(pb, battleTheme(), Number.isFinite(freeze) && freeze >= 0 ? freeze : null);   // 不 await, 不结算, 仅供截图
     }
     return;
   }
@@ -1148,6 +1314,22 @@ async function boot(bootId, opts = {}) {
     return;
   }
 
+  // ?debug=combatlog: 同步结算第一场战斗并打印事件统计 (不播战斗画面, 快速验证规则)
+  if (DEBUG === 'combatlog') {
+    const foe = squads.find(s => s.team === 1);
+    if (first && foe) {
+      const pb = resolveCombat(first, foe, ctx);
+      console.log('[combatlog]', JSON.stringify({
+        foe: foe.template.id,
+        events: pb.events.length,
+        atkStrikes: pb.events.filter(e => e.side === 'atk' && e.kind === 'strike').length,
+        defStrikes: pb.events.filter(e => e.side === 'def' && e.kind === 'strike').length,
+        atkHpAfter: first.totalHp(), defHpAfter: foe.totalHp(), defWiped: foe.wiped,
+      }));
+    }
+    return;
+  }
+
   // ?debug=inspect / inspectfoe: 直接弹出第一支我方/敌方部队详情, 便于截图
   if (DEBUG === 'inspect' || DEBUG === 'inspectfoe') {
     const s = DEBUG === 'inspect' ? first : squads.find(sq => sq.team === 1);
@@ -1156,6 +1338,7 @@ async function boot(bootId, opts = {}) {
   }
 
   // 战前剧情 (有剧情文件的 rm 图; &nostory=1 跳过; debug 模式在上方已 return, 不受影响)
+  Audio.bgm(mapBgmName());
   if (!params.has('nostory')) await Story.playStory(bootId, opts.storyStart);
 
   await UI.showIntro(db.map);
@@ -1169,6 +1352,97 @@ async function openArmy(fromVictory) {
   });
 }
 
+// ---------------------------------------------------------------- title / settings
+let battleAnimOn = localStorage.getItem('sow_battleanim') !== '0';
+battleScene.speed = parseInt(localStorage.getItem('sow_battlespeed') || '1', 10) || 1;
+
+// 继续战役: 按 catalog order 找第一个有剧情且未通关的章节
+async function nextUnclearedChapter() {
+  try {
+    const cat = await fetch('data/rm/catalog.json').then(r => r.json());
+    const cleared = Army.clearedSet();
+    const nxt = cat
+      .filter(e => Story.hasStory(e.id) && !cleared.has(e.id))
+      .sort((a, b) => a.order - b.order)[0];
+    return nxt ? nxt.id : null;
+  } catch { return null; }
+}
+
+function showTitle() {
+  const t = $('title-ui');
+  t.style.display = 'flex';
+  Audio.bgm('title');   // 首次手势解锁后自动开播
+  const hasSave = !!localStorage.getItem('sow_army');
+  $('ti-continue').style.display = hasSave ? '' : 'none';
+  const newBtn = $('ti-new');
+  newBtn.textContent = hasSave ? '新的战役' : '开始战役';
+  delete newBtn.dataset.armed;
+  $('ti-continue').onclick = async e => {
+    e.stopPropagation();
+    Audio.sfx('confirm');
+    t.style.display = 'none';
+    const nxt = await nextUnclearedChapter();
+    if (nxt) boot(nxt).catch(bootFail);
+    else showLevelSelect();
+  };
+  newBtn.onclick = e => {
+    e.stopPropagation();
+    if (hasSave && !newBtn.dataset.armed) {   // 有存档时双击确认清档
+      newBtn.dataset.armed = '1';
+      newBtn.textContent = '确认清档重开?';
+      setTimeout(() => { delete newBtn.dataset.armed; newBtn.textContent = '新的战役'; }, 2500);
+      return;
+    }
+    Audio.sfx('confirm');
+    Army.resetArmy();
+    Army.clearCleared();
+    t.style.display = 'none';
+    showLevelSelect();
+  };
+  $('ti-select').onclick = e => {
+    e.stopPropagation();
+    Audio.sfx('confirm');
+    t.style.display = 'none';
+    showLevelSelect();
+  };
+  $('ti-settings').onclick = e => {
+    e.stopPropagation();
+    Audio.sfx('confirm');
+    openSettings();
+  };
+}
+
+function openSettings() {
+  const ov = $('settings-ui');
+  ov.style.display = 'flex';
+  const vol = $('st-vol');
+  vol.value = Math.round(Audio.getVolume() * 100);
+  $('st-vol-num').textContent = vol.value;
+  vol.oninput = () => {
+    Audio.setVolume(vol.value / 100);
+    $('st-vol-num').textContent = vol.value;
+  };
+  const speedBtn = $('st-speed');
+  const renderSpeed = () => { speedBtn.textContent = battleScene.speed >= 2 ? '快速' : '正常'; };
+  renderSpeed();
+  speedBtn.onclick = () => {
+    battleScene.speed = battleScene.speed >= 2 ? 1 : 2;
+    try { localStorage.setItem('sow_battlespeed', String(battleScene.speed)); } catch {}
+    Audio.sfx('confirm');
+    renderSpeed();
+  };
+  const animBtn = $('st-anim');
+  const renderAnim = () => { animBtn.textContent = battleAnimOn ? '开' : '关 (直接结算)'; };
+  renderAnim();
+  animBtn.onclick = () => {
+    battleAnimOn = !battleAnimOn;
+    try { localStorage.setItem('sow_battleanim', battleAnimOn ? '1' : '0'); } catch {}
+    Audio.sfx('confirm');
+    renderAnim();
+  };
+  $('st-close').onclick = () => { ov.style.display = 'none'; };
+}
+
 // ---------------------------------------------------------------- level select
 // 不带 ?map= (且无 debug) 启动时显示: 搜索 + 按战役顺序的关卡列表, 点击直接 boot
 async function showLevelSelect() {
@@ -1176,6 +1450,7 @@ async function showLevelSelect() {
   const list = $('ls-list');
   const search = $('ls-search');
   overlay.style.display = 'flex';
+  Audio.bgm('title');
   // 覆盖层事件不穿透到舞台 (未 boot 时键盘/鼠标 handler 仍在)
   for (const t of ['click', 'mousemove', 'wheel', 'contextmenu', 'keydown']) {
     overlay.addEventListener(t, e => e.stopPropagation());
@@ -1189,7 +1464,10 @@ async function showLevelSelect() {
     list.textContent = `关卡目录加载失败: ${e.message}`;
     return;
   }
-  entries.unshift({ id: 'ch1', name: '手绘演示地图', w: 0, h: 0, tileset: '手绘演示' });
+  entries.unshift({ id: 'ch1', name: '手绘演示地图', w: 0, h: 0, tileset: '手绘演示', order: -1 });
+  const cleared = Army.clearedSet();
+  // 目标标签规则与 realmap.js 一致: order%3=占领, %5=坚守, 其余全歼
+  const objTag = e => e.order > 0 && e.order % 3 === 0 ? '占领' : e.order > 0 && e.order % 5 === 0 ? '坚守' : '全歼';
 
   function render(filter) {
     const f = (filter || '').trim().toLowerCase();
@@ -1202,17 +1480,24 @@ async function showLevelSelect() {
       div.className = 'ls-item';
       const name = document.createElement('span');
       name.textContent = e.name;
+      if (cleared.has(e.id)) {   // 通关记录
+        const tag = document.createElement('span');
+        tag.className = 'ls-story';
+        tag.textContent = '✓';
+        name.prepend(tag);
+      }
       if (Story.hasStory(e.id)) {
         const tag = document.createElement('span');
         tag.className = 'ls-story';
         tag.textContent = '★剧情';
-        name.prepend(tag);
+        name.appendChild(tag);
       }
       const meta = document.createElement('span');
       meta.className = 'ls-meta';
-      meta.textContent = e.w ? `${e.w}×${e.h} · ${e.tileset}` : e.tileset;
+      meta.textContent = (e.w ? `${e.w}×${e.h} · ${e.tileset}` : e.tileset) + ` · ${objTag(e)}`;
       div.append(name, meta);
       div.addEventListener('click', () => {
+        Audio.sfx('confirm');
         overlay.style.display = 'none';
         boot(e.id).catch(bootFail);
       });
@@ -1256,16 +1541,39 @@ function bootFail(err) {
 // 游戏内"选关"按钮: 回到无参数地址即选关界面 (刷新即干净的状态重置)
 $('level-btn').addEventListener('click', e => {
   e.stopPropagation();
+  Audio.sfx('confirm');
   location.href = location.pathname;
 });
 
-// 带 ?map= 或 ?debug= 直链直接进图; 否则先进选关界面
-// ?debug=story=rmNNN: 进图并直接从第 3 行播剧情 (截图钩子); storyend= 从最后一行
+// 战斗预测面板: 按钮 + 输入隔离
+{
+  const ov = $('forecast-ui');
+  for (const t of ['click', 'mousemove', 'wheel', 'contextmenu']) ov.addEventListener(t, e => e.stopPropagation());
+  $('fc-go').addEventListener('click', () => state.forecast && forecastConfirm());
+  $('fc-cancel').addEventListener('click', () => state.forecast && forecastCancel());
+  $('fc-misc').addEventListener('click', e => {
+    if (state.forecast && e.target.closest('.fc-target')) forecastSwitch(1);
+  });
+}
+
+// 覆盖层输入隔离 (标题/设置)
+for (const id of ['title-ui', 'settings-ui']) {
+  const ov = $(id);
+  for (const t of ['click', 'mousemove', 'wheel', 'contextmenu', 'keydown']) {
+    ov.addEventListener(t, e => e.stopPropagation());
+  }
+}
+
+Audio.initAudio();   // 首次用户手势后解锁音频
+
+// 入口: story debug 钩子 > ?map=/?debug= 直链 > &notitle=1 直进选关 > 标题画面
 if (DEBUG && /^story(end)?=rm\d+$/.test(DEBUG)) {
   const id = DEBUG.split('=')[1];
   boot(id, { storyStart: DEBUG.startsWith('storyend') ? 'end' : 2 }).catch(bootFail);
 } else if (params.has('map') || DEBUG) {
   boot(mapId).catch(bootFail);
-} else {
+} else if (params.has('notitle')) {
   showLevelSelect();
+} else {
+  showTitle();
 }

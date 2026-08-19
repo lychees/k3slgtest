@@ -1,6 +1,7 @@
 // story.js — 剧情播放器 (视觉小说式): 进图后、开场横幅前播放 data/story/rmNNN.json
 // 底部对话框 + 名字牌 + 左侧大头像 + 打字机; 点击/Z/Enter 前进, 点击加速, 按钮/Esc 跳过。
-// 文本优先 zh, 空则回退 en; 无脸行 = 旁白 (居中无头像)。
+// 文本优先 zh, 空则回退 en; 无脸行 = 旁白 (居中无头像)。播放时 BGM 降到 40%。
+import { duckBgm } from './audio.js';
 
 const $ = id => document.getElementById(id);
 
@@ -55,6 +56,7 @@ export async function playStory(mapId, startOpt) {
   const textEl = $('story-text');
 
   playing = true;
+  duckBgm(true);
   overlay.style.display = 'block';
   let i = startOpt === 'end' ? lines.length - 1 : Math.max(0, startOpt | 0);
 
@@ -90,6 +92,7 @@ export async function playStory(mapId, startOpt) {
 
     function cleanup() {
       clearInterval(timer);
+      duckBgm(false);
       overlay.style.display = 'none';
       overlay.classList.remove('narrate');
       window.removeEventListener('keydown', onKey, true);

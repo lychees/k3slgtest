@@ -318,12 +318,41 @@ async function buildRealMap(num) {
     { ref: 'risen_elite', x: 13, y: 4,  team: 1 },
     { ref: 'dragon_solo', x: 8,  y: 3,  team: 1 },
   ];
+  // 目标按章节轮换: order%3==0 -> seize, order%5==0 -> survive, 其余 rout
+  const order = entry.order || 0;
+  const objective = num === 4 ? { type: 'rout' }
+    : order % 3 === 0 ? { type: 'seize' }
+    : order % 5 === 0 ? { type: 'survive' }
+    : { type: 'rout' };
+  const placements = num === 4 ? RM004_SQUADS : autoPlacement(terrainAt, W, H);
+
+  // seize 占领点: 敌方出生重心最近的可通行空格
+  let seizePoint = null;
+  if (objective.type === 'seize') {
+    const foes = placements.filter(p => p.team === 1);
+    if (foes.length) {
+      const cx = foes.reduce((s, p) => s + p.x, 0) / foes.length;
+      const cy = foes.reduce((s, p) => s + p.y, 0) / foes.length;
+      let best = null, bestD = 1e9;
+      for (let y = 0; y < H; y++) {
+        for (let x = 0; x < W; x++) {
+          if (!terrainAt(x, y).pass) continue;
+          if (placements.some(p => p.x === x && p.y === y)) continue;
+          const d = Math.abs(x - cx) + Math.abs(y - cy);
+          if (d < bestD) { bestD = d; best = { x, y }; }
+        }
+      }
+      seizePoint = best;
+    }
+  }
+
   const mapMeta = {
     id: `rm${id3}`,
     name: entry.name || `Map ${num}`,
     cols: W, rows: H,
-    squads: num === 4 ? RM004_SQUADS : autoPlacement(terrainAt, W, H),
-    objective: { type: 'rout' },
+    squads: placements,
+    objective,
+    seizePoint,
     intro: num === 4
       ? '复生军越过了边境河, 出现在草原世界图的北方。泽洛斯率领亲卫队迎战, 必须全歼来敌!'
       : '复生军盘踞于此。全歼来敌!',

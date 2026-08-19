@@ -5,7 +5,7 @@ import { writeFileSync } from 'node:fs';
 
 const CHROME = 'C:/Program Files/Google/Chrome/Application/chrome.exe';
 const PORT = 9339;
-const BASE = 'http://localhost:8931/index.html';
+const BASE = 'http://localhost:8931/index.html?notitle=1';   // notitle: 跳过标题画面
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const chrome = spawn(CHROME, [
   '--headless=new', '--disable-gpu', '--use-angle=swiftshader',
@@ -87,11 +87,14 @@ async function main() {
   const shot2 = await send('Page.captureScreenshot', { format: 'png' });
   writeFileSync('D:/dev/k3/zq/verify9_select_booted.png', Buffer.from(shot2.data, 'base64'));
 
-  // 4. 游戏内选关按钮 -> 回到选关 (location 跳转)
+  // 4. 游戏内标题按钮 -> 回标题画面 -> 选关
   await evaljs(`document.getElementById('level-btn').dispatchEvent(new MouseEvent('click', { bubbles: true }))`);
   await sleep(3000);
-  check(await evaljs(`location.search`) === '', '选关按钮回到无参数地址');
-  check(await evaljs(`getComputedStyle(document.getElementById('level-select')).display`) === 'flex', '选关覆盖层再次显示');
+  check(await evaljs(`location.search`) === '', '标题按钮回到无参数地址');
+  check(await evaljs(`getComputedStyle(document.getElementById('title-ui')).display`) === 'flex', '标题画面显示');
+  await evaljs(`document.getElementById('ti-select').dispatchEvent(new MouseEvent('click', { bubbles: true }))`);
+  await sleep(1000);
+  check(await evaljs(`getComputedStyle(document.getElementById('level-select')).display`) === 'flex', '标题->选关覆盖层');
 
   check(consoleErrs.length === 0, `无 JS 报错 (${consoleErrs.length})`);
   const fails = R.filter(x => x.startsWith('FAIL'));

@@ -4,6 +4,7 @@
 import * as THREE from '../../lib/three.module.js';
 import { loadTex, loadTexSmooth } from './gfx.js';
 import { makeUnitTexture } from './sprites.js';
+import { sfx } from './audio.js';
 
 const W = 960, H = 540;
 const SIDE_X = { atk: 240, def: 720 };   // 双方阵型中心 (屏幕 px)
@@ -36,6 +37,7 @@ export class BattleScene {
       fade: document.getElementById('battle-fade'),
       floats: document.getElementById('battle-floats'),
     };
+    this.speed = 1;   // 战斗速度 (设置界面: 正常 1 / 快速 2)
     // 刀光帧 (普通 = 左向右挥, f = 镜像); 像素素材用 Nearest
     this.slashTex = [1, 2, 3].map(i => loadTex(`hero_slash${i}`));
     this.slashTexF = [1, 2, 3].map(i => loadTex(`hero_slash${i}f`));
@@ -129,6 +131,7 @@ export class BattleScene {
       this.members[side].push({
         slot: s.slot, mesh, anim,
         phase: (s.slot * 1.3) % (Math.PI * 2),
+        kind: s.weaponKind,
         ranged: RANGED_WEAPONS.has(s.weaponKind) || (s.range || 1) >= 2,
       });
     }
@@ -139,12 +142,12 @@ export class BattleScene {
   }
 
   // ---------------------------------------------------------------- 时基工具
-  // 用固定步数驱动, 保证 headless 虚拟时间下也能完整播放
+  // 用固定步数驱动, 保证 headless 虚拟时间下也能完整播放; speed 2 = 快速战斗 (设置)
   sleepD(ms) {
-    return new Promise(r => setTimeout(r, this.skip ? Math.min(ms, 30) : ms));
+    return new Promise(r => setTimeout(r, (this.skip ? Math.min(ms, 30) : ms) / (this.speed || 1)));
   }
   tweenD(ms, fn) {
-    const steps = this.skip ? 2 : Math.max(1, Math.round(ms / 16));
+    const steps = this.skip ? 2 : Math.max(1, Math.round(ms / 16 / (this.speed || 1)));
     return new Promise(res => {
       let i = 0;
       const tick = () => {
@@ -197,6 +200,7 @@ export class BattleScene {
     if (!actor) return;
 
     if (ev.kind === 'levelup') {
+      sfx('levelup');
       this.float(actor, 'LEVEL UP!', 'kill');
       this.addShake(2);
       await this.sleepD(650);
@@ -204,6 +208,7 @@ export class BattleScene {
     }
 
     if (ev.kind === 'heal') {
+      sfx('heal');
       const target = this.memberOf(ev.side, ev.targetSlot);
       const st = this.state[ev.side].find(m => m.slot === ev.targetSlot);
       if (st) st.hp = ev.hpAfter;
@@ -230,6 +235,7 @@ export class BattleScene {
 
     if (actor.ranged) {
       // 弓/法: 抛射光点
+      sfx(actor.kind === 'bow' ? 'bow' : 'magic');
       const from = actor.mesh.position;
       const to = targets[0].m.mesh.position;
       this.orb.visible = true;
@@ -255,6 +261,7 @@ export class BattleScene {
   async playSlash(actor, sign, onHit) {
     const frames = sign > 0 ? this.slashTex : this.slashTexF;
     const m = this.slashMesh;
+    sfx('sword');   // 近战 (sword/axe/lance/claw 统一挥砍音)
     m.material.map = frames[0];
     m.material.needsUpdate = true;
     m.position.set(actor.mesh.position.x + sign * 26, actor.mesh.position.y, 6);
@@ -272,6 +279,7 @@ export class BattleScene {
   }
 
   applyHits(ev, other, targets) {
+    sfx(targets.some(({ t }) => !t.miss) ? 'hit' : 'miss');
     for (const { t, m } of targets) {
       const st = this.state[other].find(mm => mm.slot === t.slot);
       if (t.miss) {

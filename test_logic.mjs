@@ -1,5 +1,5 @@
 // 临时逻辑验证脚本 (node): 验证 combat / range / ai 纯逻辑模块
-import { resolveCombat } from './js/game/combat.js';
+import { resolveCombat, simulate } from './js/game/combat.js';
 import { computeMove, computeAttackTiles, findPath } from './js/game/range.js';
 import { planAction } from './js/game/ai.js';
 
@@ -45,7 +45,34 @@ const noAvo = { terrainAvo: () => 0 };
   const pb = resolveCombat(a, d, noAvo);
   // dmg = max(1, 10 + 5 - 3) = 12
   ok(d.members[0].hp === 8, `伤害公式 (got ${d.members[0].hp}, want 8)`);
-  ok(pb.events.length >= 2, '双方交替出手');
+  // 完整交战: 攻方先手, 守方存活成员还击一轮
+  ok(pb.events[0].side === 'atk' && pb.events[0].kind === 'strike', '攻方先手');
+  ok(pb.events.some(e => e.side === 'def' && e.kind === 'strike'), '守方还击');
+}
+
+// ---- combat: simulate 无副作用 + 确定性 ----
+{
+  // 原型式 stub (克隆走原型链, 方法必须 live 绑定)
+  const proto = {
+    aliveMembers() { return this.members.filter(m => m.alive); },
+    get wiped() { return this.aliveMembers().length === 0; },
+    hasFlag(m, f) { return m.skills.some(s => s.flag === f); },
+    eff(m, k) {
+      let v = m._base[k] || 0;
+      for (const s of m.skills) if (s.type === 'passive' && s.effect?.stat === k) v += s.effect.mod;
+      for (const mm of this.aliveMembers()) for (const s of mm.skills) if (s.type === 'aura' && s.effect?.stat === k) v += s.effect.mod;
+      return v;
+    },
+    totalHp() { return this.aliveMembers().reduce((s, m) => s + m.hp, 0); },
+  };
+  const mk = (name, members) => Object.assign(Object.create(proto), { name, members, team: 1 });
+  const a = mk('A', [mkMember(4, { str: 10, skl: 50 })]);
+  const d = mk('D', [mkMember(4, { hp: 20, arm: 3 })]);
+  const r = simulate(a, d, noAvo);
+  ok(a.members[0].hp === 20 && d.members[0].hp === 20, 'simulate 不改原对象');
+  ok(r.stats.atk.dmg === 12, `simulate 攻方伤害 (got ${r.stats.atk.dmg}, want 12)`);
+  ok(r.d.members[0].hp === 8 && r.a.members[0].hp === 20, 'simulate 终态 (守 8, 攻未损: 守方 skl 50% 不计命中)');
+  ok(r.stats.def.dmg === 0, 'simulate 守方反击 miss (roll 0.5 vs hit 50%)');
 }
 
 // ---- combat: vanguard 先攻 ----

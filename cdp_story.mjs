@@ -81,10 +81,10 @@ async function main() {
   await send('Runtime.enable');
   await send('Page.enable');
 
-  // 1. 选关界面: ★剧情 标记
-  await nav(BASE, 3000);
-  await evaljs(`localStorage.removeItem('sow_army')`);
-  await nav(BASE, 3000);
+  // 1. 选关界面: ★剧情 标记 (notitle 跳过标题画面)
+  await nav(BASE + '?notitle=1', 3000);
+  await evaljs(`localStorage.removeItem('sow_army'); localStorage.removeItem('sow_cleared');`);
+  await nav(BASE + '?notitle=1', 3000);
   const marked = await evaljs(`document.querySelectorAll('#ls-list .ls-story').length`);
   check(marked === 138, `选关列表剧情标记 (实际 ${marked}/138)`);
   await shot('select_mark');

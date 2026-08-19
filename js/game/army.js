@@ -3,13 +3,15 @@
 // 敌人部队不走此模块 (无养成, 维持模板)。
 
 const KEY = 'sow_army';
+const CLEARED_KEY = 'sow_cleared';
 
-// 初始已解锁职业 (其余需科技解锁; 只影响后备池/转职, 不影响模板初始编队)
+// 初始已解锁职业 (其余需科技解锁; 只影响后备池/转职/招募, 不影响模板初始编队)
 const INITIAL_CLASSES = ['soldier', 'fighter', 'archer', 'scout', 'lord'];
 // 初始神器库存 (模板编队中已装备者也算持有)
 const INITIAL_ARTIFACTS = ['banner_of_valor', 'ward_charm'];
 const PLAYER_SQUADS = ['zelos_guard', 'diana_squad', 'knight_wall'];
 const UNIT_LEVEL = 5;   // 新单位初始等级
+const INITIAL_GOLD = 2000;
 
 export let army = null;
 
@@ -21,7 +23,7 @@ function newUnit(classId, level = UNIT_LEVEL) {
 }
 
 function defaultArmy(db) {
-  const a = { units: {}, rosters: {}, tech: [], techPoints: 0, inventory: INITIAL_ARTIFACTS.slice() };
+  const a = { units: {}, rosters: {}, tech: [], techPoints: 0, gold: INITIAL_GOLD, inventory: INITIAL_ARTIFACTS.slice() };
   for (const ref of PLAYER_SQUADS) {
     const tpl = db.squadsById[ref];
     if (!tpl) continue;
@@ -64,6 +66,7 @@ export function loadArmy(db) {
     a = JSON.parse(localStorage.getItem(KEY) || 'null');
   } catch { a = null; }
   army = validate(a, db) ? a : defaultArmy(db);
+  if (typeof army.gold !== 'number') army.gold = INITIAL_GOLD;   // 旧存档迁移
   saveArmy();
   return army;
 }
@@ -125,11 +128,44 @@ export function research(id, techDb) {
 }
 
 // ---- 战斗奖励 ----
-export function addKills(n) {   // 击杀 +1 科技点
-  if (army && n > 0) { army.techPoints += n; saveArmy(); }
+export function addKills(n) {   // 击杀: +1 科技点, +50 金币
+  if (army && n > 0) { army.techPoints += n; army.gold += 50 * n; saveArmy(); }
 }
-export function addVictory() {  // 胜利 +5 科技点
-  if (army) { army.techPoints += 5; saveArmy(); }
+export function addVictory() {  // 胜利: +5 科技点, +1000 金币
+  if (army) { army.techPoints += 5; army.gold += 1000; saveArmy(); }
+}
+
+// ---- 经济 ----
+export function hireUnit(classId, cost) {   // 招募 -> 后备池
+  if (!army || army.gold < cost) return false;
+  army.gold -= cost;
+  const u = newUnit(classId);
+  army.units[u.uid] = u;
+  saveArmy();
+  return true;
+}
+export function buyArtifact(id, price) {   // 商店 -> 库存
+  if (!army || army.gold < price) return false;
+  army.gold -= price;
+  army.inventory.push(id);
+  saveArmy();
+  return true;
+}
+
+// ---- 通关记录 ----
+export function markCleared(mapId) {
+  try {
+    const s = new Set(JSON.parse(localStorage.getItem(CLEARED_KEY) || '[]'));
+    s.add(mapId);
+    localStorage.setItem(CLEARED_KEY, JSON.stringify([...s]));
+  } catch {}
+}
+export function clearedSet() {
+  try { return new Set(JSON.parse(localStorage.getItem(CLEARED_KEY) || '[]')); }
+  catch { return new Set(); }
+}
+export function clearCleared() {
+  try { localStorage.removeItem(CLEARED_KEY); } catch {}
 }
 
 // 战后把成员状态写回实例 (exp/level 在战斗结算时已改, 这里同步 HP)

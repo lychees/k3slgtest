@@ -106,7 +106,7 @@ export function showEnd(win, opts = {}) {
   b.style.display = 'flex';
   endOn = true;
   if (win) {
-    hint.textContent = '';
+    hint.textContent = opts.hint || '';
     btns.style.display = 'flex';
     $('end-army').onclick = e => {
       e.stopPropagation();

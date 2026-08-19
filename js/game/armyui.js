@@ -1,6 +1,7 @@
 // armyui.js — 整备界面: 编队 / 转职 / 神器 / 科技树 (SPEC「养成系统」)
 // 操作 army.js 的战役状态, 每次变更即持久化; UI 沿用 .fe-panel 风。
 import * as Army from './army.js';
+import { sfx } from './audio.js';
 
 const $ = id => document.getElementById(id);
 
@@ -54,7 +55,9 @@ function showTab(name) {
   selSlot = null;
   if (name === 'formation') renderFormation();
   else if (name === 'promote') renderPromote();
+  else if (name === 'recruit') renderRecruit();
   else if (name === 'artifact') renderArtifact();
+  else if (name === 'shop') renderShop();
   else if (name === 'tech') renderTech();
 }
 
@@ -159,6 +162,7 @@ function clickCell(slot) {
       roster.members[slot] = selPool;
     }
     selPool = null;
+    sfx('equip');
     Army.saveArmy();
     renderFormation();
     return;
@@ -174,6 +178,7 @@ function clickCell(slot) {
     else delete roster.members[selSlot];
     roster.members[slot] = a;
     selSlot = null;
+    sfx('equip');
     Army.saveArmy();
   }
   renderFormation();
@@ -213,6 +218,7 @@ function renderPromote() {
           }
           u.gains = ng;
           u.classId = nd.id;
+          sfx('levelup');
           Army.saveArmy();
           renderPromote();
         };
@@ -265,11 +271,80 @@ function renderArtifact() {
         const target = SQUAD_REFS.find(ref => Army.rosterOf(ref).artifacts.length < 2);
         if (!target) return;
         Army.rosterOf(target).artifacts.push(aid);
+        sfx('equip');
         Army.saveArmy();
         renderArtifact();
       };
       row.appendChild(btn);
     }
+    list.appendChild(row);
+  }
+  body.appendChild(list);
+}
+
+// ---------------------------------------------------------------- 招募
+// T1 (初始+科技解锁) 500 金; T2 (研究晋升仪式后) 1500 金 -> Lv.5 进后备池
+function renderRecruit() {
+  const body = $('au-body');
+  body.innerHTML = '';
+  body.appendChild(el('div', 'au-hint', `金币: ${Army.army.gold} · 雇佣进后备池 (Lv.5)`));
+  const list = el('div', 'au-list');
+  const offers = [];
+  for (const u of Object.values(db.unitsById)) {
+    if (Army.isClassUnlocked(u.id, techDb)) offers.push({ def: u, cost: 500 });
+  }
+  if (Army.isT2Unlocked(techDb)) {
+    const t2 = new Set(Object.values(db.unitsById).map(u => u.promotesTo).filter(Boolean));
+    for (const id of t2) offers.push({ def: db.unitsById[id], cost: 1500 });
+  }
+  for (const { def, cost } of offers) {
+    const row = el('div', 'au-row');
+    const img = el('img'); img.src = `assets/${def.sprite}.png`;
+    row.appendChild(img);
+    row.appendChild(el('span', 'au-row-name', def.name));
+    row.appendChild(el('span', 'au-row-sub',
+      `HP${def.base.hp} 力${def.base.str} 魔${def.base.mag} 技${def.base.skl} 防${def.base.arm} 移${def.base.mov}`));
+    row.appendChild(el('span', 'au-row-desc', cost >= 1500 ? '上级职业' : ''));
+    const can = Army.army.gold >= cost;
+    const btn = el('span', 'au-btn' + (can ? '' : ' disabled'), `雇佣 (${cost} 金)`);
+    if (can) {
+      btn.onclick = () => {
+        if (Army.hireUnit(def.id, cost)) {
+          sfx('gold');
+          renderRecruit();
+        }
+      };
+    }
+    row.appendChild(btn);
+    list.appendChild(row);
+  }
+  body.appendChild(list);
+}
+
+// ---------------------------------------------------------------- 商店
+// items.json 里 price>0 的神器 (武器暂不进商店, 避免装备链改动)
+function renderShop() {
+  const body = $('au-body');
+  body.innerHTML = '';
+  body.appendChild(el('div', 'au-hint', `金币: ${Army.army.gold} · 购买进神器库存`));
+  const list = el('div', 'au-list');
+  for (const item of db.itemList.filter(i => i.type === 'artifact' && i.price > 0)) {
+    const row = el('div', 'au-row');
+    row.appendChild(el('span', 'au-row-name', item.name));
+    row.appendChild(el('span', 'au-row-sub',
+      Object.entries(item.bonuses || {}).map(([k, v]) => `${k}+${v}`).join(' ')));
+    row.appendChild(el('span', 'au-row-desc', item.description || ''));
+    const can = Army.army.gold >= item.price;
+    const btn = el('span', 'au-btn' + (can ? '' : ' disabled'), `购买 (${item.price} 金)`);
+    if (can) {
+      btn.onclick = () => {
+        if (Army.buyArtifact(item.id, item.price)) {
+          sfx('gold');
+          renderShop();
+        }
+      };
+    }
+    row.appendChild(btn);
     list.appendChild(row);
   }
   body.appendChild(list);
@@ -299,6 +374,7 @@ function renderTech() {
     if (!done && reqMet && afford) {
       btn.onclick = () => {
         if (Army.research(t.id, techDb)) {
+          sfx('confirm');
           if (onTechChange) onTechChange();
           renderTech();
         }
