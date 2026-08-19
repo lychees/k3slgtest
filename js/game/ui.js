@@ -70,9 +70,10 @@ export function showIntro(map) {
     b.style.opacity = 0;
     introOn = true;
     let done = false;
-    const finish = () => {
+    const finish = e => {
       if (done) return;
       done = true;
+      if (e && e.stopPropagation) e.stopPropagation();   // 跳过开场的点击不再穿透成地图点击
       window.removeEventListener('keydown', finish);
       b.removeEventListener('click', finish);
       b.style.display = 'none';

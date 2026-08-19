@@ -397,6 +397,9 @@ const state = {
   turn: 1,
 };
 
+// 调试钩子: 供 CDP/手动测试读取内部状态 (只读引用, 不影响逻辑)
+window.__tactics = { cam, state, squads: () => squads };
+
 function busy() {
   return state.moving || state.battle || state.ai || state.over || UI.locked();
 }
@@ -661,15 +664,9 @@ function updateCursor(x, y, follow = true) {
   if (follow) setCamTargetTile(x, y);
 }
 
-// 鼠标悬停只在光标抵达视口最边缘一格时推移相机 (选中部队瞄准期间不推移,
-// 避免相机在鼠标下滑动导致点 A 格走 B 格); 键盘移动始终跟随 (updateCursor follow=true)
-function edgeFollowCursor() {
-  if (state.selected || state.menuSquad) return;
-  const [sx, sy, tp] = tileToScreen(state.cursor.x, state.cursor.y);
-  if (sx < tp || sx > STAGE_W - tp * 2 || sy < tp || sy > STAGE_H - tp * 2) {
-    setCamTargetTile(state.cursor.x, state.cursor.y);
-  }
-}
+// 鼠标悬停不推移相机: 相机在鼠标下滑动会让用户瞄准的格子漂走, 点击落到别的格
+// (曾在此导致视口边缘的部队点不中)。键盘移动始终跟随 (updateCursor follow=true),
+// 点击某格也会让相机向该格靠拢, 鼠标平移需求已被覆盖。
 
 // 光标 DOM 每帧跟随相机
 function updateCursorDom() {
@@ -685,7 +682,6 @@ stage.addEventListener('mousemove', e => {
   if (!t || busy()) return;
   if (t.x === state.cursor.x && t.y === state.cursor.y) return;
   updateCursor(t.x, t.y, false);
-  edgeFollowCursor();
   if (!state.menuSquad) UI.updateSquadPanel(squadAt(t.x, t.y));
 });
 
@@ -860,6 +856,44 @@ async function runScript() {
     stage.dispatchEvent(new WheelEvent('wheel', { clientX, clientY, deltaY, bubbles: true, cancelable: true }));
 
   await sleep(400);
+
+  // 0a. zelos_guard 专项: 用 elementFromPoint 命中路径点击它的实际屏幕位置选中,
+  //     再点范围内路径最远格, 断言落点 (rm004 出生点 (4,16) 曾有点不中的回归)
+  const Z = squads.find(s => s.template.id === 'zelos_guard') || squads.find(s => s.team === 0);
+  const zx = Z.x, zy = Z.y;
+  {
+    const c = tileClient(Z.x, Z.y);
+    const hit = document.elementFromPoint(c.x, c.y) || stage;
+    assert(hit === canvas, `zelos 屏幕位置命中 canvas (实际 ${hit.id || hit.tagName})`);
+    // 事件派发到命中的最上层元素, 经冒泡到 stage — 与真实浏览器点击链一致
+    hit.dispatchEvent(new MouseEvent('mousemove', { clientX: c.x, clientY: c.y, bubbles: true }));
+    hit.dispatchEvent(new MouseEvent('click', { clientX: c.x, clientY: c.y, bubbles: true }));
+    assert(state.selected === Z, `点击选中 zelos_guard @${zx},${zy}`);
+    let far = null, farLen = 0;
+    for (const k of state.range.move.keys()) {
+      const [x, y] = k.split(',').map(Number);
+      const p = findPath(Z, x, y, state.range.move);
+      if (p.length > farLen) { farLen = p.length; far = [x, y]; }
+    }
+    assert(!!far, `zelos 最远可达格 ${far} (路径 ${farLen})`);
+    clickTile(far[0], far[1]);
+    assert(await waitFor(() => state.menuSquad === Z), 'zelos 移动完成弹出菜单');
+    assert(Z.x === far[0] && Z.y === far[1], `zelos 落点 ${far} (实际 ${Z.x},${Z.y})`);
+    key('Escape');   // 取消 -> 回原地并重新选中
+    assert(Z.x === zx && Z.y === zy && state.selected === Z, 'zelos 取消移动回到出生点');
+    key('Escape');   // 再取消选中, 不影响后续用例
+  }
+
+  // 0b. 悬停不推相机: 鼠标移到视口边缘格, 相机目标必须保持不动
+  //     (回归: 悬停推相机会让瞄准的格子在鼠标下滑走, 点击落到别的格)
+  {
+    const tx0 = cam.tx, ty0 = cam.ty;
+    const ex = Math.min(COLS - 1, Math.floor(camLeft() + camVW()) - 1);   // 视口最右一格
+    const c = tileClient(ex, state.cursor.y);
+    stage.dispatchEvent(new MouseEvent('mousemove', { clientX: c.x, clientY: c.y, bubbles: true }));
+    assert(cam.tx === tx0 && cam.ty === ty0, '悬停视口边缘格不推移相机');
+  }
+
   const S = squads.find(s => s.team === 0);
   const ox = S.x, oy = S.y;
 
