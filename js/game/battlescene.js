@@ -256,6 +256,11 @@ export class BattleScene {
       actor.mesh.position.x = ax;
       await this.sleepD(140);
     }
+    if (ev.drain) {   // 吸血: 出手者回血飘字
+      sfx('heal');
+      this.float(actor, `+${ev.drain.amount}`, 'heal');
+      await this.sleepD(300);
+    }
   }
 
   async playSlash(actor, sign, onHit) {

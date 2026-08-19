@@ -9,7 +9,7 @@ const URL = 'http://localhost:8931/index.html?map=rm004&nostory=1';   // nostory
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const chrome = spawn(CHROME, [
   '--headless=new', '--disable-gpu', '--use-angle=swiftshader',
-  `--remote-debugging-port=${PORT}`, '--user-data-dir=/tmp/cdp-profile6',
+  `--remote-debugging-port=${PORT}`, '--user-data-dir=/tmp/cdp2-profile6',
   '--window-size=1000,600', '--hide-scrollbars', 'about:blank',
 ], { stdio: 'ignore' });
 

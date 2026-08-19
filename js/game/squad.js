@@ -54,13 +54,15 @@ export class Squad {
       this.members = template.members.map(m => this._makeMember(m));
       this.leader = this.members.find(m => m.def.id === template.leader) || this.members[0];
     }
-    this.mov = this.leader.def.base.mov;   // 移动力 = 队长 MOV
+    this.mov = this.leader.def.base.mov + (this.hasFlag(this.leader, 'move_plus') ? 1 : 0);   // 移动力 = 队长 MOV (+神行/疾风靴)
     this.walking = false;
     this._build();
   }
 
   _baseMaxhp(member) {
-    return member.def.base.hp + (member.gains.hp || 0) + (this.team === 0 ? (TECH.hp || 0) : 0);
+    let v = member.def.base.hp + (member.gains.hp || 0) + (this.team === 0 ? (TECH.hp || 0) : 0);
+    for (const t of member.traits) if (t.effect && t.effect.stat === 'hp') v += t.effect.mod;
+    return v;
   }
 
   // 玩家单位实例 -> 战斗成员
@@ -71,8 +73,9 @@ export class Squad {
     const wid = (this.template.weapon_items || {})[inst.classId];
     const weapon = (wid && this.db.itemsById[wid]) || defaultWeapon(def, this.db);
     const skills = (def.skills || []).map(id => this.db.skillsById[id]).filter(Boolean);
+    const traits = (inst.traits || []).map(id => this.db.traitsById[id]).filter(Boolean);
     const m = {
-      uid: inst.uid, inst, def, slot, weapon, skills,
+      uid: inst.uid, inst, def, slot, weapon, skills, traits,
       level: inst.level, exp: inst.exp, gains: inst.gains,
       maxhp: 0, hp: 0, alive: true,
     };
@@ -87,7 +90,7 @@ export class Squad {
     const weapon = (wid && this.db.itemsById[wid]) || defaultWeapon(def, this.db);
     const skills = (def.skills || []).map(id => this.db.skillsById[id]).filter(Boolean);
     const mm = {
-      uid: null, inst: null, def, slot: m.slot, weapon, skills,
+      uid: null, inst: null, def, slot: m.slot, weapon, skills, traits: [],
       level: ENEMY_LEVEL[this.template.id] || 5, exp: 0, gains: {},
       maxhp: def.base.hp, hp: def.base.hp,
       alive: true,
@@ -106,11 +109,19 @@ export class Squad {
     return alive.length ? Math.max(...alive.map(m => m.weapon.range || 1)) : 1;
   }
 
-  hasFlag(member, flag) { return member.skills.some(s => s.flag === flag); }
+  // 部队 flag 并集: 成员技能 + 成员特性 + 神器 (神器 flag 全队生效)
+  hasFlag(member, flag) {
+    return member.skills.some(s => s.flag === flag)
+      || (member.traits || []).some(t => t.flag === flag)
+      || this.artifacts.some(a => a.flag === flag);
+  }
 
-  // 有效属性 = 基础 + 成长 + 自身 passive + 全队 aura + 神器加成 + 科技 (玩家)
+  // 有效属性 = 基础 + 成长 + 特性 + 自身 passive + 全队 aura + 神器加成 + 科技 (玩家)
   eff(member, key) {
     let v = (member.def.base[key] || 0) + (member.gains[key] || 0);
+    for (const t of member.traits || []) {
+      if (t.effect && t.effect.stat === key) v += t.effect.mod;
+    }
     for (const s of member.skills) {
       if (s.type === 'passive' && s.effect && s.effect.stat === key) v += s.effect.mod;
     }

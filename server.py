@@ -11,6 +11,11 @@ class Handler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *a, **kw):
         super().__init__(*a, directory=ROOT, **kw)
 
+    def end_headers(self):
+        # 开发服务器: 禁用启发式缓存, 改文件后刷新即生效 (CDP 复用 profile 也不会拿到旧模块)
+        self.send_header('Cache-Control', 'no-cache')
+        super().end_headers()
+
     def do_POST(self):
         u = urlparse(self.path)
         if u.path == '/api/save':

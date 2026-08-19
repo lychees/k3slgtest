@@ -9,7 +9,7 @@ const BASE = 'http://localhost:8931/index.html?notitle=1';   // notitle: 跳过�
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const chrome = spawn(CHROME, [
   '--headless=new', '--disable-gpu', '--use-angle=swiftshader',
-  `--remote-debugging-port=${PORT}`, '--user-data-dir=/tmp/cdp-profile9',
+  `--remote-debugging-port=${PORT}`, '--user-data-dir=/tmp/cdp2-profile9',
   '--window-size=1000,600', '--hide-scrollbars', 'about:blank',
 ], { stdio: 'ignore' });
 

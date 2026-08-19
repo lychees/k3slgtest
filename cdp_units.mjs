@@ -10,7 +10,7 @@ const BASE = 'http://localhost:8931/index.html';
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const chrome = spawn(CHROME, [
   '--headless=new', '--disable-gpu', '--use-angle=swiftshader',
-  `--remote-debugging-port=${PORT}`, '--user-data-dir=/tmp/cdp-profile18',
+  `--remote-debugging-port=${PORT}`, '--user-data-dir=/tmp/cdp2-profile18',
   '--window-size=1000,600', '--hide-scrollbars', 'about:blank',
 ], { stdio: 'ignore' });
 
@@ -127,7 +127,7 @@ async function main() {
   await sleep(1000);
   await evaljs(`document.querySelector('.au-tab[data-tab="recruit"]').dispatchEvent(new MouseEvent('click', { bubbles: true }))`);
   await sleep(400);
-  const rows = await evaljs(`[...document.querySelectorAll('#au-body .au-row')].map(r => r.textContent)`);
+  const rows = await evaljs(`[...document.querySelectorAll('#au-body .au-row:not(.au-legend-row)')].map(r => r.textContent)`);
   check(rows.length === 7, `招募 7 个初始职业 (实际 ${rows.length})`);
   check(rows.some(r => r.includes('医护兵')) && rows.some(r => r.includes('枪兵')) && rows.some(r => r.includes('佣兵')),
     '含医护兵/枪兵/佣兵');

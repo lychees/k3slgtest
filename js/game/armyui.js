@@ -13,7 +13,7 @@ let selSlot = null;    // 阵型中选中的格子
 
 const SQUAD_REFS = ['zelos_guard', 'diana_squad', 'knight_wall'];
 const unitImg = u => `assets/${db.unitsById[u.classId].sprite}.png`;
-const unitName = u => db.unitsById[u.classId].name;
+const unitName = u => u.name || db.unitsById[u.classId].name;   // 传说随从头名优先
 
 async function ensureTechDb() {
   if (!techDb) {
@@ -84,6 +84,10 @@ function cardStats(u, squadRef) {
   for (const k of ['hp', 'str', 'mag', 'skl', 'arm', 'ldr']) {
     const base = (def.base[k] || 0) + (u.gains[k] || 0);
     let v = base;
+    for (const tid of u.traits || []) {   // 特性加成
+      const t = db.traitsById[tid];
+      if (t && t.effect && t.effect.stat === k) v += t.effect.mod;
+    }
     for (const sid of def.skills || []) {
       const s = db.skillsById[sid];
       if (s && s.type === 'passive' && s.effect && s.effect.stat === k) v += s.effect.mod;
@@ -101,14 +105,17 @@ function unitCardHtml(u, squadRef) {
   const st = cardStats(u, squadRef);
   const tier = def.tier || (def.promotesTo ? 1 : 2);
   const stat = k => `<span class="card-stat${st[k].boosted ? ' up' : ''}">${STAT_LABEL[k]}${st[k].v}${st[k].boosted ? '↑' : ''}</span>`;
+  const traits = (u.traits || []).map(id => db.traitsById[id]).filter(Boolean)
+    .map(t => `<span class="card-skill card-trait" title="${t.name}: ${t.description || ''}"><img src="assets/${t.icon}.png" onerror="this.style.visibility='hidden'">${t.name}</span>`).join('');
   const skills = (def.skills || []).map(id => db.skillsById[id]).filter(Boolean)
     .map(s => `<span class="card-skill"><img src="assets/${s.icon}.png" onerror="this.style.visibility='hidden'">${s.name}</span>`).join('');
   const growth = Object.entries(def.growth || {}).filter(([, v]) => v > 0)
     .map(([k, v]) => `${STAT_LABEL[k]}${v}%`).join(' ');
   return `<div class="card-head"><img src="assets/${def.sprite}.png">
-    <div><div class="card-title">${def.name} <span class="card-sub">T${tier} Lv.${u.level}</span></div>
+    <div><div class="card-title">${u.name ? `<span class="legend">${u.name}</span> · ` : ''}${def.name} <span class="card-sub">T${tier} Lv.${u.level}</span></div>
     <div class="card-sub">${WEAPON_LABEL[def.weapon] || def.weapon} · ${ATK_TYPE_LABEL[def.attackType] || def.attackType}${def.promotesTo ? ` · →${db.unitsById[def.promotesTo].name}` : ''}</div></div></div>
   <div class="card-stats">${['hp', 'str', 'mag', 'skl', 'arm', 'ldr', 'mov'].map(stat).join('')}</div>
+  ${traits ? `<div class="card-skills">${traits}</div>` : ''}
   ${skills ? `<div class="card-skills">${skills}</div>` : ''}
   <div class="card-growth">成长 ${growth}</div>`;
 }
@@ -346,6 +353,38 @@ function renderRecruit() {
   body.innerHTML = '';
   body.appendChild(el('div', 'au-hint', `金币: ${Army.army.gold} · 雇佣进后备池 (Lv.5)`));
   const list = el('div', 'au-list');
+
+  // 传说随从 (橙色名, Lv.8, 2 rare + 1 common 特性, 胜利后刷新)
+  const legend = Army.legendaryCandidate();
+  const lrow = el('div', 'au-row au-legend-row');
+  if (legend) {
+    const ldef = db.unitsById[legend.classId];
+    const img = el('img'); img.src = `assets/${ldef.sprite}.png`;
+    lrow.appendChild(img);
+    lrow.appendChild(el('span', 'au-row-name legend', legend.name));
+    const traitChips = legend.traits.map(id => db.traitsById[id]).filter(Boolean)
+      .map(t => t.name).join(' · ');
+    lrow.appendChild(el('span', 'au-row-desc',
+      `${ldef.name} Lv.${legend.level} · 特性: ${traitChips}`));
+    const can = Army.army.gold >= legend.cost;
+    const btn = el('span', 'au-btn' + (can ? '' : ' disabled'), `雇佣 (${legend.cost} 金)`);
+    if (can) {
+      btn.onclick = () => {
+        if (Army.hireLegendary()) {
+          sfx('gold');
+          renderRecruit();
+        }
+      };
+    }
+    lrow.appendChild(btn);
+    const pseudo = { classId: legend.classId, level: legend.level, gains: {}, traits: legend.traits, name: legend.name };
+    attachCard(lrow, pseudo, null);   // 悬停看 3 条特性
+  } else {
+    lrow.appendChild(el('span', 'au-row-name legend', '传说随从'));
+    lrow.appendChild(el('span', 'au-row-desc', '已加入 — 下一场胜利后出现新候选人'));
+  }
+  list.appendChild(lrow);
+
   const offers = [];
   for (const u of Object.values(db.unitsById)) {
     if (Army.isClassUnlocked(u.id, techDb)) offers.push({ def: u, cost: 500 });

@@ -90,6 +90,9 @@ function render(squad, db) {
     if (!m) { h += `<div class="in-cell empty"></div>`; continue; }
     const stats = STATS.map(([k, lb]) => statCell(squad, m, k, lb)).join('')
       + `<span class="in-stat">移${m.def.base.mov}</span>`;
+    const traits = (m.traits || []).map(t =>
+      `<span class="in-skill in-trait" title="${t.name}: ${t.description || ''}"><img src="assets/${t.icon}.png" onerror="this.style.visibility='hidden'">${t.name}</span>`
+    ).join('');
     const skills = m.skills.map(s =>
       `<span class="in-skill" title="${s.name}: ${s.description || ''}"><img src="assets/${s.icon}.png" onerror="this.style.visibility='hidden'">${s.name}</span>`
     ).join('');
@@ -101,7 +104,7 @@ function render(squad, db) {
         ${squad.leader === m ? '<span class="in-crown">★</span>' : ''}
       </div>
       <div class="in-stats">${stats}</div>
-      ${skills ? `<div class="in-skills">${skills}</div>` : ''}
+      ${traits || skills ? `<div class="in-skills">${traits}${skills}</div>` : ''}
     </div>`;
   }
   h += `</div><div class="in-foot">C/Esc 关闭</div>`;

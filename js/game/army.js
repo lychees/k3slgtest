@@ -14,12 +14,25 @@ const UNIT_LEVEL = 5;   // 新单位初始等级
 const INITIAL_GOLD = 2000;
 
 export let army = null;
+let DB = null;   // loadArmy 时缓存的数据索引 (抽特性/传说随从用)
 
 let uidCounter = 0;
 function newUid() { return `u${Date.now().toString(36)}_${++uidCounter}`; }
 
+// 特性抽取: 1 条 common + 25% 追加第 2 条 (不重复); rare 只出自传说随从
+function rollTraits() {
+  const commons = DB ? DB.traits.filter(t => t.rarity === 'common') : [];
+  if (!commons.length) return [];
+  const out = [commons[(Math.random() * commons.length) | 0].id];
+  if (Math.random() < 0.25) {
+    const rest = commons.filter(t => t.id !== out[0]);
+    if (rest.length) out.push(rest[(Math.random() * rest.length) | 0].id);
+  }
+  return out;
+}
+
 function newUnit(classId, level = UNIT_LEVEL) {
-  return { uid: newUid(), classId, level, exp: 0, gains: {}, hp: null };   // hp null = 满血
+  return { uid: newUid(), classId, level, exp: 0, gains: {}, hp: null, traits: rollTraits() };   // hp null = 满血
 }
 
 function defaultArmy(db) {
@@ -61,12 +74,17 @@ function validate(a, db) {
 }
 
 export function loadArmy(db) {
+  DB = db;
   let a = null;
   try {
     a = JSON.parse(localStorage.getItem(KEY) || 'null');
   } catch { a = null; }
   army = validate(a, db) ? a : defaultArmy(db);
   if (typeof army.gold !== 'number') army.gold = INITIAL_GOLD;   // 旧存档迁移
+  if (typeof army.victories !== 'number') army.victories = 0;
+  for (const u of Object.values(army.units)) {
+    if (!Array.isArray(u.traits)) u.traits = rollTraits();   // 老实例补抽特性
+  }
   saveArmy();
   return army;
 }
@@ -131,8 +149,55 @@ export function research(id, techDb) {
 export function addKills(n) {   // 击杀: +1 科技点, +50 金币
   if (army && n > 0) { army.techPoints += n; army.gold += 50 * n; saveArmy(); }
 }
-export function addVictory() {  // 胜利: +5 科技点, +1000 金币
-  if (army) { army.techPoints += 5; army.gold += 1000; saveArmy(); }
+export function addVictory() {  // 胜利: +5 科技点, +1000 金币, 胜利场次 (传说随从刷新种子)
+  if (army) {
+    army.techPoints += 5;
+    army.gold += 1000;
+    army.victories = (army.victories || 0) + 1;
+    saveArmy();
+  }
+}
+
+// ---- 传说随从 ----
+// 候选人由胜利场次数确定性生成 (可复现); 雇走后下一场胜利刷出下一位
+const LEGENDARY_NAMES = ['奥兰多', '薇拉', '加雷斯', '瑟琳娜', '罗恩', '艾德蒙', '卡西欧', '布伦达'];
+export const LEGENDARY_COST = 2000;
+
+export function legendaryCandidate() {
+  if (!army || !DB) return null;
+  const n = army.victories || 0;
+  if (army.legendaryHiredAt === n) return null;   // 当前候选人已被雇走
+  let h = (1237 + n * 2654435761) >>> 0;
+  const rnd = () => { h = (h * 1103515245 + 12345) >>> 0; return h / 2 ** 32; };
+  // 已解锁 T1 = 初始职业 + 科技 unlockClass
+  const pool = INITIAL_CLASSES.slice();
+  for (const t of DB.techs) {
+    if (t.unlockClass && t.unlockClass !== 'T2' && army.tech.includes(t.id)) pool.push(t.unlockClass);
+  }
+  const classId = pool[(rnd() * pool.length) | 0];
+  const name = LEGENDARY_NAMES[(rnd() * LEGENDARY_NAMES.length) | 0];
+  const rares = DB.traits.filter(t => t.rarity === 'rare').map(t => t.id);
+  const commons = DB.traits.filter(t => t.rarity === 'common').map(t => t.id);
+  const traits = [];
+  for (let i = 0; i < 2; i++) {   // 2 rare (不重复)
+    const k = (rnd() * rares.length) | 0;
+    traits.push(rares.splice(k, 1)[0]);
+  }
+  traits.push(commons[(rnd() * commons.length) | 0]);   // 1 common
+  return { classId, name, traits, level: 8, cost: LEGENDARY_COST };
+}
+
+export function hireLegendary() {
+  const c = legendaryCandidate();
+  if (!c || army.gold < c.cost) return false;
+  army.gold -= c.cost;
+  const u = newUnit(c.classId, c.level);
+  u.traits = c.traits.slice();
+  u.name = c.name;
+  army.units[u.uid] = u;
+  army.legendaryHiredAt = army.victories || 0;
+  saveArmy();
+  return true;
 }
 
 // ---- 经济 ----
@@ -207,6 +272,10 @@ export function capacityOf(ref, db) {
   for (const sid of def.skills || []) {
     const s = db.skillsById[sid];
     if (s && s.type === 'passive' && s.effect && s.effect.stat === 'ldr') ldr += s.effect.mod;
+  }
+  for (const tid of u.traits || []) {   // 特性 (将才等) 计入统率
+    const t = db.traitsById[tid];
+    if (t && t.effect && t.effect.stat === 'ldr') ldr += t.effect.mod;
   }
   return Math.min(9, 2 + ldr);
 }

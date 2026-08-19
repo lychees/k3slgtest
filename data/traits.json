@@ -1,0 +1,16 @@
+{
+  "traits": [
+    { "id": "strong",    "name": "强壮",   "icon": "trait_1",  "rarity": "common", "effect": { "stat": "str", "mod": 2 }, "flag": "",          "description": "力量 +2。" },
+    { "id": "tough",     "name": "坚韧",   "icon": "trait_2",  "rarity": "common", "effect": { "stat": "arm", "mod": 2 }, "flag": "",          "description": "护甲 +2。" },
+    { "id": "swift",     "name": "迅捷",   "icon": "trait_3",  "rarity": "common", "effect": { "stat": "skl", "mod": 2 }, "flag": "",          "description": "技巧 +2。" },
+    { "id": "bright",    "name": "聪慧",   "icon": "trait_4",  "rarity": "common", "effect": { "stat": "mag", "mod": 2 }, "flag": "",          "description": "魔力 +2。" },
+    { "id": "hearty",    "name": "健壮",   "icon": "trait_5",  "rarity": "common", "effect": { "stat": "hp",  "mod": 5 }, "flag": "",          "description": "生命 +5。" },
+    { "id": "bornleader","name": "将才",   "icon": "trait_6",  "rarity": "common", "effect": { "stat": "ldr", "mod": 1 }, "flag": "",          "description": "统率 +1。" },
+    { "id": "eagle",     "name": "鹰眼",   "icon": "trait_7",  "rarity": "common", "effect": { "stat": "",    "mod": 0 }, "flag": "hit_plus",  "description": "命中 +15。" },
+    { "id": "marcher",   "name": "神行",   "icon": "trait_8",  "rarity": "common", "effect": { "stat": "",    "mod": 0 }, "flag": "move_plus", "description": "移动力 +1（作为队长时全队生效）。" },
+    { "id": "vanguard_t","name": "先锋",   "icon": "trait_9",  "rarity": "rare",   "effect": { "stat": "",    "mod": 0 }, "flag": "vanguard",  "description": "战斗中率先出手。" },
+    { "id": "doubles_t", "name": "连击",   "icon": "trait_10", "rarity": "rare",   "effect": { "stat": "",    "mod": 0 }, "flag": "doubles",   "description": "技巧高于对手时额外攻击一次。" },
+    { "id": "medic_t",   "name": "医者",   "icon": "trait_11", "rarity": "rare",   "effect": { "stat": "",    "mod": 0 }, "flag": "healer",    "description": "行动中可改为治疗己方。" },
+    { "id": "bloodlust", "name": "嗜血",   "icon": "trait_12", "rarity": "rare",   "effect": { "stat": "",    "mod": 0 }, "flag": "lifedrain", "description": "造成伤害的 20% 转化为自身生命。" }
+  ]
+}

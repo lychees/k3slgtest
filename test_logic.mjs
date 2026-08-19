@@ -38,6 +38,23 @@ function mkSquad(name, members) {
 }
 const noAvo = { terrainAvo: () => 0 };
 
+// 原型式 stub: 方法 live 绑定 this (simulate 克隆走原型链, 闭包式 stub 会读回原对象)
+const SIM_PROTO = {
+  aliveMembers() { return this.members.filter(m => m.alive); },
+  get wiped() { return this.aliveMembers().length === 0; },
+  hasFlag(m, f) {
+    return m.skills.some(s => s.flag === f) || (this.artifacts || []).some(a => a.flag === f);
+  },
+  eff(m, k) {
+    let v = m._base[k] || 0;
+    for (const s of m.skills) if (s.type === 'passive' && s.effect?.stat === k) v += s.effect.mod;
+    for (const mm of this.aliveMembers()) for (const s of mm.skills) if (s.type === 'aura' && s.effect?.stat === k) v += s.effect.mod;
+    return v;
+  },
+  totalHp() { return this.aliveMembers().reduce((s, m) => s + m.hp, 0); },
+};
+const mkSquadLive = (name, members) => Object.assign(Object.create(SIM_PROTO), { name, members, team: 1 });
+
 // ---- combat: 基本伤害公式 ----
 {
   const a = mkSquad('A', [mkMember(4, { str: 10, skl: 50 })]);  // 必中
@@ -52,22 +69,8 @@ const noAvo = { terrainAvo: () => 0 };
 
 // ---- combat: simulate 无副作用 + 确定性 ----
 {
-  // 原型式 stub (克隆走原型链, 方法必须 live 绑定)
-  const proto = {
-    aliveMembers() { return this.members.filter(m => m.alive); },
-    get wiped() { return this.aliveMembers().length === 0; },
-    hasFlag(m, f) { return m.skills.some(s => s.flag === f); },
-    eff(m, k) {
-      let v = m._base[k] || 0;
-      for (const s of m.skills) if (s.type === 'passive' && s.effect?.stat === k) v += s.effect.mod;
-      for (const mm of this.aliveMembers()) for (const s of mm.skills) if (s.type === 'aura' && s.effect?.stat === k) v += s.effect.mod;
-      return v;
-    },
-    totalHp() { return this.aliveMembers().reduce((s, m) => s + m.hp, 0); },
-  };
-  const mk = (name, members) => Object.assign(Object.create(proto), { name, members, team: 1 });
-  const a = mk('A', [mkMember(4, { str: 10, skl: 50 })]);
-  const d = mk('D', [mkMember(4, { hp: 20, arm: 3 })]);
+  const a = mkSquadLive('A', [mkMember(4, { str: 10, skl: 50 })]);
+  const d = mkSquadLive('D', [mkMember(4, { hp: 20, arm: 3 })]);
   const r = simulate(a, d, noAvo);
   ok(a.members[0].hp === 20 && d.members[0].hp === 20, 'simulate 不改原对象');
   ok(r.stats.atk.dmg === 12, `simulate 攻方伤害 (got ${r.stats.atk.dmg}, want 12)`);
@@ -136,6 +139,40 @@ const noAvo = { terrainAvo: () => 0 };
   ]);
   ok(a.eff(a.members[0], 'str') === 6, `aura str+1 (got ${a.eff(a.members[0], 'str')})`);
   ok(a.eff(a.members[1], 'skl') === 7, `passive skl+2 (got ${a.eff(a.members[1], 'skl')})`);
+}
+
+// ---- combat: 特性/神器 flag 效果 (lifedrain / heal_boost / hit_plus) ----
+{
+  // lifedrain: 出手者回复伤害 20% (simulate 确定性: 守方 hit 50% roll 0.5 不中)
+  const ld = { id: 'ld', flag: 'lifedrain', type: 'combat', effect: {} };
+  const a = mkSquadLive('A', [mkMember(4, { str: 10, skl: 50 }, { skills: [ld] })]);
+  a.members[0].hp = 10;   // 先压血
+  const d = mkSquadLive('D', [mkMember(4, { hp: 20, arm: 3 })]);
+  const r = simulate(a, d, noAvo);
+  // dmg 12 -> drain ceil(2.4)=3 -> 10+3=13 (守方反击 miss, 不再掉血)
+  ok(r.a.members[0].hp === 13, `lifedrain 回血 (got ${r.a.members[0].hp}, want 13 = 10+3)`);
+  ok(a.members[0].hp === 10, 'lifedrain 模拟无副作用');
+}
+{
+  // heal_boost: 治疗量 x1.5 向上取整
+  const medic = { id: 'medic', flag: 'healer', type: 'combat', effect: { stat: '', mod: 3 } };
+  const chalice = { id: 'chalice', flag: 'heal_boost', type: 'combat', effect: {} };
+  const hurt = mkMember(1, { hp: 30 }); hurt.hp = 10;
+  const a = mkSquad('A', [mkMember(4, { mag: 5 }, { skills: [medic, chalice] }), hurt]);
+  const d = mkSquad('D', [mkMember(4, { hp: 50, skl: 0, arm: 99 }, { weapon: { weapon: 'sword', might: 0, hit: 0, range: 1 } })]);
+  resolveCombat(a, d, noAvo);
+  // ceil((3+5)*1.5) = 12 -> 10+12 = 22
+  ok(hurt.hp === 22, `heal_boost 治疗量 x1.5 (got ${hurt.hp}, want 22)`);
+}
+{
+  // hit_plus: 命中 +15 (simulate 确定性: roll 0.5; 基础 50% 不中, +15 后 65% 中)
+  const mk2 = skills => mkSquadLive('X', [mkMember(4, { str: 10, skl: 5 }, { skills, weapon: { weapon: 'sword', might: 5, hit: 90, range: 1 } })]);
+  const foe = () => mkSquadLive('Y', [mkMember(4, { hp: 30, skl: 50, arm: 3 })]);   // hit = 90+10-50 = 50
+  const miss = simulate(mk2([]), foe(), noAvo);
+  const eagleEye = { id: 'eagle', flag: 'hit_plus', type: 'combat', effect: {} };
+  const hit = simulate(mk2([eagleEye]), foe(), noAvo);
+  ok(miss.stats.atk.dmg === 0 && hit.stats.atk.dmg > 0,
+    `hit_plus +15 命中 (miss ${miss.stats.atk.dmg} -> hit ${hit.stats.atk.dmg})`);
 }
 
 // ---- range: BFS / 地形 cost / 敌人阻挡 / 不可停人 ----

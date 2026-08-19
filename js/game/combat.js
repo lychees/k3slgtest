@@ -108,8 +108,9 @@ export function previewStrike(atk, def, ctx) {
   if (!foes.length) return null;
   const target = FRONTLINE_PREF.map(s => foes.find(x => x.slot === s)).find(Boolean);
   const member = turn.member, weapon = member.weapon;
-  const hit = Math.max(0, Math.min(100,
-    weapon.hit + atk.eff(member, 'skl') * 2 - def.eff(target, 'skl') - ctx.terrainAvo(def)));
+  let hit = weapon.hit + atk.eff(member, 'skl') * 2 - def.eff(target, 'skl') - ctx.terrainAvo(def);
+  if (atk.hasFlag(member, 'hit_plus')) hit += 15;
+  hit = Math.max(0, Math.min(100, hit));
   const atkStat = MAGIC_WEAPONS.has(weapon.weapon)
     ? atk.eff(member, 'mag') : atk.eff(member, 'str');
   const dmg = Math.max(1, atkStat + weapon.might - def.eff(target, 'arm'));
@@ -124,7 +125,8 @@ function doHeal(squad, member, side) {
   const target = allies[0];
   const skill = member.skills.find(s => s.flag === 'healer');
   const base = skill && skill.effect && skill.effect.mod ? skill.effect.mod : 3;
-  const amount = base + squad.eff(member, 'mag');
+  let amount = base + squad.eff(member, 'mag');
+  if (squad.hasFlag(member, 'heal_boost')) amount = Math.ceil(amount * 1.5);   // 天使圣杯
   target.hp = Math.min(target.maxhp, target.hp + amount);
   return {
     kind: 'heal', side, actorSlot: member.slot,
@@ -150,9 +152,11 @@ function doStrike(squad, member, foe, side, ctx, rng) {
   const weapon = member.weapon;
   const avo = ctx.terrainAvo(foe);
   const results = [];
+  let totalDmg = 0;
   for (const t of targets) {
-    // 命中 = 武器 hit + skl*2 - 对方 skl - 地形 avo
-    const hitPct = weapon.hit + squad.eff(member, 'skl') * 2 - foe.eff(t, 'skl') - avo;
+    // 命中 = 武器 hit + skl*2 - 对方 skl - 地形 avo (+鹰眼特性/戒指 15)
+    let hitPct = weapon.hit + squad.eff(member, 'skl') * 2 - foe.eff(t, 'skl') - avo;
+    if (squad.hasFlag(member, 'hit_plus')) hitPct += 15;
     const hit = rng() * 100 < hitPct;
     let dmg = 0, killed = false;
     if (hit) {
@@ -162,8 +166,18 @@ function doStrike(squad, member, foe, side, ctx, rng) {
       dmg = Math.max(1, atkStat + weapon.might - foe.eff(t, 'arm'));
       t.hp = Math.max(0, t.hp - dmg);
       if (t.hp === 0) { t.alive = false; killed = true; }
+      totalDmg += dmg;
     }
     results.push({ slot: t.slot, dmg, miss: !hit, killed, hpAfter: t.hp });
   }
-  return { ev: { kind: 'strike', side, actorSlot: member.slot, targets: results }, primary: targets[0] };
+  const ev = { kind: 'strike', side, actorSlot: member.slot, targets: results };
+  // 嗜血/血饮坠: 出手者回复伤害 20% 的 HP (不超上限)
+  if (totalDmg > 0 && member.alive && squad.hasFlag(member, 'lifedrain')) {
+    const drain = Math.min(member.maxhp - member.hp, Math.ceil(totalDmg * 0.2));
+    if (drain > 0) {
+      member.hp += drain;
+      ev.drain = { amount: drain, hpAfter: member.hp };
+    }
+  }
+  return { ev, primary: targets[0] };
 }

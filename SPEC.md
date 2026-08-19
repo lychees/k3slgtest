@@ -167,3 +167,10 @@ fe-tactics/
 - **转职**：T1 职业 10 级 + 科技"晋升仪式"→ 整备界面可晋升为 promotesTo（T2）。
 - **科技树** `data/tech.json`：`{id,name,icon,cost,requires[],effect:{stat,mod},unlockClass,description}`；unlockClass="T2" 特指解锁晋升，其余为职业 id。科技点：胜利 +5、击杀 +1。
 - **持久化**：军队状态（单位实例/编队/科技/科技点/神器库存）存 localStorage `sow_army`。
+
+## 随从特性与传说随从（新增）
+
+- `data/traits.json`：`{id,name,icon,rarity(common|rare),effect:{stat,mod},flag,description}`。单位实例创建时随机获得 1 条 common（25% 概率追加第 2 条）；传说随从 2 rare + 1 common。
+- 特性效果：stat 修正进 squad.eff()；flag 进部队 flag 并集（技能+特性+神器）。
+- items.json 的 artifact 新增 `flag` 字段：move_plus/heal_boost/hit_plus/lifedrain/vanguard/doubles，作为全队 flag 生效。
+- **传说随从**：招募 tab 顶部轮换位——随机职业（已解锁 T1）、Lv.8、2 rare + 1 common 特性、2000 金，名字橙色显示；每次战役胜利后刷新候选人。

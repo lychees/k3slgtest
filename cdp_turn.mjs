@@ -11,7 +11,7 @@ const SHOT = process.argv[2] || 'D:/dev/k3/zq/verify7_cdp_turn.png';
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const chrome = spawn(CHROME, [
   '--headless=new', '--disable-gpu', '--use-angle=swiftshader',
-  `--remote-debugging-port=${PORT}`, '--user-data-dir=/tmp/cdp-profile2',
+  `--remote-debugging-port=${PORT}`, '--user-data-dir=/tmp/cdp2-profile2',
   '--window-size=1000,600', '--hide-scrollbars', 'about:blank',
 ], { stdio: 'ignore' });
 
