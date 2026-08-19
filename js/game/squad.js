@@ -25,7 +25,7 @@ let TECH = {};
 export function setTechBonuses(b) { TECH = b || {}; }
 
 // 敌人等级: 默认 5, boss 级 8 (无成长)
-const ENEMY_LEVEL = { risen_elite: 8, dragon_solo: 8 };
+const ENEMY_LEVEL = { risen_elite: 8, dragon_solo: 8, dark_coven: 8, darklance_guard: 8 };
 
 export class Squad {
   constructor(template, placement, db) {

@@ -401,7 +401,32 @@
     width: 860px; height: 500px;
     padding: 12px 16px;
     display: flex; flex-direction: column;
+    position: relative;
   }
+  /* 单位属性卡 (悬停显示) */
+  #au-card {
+    display: none;
+    position: absolute; right: 14px; top: 56px;
+    width: 250px;
+    padding: 10px 12px;
+    z-index: 5;
+    font-size: 12px;
+    pointer-events: none;
+  }
+  #au-card .card-head { display: flex; gap: 8px; align-items: center; margin-bottom: 4px; }
+  #au-card .card-head img { width: 40px; height: 40px; image-rendering: pixelated; }
+  #au-card .card-title { font-size: 14px; }
+  #au-card .card-sub { color: #93a0c8; font-size: 11px; }
+  #au-card .card-stats { display: flex; flex-wrap: wrap; gap: 2px 9px; margin: 4px 0; }
+  #au-card .card-stat.up { color: #f0c75e; }
+  #au-card .card-skills { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 3px; }
+  #au-card .card-skill {
+    display: inline-flex; align-items: center; gap: 3px;
+    border: 1px solid rgba(201,155,47,.25);
+    padding: 0 5px; font-size: 11px; color: #c8d0f0;
+  }
+  #au-card .card-skill img { width: 13px; height: 13px; }
+  #au-card .card-growth { color: #93a0c8; font-size: 11px; margin-top: 4px; }
   .au-head {
     display: flex; align-items: center; gap: 16px;
     border-bottom: 2px solid #c99b2f;
@@ -460,6 +485,7 @@
   .au-row-sub { color: #93a0c8; font-size: 12px; }
   .au-row-desc { flex: 1; font-size: 12px; color: #c8d0f0; }
   .au-row.done { opacity: .55; }
+  .au-growth { color: #6f7ca8; font-size: 11px; }
   .au-art-slot { padding: 3px 10px; border: 1px solid rgba(201,155,47,.4); font-size: 12px; }
   .au-art-slot.empty { color: #6a76a0; }
   .ls-foot { display: flex; gap: 10px; margin-top: 10px; justify-content: center; }
@@ -891,6 +917,7 @@
           <span class="au-close">关闭 ✕</span>
         </div>
         <div id="au-body"></div>
+        <div id="au-card" class="fe-panel"></div>
       </div>
     </div>
   </div>

@@ -515,6 +515,248 @@
     "bulwark"
    ],
    "promotesTo": ""
+  },
+  {
+   "id": "spearman",
+   "name": "枪兵",
+   "tier": 1,
+   "sprite": "unit2_spearman",
+   "portrait": "large_portrait_lysander",
+   "weapon": "lance",
+   "base": {
+    "hp": 26,
+    "str": 9,
+    "mag": 0,
+    "skl": 8,
+    "arm": 5,
+    "ldr": 1,
+    "mov": 5
+   },
+   "growth": {
+    "hp": 65,
+    "str": 45,
+    "mag": 0,
+    "skl": 40,
+    "arm": 30,
+    "ldr": 15
+   },
+   "attackType": "frontline",
+   "attacks": 1,
+   "skills": [],
+   "promotesTo": "halberdier"
+  },
+  {
+   "id": "halberdier",
+   "name": "戟兵",
+   "tier": 2,
+   "sprite": "unit2_halberdier",
+   "portrait": "large_portrait_lysander",
+   "weapon": "lance",
+   "base": {
+    "hp": 36,
+    "str": 13,
+    "mag": 0,
+    "skl": 12,
+    "arm": 8,
+    "ldr": 4,
+    "mov": 5
+   },
+   "growth": {
+    "hp": 80,
+    "str": 55,
+    "mag": 0,
+    "skl": 50,
+    "arm": 40,
+    "ldr": 30
+   },
+   "attackType": "frontline",
+   "attacks": 1,
+   "skills": [
+    "bulwark"
+   ],
+   "promotesTo": ""
+  },
+  {
+   "id": "mercenary",
+   "name": "佣兵",
+   "tier": 1,
+   "sprite": "unit2_mercenary",
+   "portrait": "large_portrait_barnabas",
+   "weapon": "sword",
+   "base": {
+    "hp": 27,
+    "str": 10,
+    "mag": 0,
+    "skl": 9,
+    "arm": 4,
+    "ldr": 1,
+    "mov": 6
+   },
+   "growth": {
+    "hp": 65,
+    "str": 50,
+    "mag": 0,
+    "skl": 45,
+    "arm": 25,
+    "ldr": 15
+   },
+   "attackType": "frontline",
+   "attacks": 1,
+   "skills": [],
+   "promotesTo": "swordmaster"
+  },
+  {
+   "id": "swordmaster",
+   "name": "剑圣",
+   "tier": 2,
+   "sprite": "unit2_swordmaster",
+   "portrait": "large_portrait_zelos",
+   "weapon": "sword",
+   "base": {
+    "hp": 34,
+    "str": 14,
+    "mag": 0,
+    "skl": 16,
+    "arm": 6,
+    "ldr": 3,
+    "mov": 7
+   },
+   "growth": {
+    "hp": 70,
+    "str": 60,
+    "mag": 0,
+    "skl": 70,
+    "arm": 30,
+    "ldr": 25
+   },
+   "attackType": "frontline",
+   "attacks": 1,
+   "skills": [
+    "doubles",
+    "vanguard"
+   ],
+   "promotesTo": ""
+  },
+  {
+   "id": "medic",
+   "name": "医护兵",
+   "tier": 1,
+   "sprite": "unit2_medic",
+   "portrait": "large_portrait_diana",
+   "weapon": "heal",
+   "base": {
+    "hp": 20,
+    "str": 0,
+    "mag": 8,
+    "skl": 8,
+    "arm": 2,
+    "ldr": 1,
+    "mov": 5
+   },
+   "growth": {
+    "hp": 50,
+    "str": 0,
+    "mag": 55,
+    "skl": 45,
+    "arm": 15,
+    "ldr": 15
+   },
+   "attackType": "heal",
+   "attacks": 1,
+   "skills": [
+    "medic"
+   ],
+   "promotesTo": "bishop"
+  },
+  {
+   "id": "bishop",
+   "name": "主教",
+   "tier": 2,
+   "sprite": "unit2_bishop",
+   "portrait": "large_portrait_diana",
+   "weapon": "heal",
+   "base": {
+    "hp": 28,
+    "str": 0,
+    "mag": 14,
+    "skl": 12,
+    "arm": 4,
+    "ldr": 3,
+    "mov": 5
+   },
+   "growth": {
+    "hp": 60,
+    "str": 0,
+    "mag": 65,
+    "skl": 55,
+    "arm": 22,
+    "ldr": 30
+   },
+   "attackType": "heal",
+   "attacks": 1,
+   "skills": [
+    "medic",
+    "rally"
+   ],
+   "promotesTo": ""
+  },
+  {
+   "id": "necromancer",
+   "name": "死灵法师",
+   "tier": 2,
+   "sprite": "unit2_necromancer",
+   "portrait": "large_portrait_barnabas",
+   "weapon": "fire",
+   "base": {
+    "hp": 26,
+    "str": 2,
+    "mag": 13,
+    "skl": 10,
+    "arm": 3,
+    "ldr": 2,
+    "mov": 5
+   },
+   "growth": {
+    "hp": 55,
+    "str": 10,
+    "mag": 65,
+    "skl": 50,
+    "arm": 18,
+    "ldr": 20
+   },
+   "attackType": "any",
+   "attacks": 1,
+   "skills": [],
+   "promotesTo": ""
+  },
+  {
+   "id": "darklancer",
+   "name": "暗黑枪骑",
+   "tier": 2,
+   "sprite": "unit2_darklancer",
+   "portrait": "large_portrait_barnabas",
+   "weapon": "lance",
+   "base": {
+    "hp": 32,
+    "str": 13,
+    "mag": 0,
+    "skl": 8,
+    "arm": 9,
+    "ldr": 2,
+    "mov": 6
+   },
+   "growth": {
+    "hp": 80,
+    "str": 55,
+    "mag": 0,
+    "skl": 35,
+    "arm": 45,
+    "ldr": 10
+   },
+   "attackType": "frontline",
+   "attacks": 1,
+   "skills": [],
+   "promotesTo": ""
   }
  ]
 }

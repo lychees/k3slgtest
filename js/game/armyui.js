@@ -68,6 +68,60 @@ const el = (tag, cls, text) => {
   return d;
 };
 
+// ---------------------------------------------------------------- 单位属性卡
+const ATK_TYPE_LABEL = { frontline: '前排', any: '任意', aoe: '全体', heal: '治疗' };
+const WEAPON_LABEL = { sword: '剑', lance: '枪', axe: '斧', bow: '弓', fire: '火', ice: '冰', lightning: '雷', heal: '治疗', claw: '爪', gun: '铳' };
+const STAT_LABEL = { hp: 'HP', str: '力', mag: '魔', skl: '技', arm: '防', ldr: '统率', mov: '移动' };
+
+// squadRef 非空时算有效值 (基础+成长+自身 passive+科技+神器; 不含队友 aura — 那是战时状态)
+function cardStats(u, squadRef) {
+  const def = db.unitsById[u.classId];
+  const tech = squadRef ? Army.techBonuses(techDb) : {};
+  const arts = squadRef
+    ? (Army.rosterOf(squadRef).artifacts || []).map(id => db.itemsById[id]).filter(Boolean)
+    : [];
+  const out = {};
+  for (const k of ['hp', 'str', 'mag', 'skl', 'arm', 'ldr']) {
+    const base = (def.base[k] || 0) + (u.gains[k] || 0);
+    let v = base;
+    for (const sid of def.skills || []) {
+      const s = db.skillsById[sid];
+      if (s && s.type === 'passive' && s.effect && s.effect.stat === k) v += s.effect.mod;
+    }
+    v += tech[k] || 0;
+    for (const a of arts) if (a.bonuses && a.bonuses[k]) v += a.bonuses[k];
+    out[k] = { v, boosted: v > base };
+  }
+  out.mov = { v: def.base.mov, boosted: false };
+  return out;
+}
+
+function unitCardHtml(u, squadRef) {
+  const def = db.unitsById[u.classId];
+  const st = cardStats(u, squadRef);
+  const tier = def.tier || (def.promotesTo ? 1 : 2);
+  const stat = k => `<span class="card-stat${st[k].boosted ? ' up' : ''}">${STAT_LABEL[k]}${st[k].v}${st[k].boosted ? '↑' : ''}</span>`;
+  const skills = (def.skills || []).map(id => db.skillsById[id]).filter(Boolean)
+    .map(s => `<span class="card-skill"><img src="assets/${s.icon}.png" onerror="this.style.visibility='hidden'">${s.name}</span>`).join('');
+  const growth = Object.entries(def.growth || {}).filter(([, v]) => v > 0)
+    .map(([k, v]) => `${STAT_LABEL[k]}${v}%`).join(' ');
+  return `<div class="card-head"><img src="assets/${def.sprite}.png">
+    <div><div class="card-title">${def.name} <span class="card-sub">T${tier} Lv.${u.level}</span></div>
+    <div class="card-sub">${WEAPON_LABEL[def.weapon] || def.weapon} · ${ATK_TYPE_LABEL[def.attackType] || def.attackType}${def.promotesTo ? ` · →${db.unitsById[def.promotesTo].name}` : ''}</div></div></div>
+  <div class="card-stats">${['hp', 'str', 'mag', 'skl', 'arm', 'ldr', 'mov'].map(stat).join('')}</div>
+  ${skills ? `<div class="card-skills">${skills}</div>` : ''}
+  <div class="card-growth">成长 ${growth}</div>`;
+}
+
+function attachCard(elm, u, squadRef) {
+  elm.addEventListener('mouseenter', () => {
+    const c = $('au-card');
+    c.innerHTML = unitCardHtml(u, squadRef);
+    c.style.display = 'block';
+  });
+  elm.addEventListener('mouseleave', () => { $('au-card').style.display = 'none'; });
+}
+
 // ---------------------------------------------------------------- 编队
 function renderFormation() {
   const body = $('au-body');
@@ -98,6 +152,7 @@ function renderFormation() {
       cell.appendChild(img);
       cell.appendChild(el('span', 'au-lv', `Lv.${u.level}`));
       if (roster.leader === uid) cell.appendChild(el('span', 'au-crown', '★'));
+      attachCard(cell, u, selSquad);   // 悬停属性卡 (有效值)
     }
     cell.onclick = () => clickCell(slot);
     grid.appendChild(cell);
@@ -142,6 +197,7 @@ function renderFormation() {
     c.appendChild(img);
     c.appendChild(el('span', 'au-lv', `${unitName(u)} Lv.${u.level}`));
     c.onclick = () => { selPool = selPool === u.uid ? null : u.uid; selSlot = null; renderFormation(); };
+    attachCard(c, u, null);   // 悬停属性卡 (基础+成长)
     pgrid.appendChild(c);
   }
   pool.appendChild(pgrid);
@@ -224,6 +280,7 @@ function renderPromote() {
         };
       }
       row.appendChild(btn);
+      attachCard(row, u, ref);   // 悬停属性卡
       list.appendChild(row);
     }
   }
@@ -301,10 +358,17 @@ function renderRecruit() {
     const row = el('div', 'au-row');
     const img = el('img'); img.src = `assets/${def.sprite}.png`;
     row.appendChild(img);
-    row.appendChild(el('span', 'au-row-name', def.name));
-    row.appendChild(el('span', 'au-row-sub',
-      `HP${def.base.hp} 力${def.base.str} 魔${def.base.mag} 技${def.base.skl} 防${def.base.arm} 移${def.base.mov}`));
-    row.appendChild(el('span', 'au-row-desc', cost >= 1500 ? '上级职业' : ''));
+    row.appendChild(el('span', 'au-row-name', `${def.name} T${def.tier || 1}`));
+    // inline 基础属性 (让人看清楚再买)
+    const mid = el('span', 'au-row-desc');
+    const skills = (def.skills || []).map(id => db.skillsById[id]).filter(Boolean).map(s => s.name).join('/');
+    mid.innerHTML =
+      `HP${def.base.hp} 力${def.base.str} 魔${def.base.mag} 技${def.base.skl} 防${def.base.arm} 统率${def.base.ldr} 移动${def.base.mov}` +
+      ` · ${WEAPON_LABEL[def.weapon] || def.weapon} · ${ATK_TYPE_LABEL[def.attackType] || def.attackType}` +
+      (skills ? ` · ${skills}` : '') +
+      `<br><span class="au-growth">成长 ${Object.entries(def.growth || {}).filter(([, v]) => v > 0)
+        .map(([k, v]) => `${STAT_LABEL[k]}${v}%`).join(' ')}</span>`;
+    row.appendChild(mid);
     const can = Army.army.gold >= cost;
     const btn = el('span', 'au-btn' + (can ? '' : ' disabled'), `雇佣 (${cost} 金)`);
     if (can) {

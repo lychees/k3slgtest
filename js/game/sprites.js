@@ -22,6 +22,15 @@ export const SPRITE_MAP = {
   unit_monk_orange:   { sheet: '1mapsprites2', bx: 3, by: 0 },
   unit_armor_gray:    { sheet: '1mapsprites2', bx: 1, by: 1 },
   unit_sage_green:    { sheet: '1mapsprites2', bx: 3, by: 1 },
+  // 第二批 (1mapsprites3/4/5): 枪兵系/佣兵系/医护系/敌方死灵+黑枪
+  unit2_spearman:     { sheet: '1mapsprites3', bx: 1, by: 0 },   // 剑盾蓝甲
+  unit2_halberdier:   { sheet: '1mapsprites3', bx: 3, by: 1 },   // 巨剑黑甲
+  unit2_darklancer:   { sheet: '1mapsprites3', bx: 0, by: 1 },   // 黑枪骑士
+  unit2_medic:        { sheet: '1mapsprites4', bx: 1, by: 1 },   // 蓝珠法杖教士
+  unit2_bishop:       { sheet: '1mapsprites4', bx: 0, by: 1 },   // 白袍神官
+  unit2_necromancer:  { sheet: '1mapsprites4', bx: 2, by: 0 },   // 黑袍法师
+  unit2_mercenary:    { sheet: '1mapsprites5', bx: 1, by: 1 },   // 棕衣剑客
+  unit2_swordmaster:  { sheet: '1mapsprites5', bx: 3, by: 1 },   // 棕衣剑客变体
 };
 
 const SHEET_W = 384, SHEET_H = 256;

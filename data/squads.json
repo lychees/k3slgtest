@@ -1,28 +1,218 @@
 {
   "squads": [
-    { "id": "zelos_guard", "name": "泽洛斯亲卫队", "leader": "lord",
-      "members": [ { "unit": "lord", "slot": 4 }, { "unit": "soldier", "slot": 1 }, { "unit": "fighter", "slot": 7 }, { "unit": "archer", "slot": 5 }, { "unit": "mage", "slot": 3 } ],
-      "artifacts": ["banner_of_valor"],
-      "weapon_items": { "lord": "iron_sword", "soldier": "iron_lance", "fighter": "iron_axe", "archer": "short_bow", "mage": "fire_tome" } },
-    { "id": "diana_squad", "name": "戴安娜游骑队", "leader": "scout",
-      "members": [ { "unit": "scout", "slot": 4 }, { "unit": "archer", "slot": 1 }, { "unit": "archer", "slot": 7 }, { "unit": "soldier", "slot": 3 } ],
+    {
+      "id": "zelos_guard",
+      "name": "泽洛斯亲卫队",
+      "leader": "lord",
+      "members": [
+        {
+          "unit": "lord",
+          "slot": 4
+        },
+        {
+          "unit": "soldier",
+          "slot": 1
+        },
+        {
+          "unit": "fighter",
+          "slot": 7
+        },
+        {
+          "unit": "archer",
+          "slot": 5
+        },
+        {
+          "unit": "mage",
+          "slot": 3
+        }
+      ],
+      "artifacts": [
+        "banner_of_valor"
+      ],
+      "weapon_items": {
+        "lord": "iron_sword",
+        "soldier": "iron_lance",
+        "fighter": "iron_axe",
+        "archer": "short_bow",
+        "mage": "fire_tome"
+      }
+    },
+    {
+      "id": "diana_squad",
+      "name": "戴安娜游骑队",
+      "leader": "scout",
+      "members": [
+        {
+          "unit": "scout",
+          "slot": 4
+        },
+        {
+          "unit": "archer",
+          "slot": 1
+        },
+        {
+          "unit": "archer",
+          "slot": 7
+        },
+        {
+          "unit": "soldier",
+          "slot": 3
+        }
+      ],
       "artifacts": [],
-      "weapon_items": { "scout": "iron_sword", "archer": "short_bow", "soldier": "iron_lance" } },
-    { "id": "knight_wall", "name": "灰岩卫队", "leader": "knight",
-      "members": [ { "unit": "knight", "slot": 4 }, { "unit": "sentinel", "slot": 1 }, { "unit": "sentinel", "slot": 7 } ],
-      "artifacts": ["ward_charm"],
-      "weapon_items": { "knight": "iron_sword", "sentinel": "iron_lance" } },
-    { "id": "risen_pack", "name": "复生小队", "leader": "risen_soldier",
-      "members": [ { "unit": "risen_soldier", "slot": 4 }, { "unit": "risen_soldier", "slot": 1 }, { "unit": "risen_soldier", "slot": 7 }, { "unit": "risen_soldier", "slot": 5 } ],
+      "weapon_items": {
+        "scout": "iron_sword",
+        "archer": "short_bow",
+        "soldier": "iron_lance"
+      }
+    },
+    {
+      "id": "knight_wall",
+      "name": "灰岩卫队",
+      "leader": "knight",
+      "members": [
+        {
+          "unit": "knight",
+          "slot": 4
+        },
+        {
+          "unit": "sentinel",
+          "slot": 1
+        },
+        {
+          "unit": "sentinel",
+          "slot": 7
+        }
+      ],
+      "artifacts": [
+        "ward_charm"
+      ],
+      "weapon_items": {
+        "knight": "iron_sword",
+        "sentinel": "iron_lance"
+      }
+    },
+    {
+      "id": "risen_pack",
+      "name": "复生小队",
+      "leader": "risen_soldier",
+      "members": [
+        {
+          "unit": "risen_soldier",
+          "slot": 4
+        },
+        {
+          "unit": "risen_soldier",
+          "slot": 1
+        },
+        {
+          "unit": "risen_soldier",
+          "slot": 7
+        },
+        {
+          "unit": "risen_soldier",
+          "slot": 5
+        }
+      ],
       "artifacts": [],
-      "weapon_items": { "risen_soldier": "claw" } },
-    { "id": "risen_elite", "name": "复生精锐", "leader": "risen_knight",
-      "members": [ { "unit": "risen_knight", "slot": 4 }, { "unit": "risen_knight", "slot": 1 }, { "unit": "risen_soldier", "slot": 7 }, { "unit": "risen_soldier", "slot": 3 } ],
+      "weapon_items": {
+        "risen_soldier": "claw"
+      }
+    },
+    {
+      "id": "risen_elite",
+      "name": "复生精锐",
+      "leader": "risen_knight",
+      "members": [
+        {
+          "unit": "risen_knight",
+          "slot": 4
+        },
+        {
+          "unit": "risen_knight",
+          "slot": 1
+        },
+        {
+          "unit": "risen_soldier",
+          "slot": 7
+        },
+        {
+          "unit": "risen_soldier",
+          "slot": 3
+        }
+      ],
       "artifacts": [],
-      "weapon_items": { "risen_knight": "claw", "risen_soldier": "claw" } },
-    { "id": "dragon_solo", "name": "毒龙", "leader": "dragon",
-      "members": [ { "unit": "dragon", "slot": 4 } ],
+      "weapon_items": {
+        "risen_knight": "claw",
+        "risen_soldier": "claw"
+      }
+    },
+    {
+      "id": "dragon_solo",
+      "name": "毒龙",
+      "leader": "dragon",
+      "members": [
+        {
+          "unit": "dragon",
+          "slot": 4
+        }
+      ],
       "artifacts": [],
-      "weapon_items": { "dragon": "claw" } }
+      "weapon_items": {
+        "dragon": "claw"
+      }
+    },
+    {
+      "id": "dark_coven",
+      "name": "暗咒团",
+      "leader": "necromancer",
+      "members": [
+        {
+          "unit": "necromancer",
+          "slot": 4
+        },
+        {
+          "unit": "necromancer",
+          "slot": 1
+        },
+        {
+          "unit": "risen_soldier",
+          "slot": 3
+        },
+        {
+          "unit": "risen_soldier",
+          "slot": 5
+        }
+      ],
+      "artifacts": [],
+      "weapon_items": {
+        "necromancer": "fire_tome",
+        "risen_soldier": "claw"
+      }
+    },
+    {
+      "id": "darklance_guard",
+      "name": "黑枪卫队",
+      "leader": "darklancer",
+      "members": [
+        {
+          "unit": "darklancer",
+          "slot": 4
+        },
+        {
+          "unit": "darklancer",
+          "slot": 1
+        },
+        {
+          "unit": "risen_knight",
+          "slot": 7
+        }
+      ],
+      "artifacts": [],
+      "weapon_items": {
+        "darklancer": "iron_lance",
+        "risen_knight": "claw"
+      }
+    }
   ]
 }

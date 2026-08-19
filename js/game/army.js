@@ -6,7 +6,7 @@ const KEY = 'sow_army';
 const CLEARED_KEY = 'sow_cleared';
 
 // 初始已解锁职业 (其余需科技解锁; 只影响后备池/转职/招募, 不影响模板初始编队)
-const INITIAL_CLASSES = ['soldier', 'fighter', 'archer', 'scout', 'lord'];
+const INITIAL_CLASSES = ['soldier', 'fighter', 'archer', 'scout', 'spearman', 'mercenary', 'medic'];
 // 初始神器库存 (模板编队中已装备者也算持有)
 const INITIAL_ARTIFACTS = ['banner_of_valor', 'ward_charm'];
 const PLAYER_SQUADS = ['zelos_guard', 'diana_squad', 'knight_wall'];

@@ -208,7 +208,7 @@ function autoPlacement(terrainAt, W, H) {
   const nEnemies = regionSize >= 250 ? 5 : regionSize >= 120 ? 4 : regionSize >= 40 ? 3 : regionSize >= 16 ? 2 : 1;
 
   const PLAYER_REFS = ['zelos_guard', 'diana_squad', 'knight_wall'];
-  const ENEMY_REFS = ['risen_pack', 'risen_elite', 'dragon_solo'];
+  const ENEMY_REFS = ['risen_pack', 'risen_elite', 'dragon_solo', 'dark_coven', 'darklance_guard'];
   const squads = [];
   pickFrom(south, nPlayers, 2)
     .forEach((c, i) => squads.push({ ref: PLAYER_REFS[i], x: c.x, y: c.y, team: 0 }));
