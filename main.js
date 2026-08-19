@@ -16,7 +16,7 @@ import { loadRealMap } from './js/game/realmap.js';
 const STAGE_W = 960, STAGE_H = 540;
 
 const params = new URLSearchParams(location.search);
-const mapId = params.get('map') || 'ch1';
+const mapId = params.get('map') || 'rm004';
 const DEBUG = params.get('debug');
 
 const sleep = ms => new Promise(r => setTimeout(r, ms));
