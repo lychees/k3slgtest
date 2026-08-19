@@ -160,3 +160,10 @@ fe-tactics/
 - 单位/技能/物品: 左侧列表 + 右侧表单; 新增/复制/删除。
 - 部队编辑器: 3x3 阵型格拖放单位, 选队长, 挂神器。
 - 每个编辑器有"导出下载"按钮(JSON.stringify → Blob 下载)兜底。
+
+## 养成系统（新增）
+
+- **单位实例**：战斗成员 = 职业id + 等级 + 经验 + 当前HP。经验：命中+10/击杀+30，100 升级，按 growth% 每项属性独立掷点 +1。
+- **转职**：T1 职业 10 级 + 科技"晋升仪式"→ 整备界面可晋升为 promotesTo（T2）。
+- **科技树** `data/tech.json`：`{id,name,icon,cost,requires[],effect:{stat,mod},unlockClass,description}`；unlockClass="T2" 特指解锁晋升，其余为职业 id。科技点：胜利 +5、击杀 +1。
+- **持久化**：军队状态（单位实例/编队/科技/科技点/神器库存）存 localStorage `sow_army`。

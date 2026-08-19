@@ -2,7 +2,9 @@
 // 入口: Three.js 场景/地图渲染 + 游戏状态机 + 输入
 import * as THREE from './lib/three.module.js';
 import { loadData } from './js/game/data.js';
-import { Squad } from './js/game/squad.js';
+import { Squad, setTechBonuses } from './js/game/squad.js';
+import * as Army from './js/game/army.js';
+import { openArmyUI } from './js/game/armyui.js';
 import { computeMove, computeAttackTiles, findPath } from './js/game/range.js';
 import { resolveCombat } from './js/game/combat.js';
 import { BattleScene } from './js/game/battlescene.js';
@@ -501,6 +503,18 @@ async function playCombat(atkSquad, defSquad) {
   afterCombat(atkSquad);
   afterCombat(defSquad);
   state.battle = false;
+  // 养成: 击杀科技点 (阵亡方为敌方才算) + 玩家成员 HP 写回实例 + 存档
+  const kills = playback.events
+    .filter(ev => ev.kind === 'strike')
+    .reduce((n, ev) => {
+      const targetTeam = ev.side === 'atk' ? 1 - playback.atkTeam : playback.atkTeam;
+      return targetTeam === 1 ? n + ev.targets.filter(t => t.killed).length : n;
+    }, 0);
+  Army.addKills(kills);
+  for (const s of [atkSquad, defSquad]) {
+    if (s.team === 0) for (const m of s.members) Army.syncMemberHp(s.template.id, m.slot, m.hp);
+  }
+  Army.saveArmy();
   return checkEnd();
 }
 
@@ -582,7 +596,8 @@ function checkEnd() {
   const obj = db.map.objective || { type: 'rout' };
   if (obj.type === 'rout' && enemies === 0) {
     state.over = true;
-    UI.showEnd(true);
+    Army.addVictory();   // 胜利 +5 科技点
+    UI.showEnd(true, () => openArmy(true));   // 胜利后提示进整备
     return true;
   }
   if (players === 0) {
@@ -761,6 +776,8 @@ stage.addEventListener('contextmenu', e => {
 });
 
 window.addEventListener('keydown', e => {
+  // 选关/整备覆盖层打开时不响应游戏按键
+  if ($('level-select').style.display === 'flex' || $('army-ui').style.display === 'flex') return;
   if (busy()) return;
   const c = state.cursor;
   const moves = { ArrowUp: [0, -1], ArrowDown: [0, 1], ArrowLeft: [-1, 0], ArrowRight: [1, 0] };
@@ -1007,6 +1024,11 @@ async function runScript() {
 async function boot(bootId) {
   stage.classList.add('booted');
   db = await loadData(bootId);
+  // 战役养成: 载入/初始化军队存档, 进图满血, 应用科技加成
+  Army.loadArmy(db);
+  db.army = Army.army;
+  Army.healAll();
+  setTechBonuses(Army.techBonuses(db.techs));
   if (!db.map) {
     // 真实 VX Ace 地图模式 (?map=rmNNN, 数据在 data/rm/)
     realMap = await loadRealMap(parseInt(bootId.slice(2), 10));
@@ -1076,8 +1098,33 @@ async function boot(bootId) {
     return;
   }
 
+  // ?debug=combatsettle: 完整打一场并结算 (经验/科技点/存档), 供养成 E2E
+  if (DEBUG === 'combatsettle') {
+    const foe = squads.find(s => s.team === 1);
+    if (first && foe) {
+      state.pending = null;
+      await playCombat(first, foe);
+      if (!state.over) endAction(first);
+    }
+    return;
+  }
+
+  // ?debug=army: 直接打开整备界面, 便于截图/验证
+  if (DEBUG === 'army') {
+    openArmy(false);
+    return;
+  }
+
   await UI.showIntro(db.map);
   UI.showPhaseBanner('玩家阶段', false);
+}
+
+// 打开整备界面; fromVictory=true 时关闭后回选关
+async function openArmy(fromVictory) {
+  await openArmyUI(db, {
+    onTechChange: () => setTechBonuses(Army.techBonuses(db.techs)),
+    onClose: () => { if (fromVictory) location.href = location.pathname; },
+  });
 }
 
 // ---------------------------------------------------------------- level select
@@ -1128,6 +1175,27 @@ async function showLevelSelect() {
   search.addEventListener('input', () => render(search.value));
   search.addEventListener('keydown', e => e.stopPropagation());
   render('');
+
+  // 整备入口: 未 boot 时先加载数据索引
+  $('army-btn').onclick = async e => {
+    e.stopPropagation();
+    if (!db) db = await loadData('ch1');
+    openArmy(false);
+  };
+  // 重置战役: 双击确认
+  const resetBtn = $('reset-btn');
+  resetBtn.onclick = e => {
+    e.stopPropagation();
+    if (resetBtn.dataset.armed) {
+      Army.resetArmy();
+      resetBtn.textContent = '已重置';
+      delete resetBtn.dataset.armed;
+    } else {
+      resetBtn.dataset.armed = '1';
+      resetBtn.textContent = '确认重置?';
+      setTimeout(() => { delete resetBtn.dataset.armed; resetBtn.textContent = '重置战役'; }, 2500);
+    }
+  };
 }
 
 function bootFail(err) {

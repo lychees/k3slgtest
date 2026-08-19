@@ -5,12 +5,13 @@ export async function loadData(mapId) {
     if (!r.ok) throw new Error(`${path}: HTTP ${r.status}`);
     return r.json();
   };
-  const [units, skills, items, terrains, squads, map] = await Promise.all([
+  const [units, skills, items, terrains, squads, techs, map] = await Promise.all([
     get('data/units.json'),
     get('data/skills.json'),
     get('data/items.json'),
     get('data/terrains.json'),
     get('data/squads.json'),
+    get('data/tech.json'),
     // rm* = 真实 VX Ace 地图, 由 realmap.js 单独加载, 这里跳过
     mapId.toLowerCase().startsWith('rm') ? Promise.resolve(null) : get(`data/maps/${mapId}.json`),
   ]);
@@ -21,6 +22,7 @@ export async function loadData(mapId) {
     squadsById: index(squads.squads),
     itemList: items.items,
     terrains: terrains.terrains,
+    techs: techs.techs || techs,
     terrainByChar: {},
     map,
   };

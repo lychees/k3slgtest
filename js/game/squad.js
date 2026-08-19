@@ -20,6 +20,13 @@ const ringMat = [
 
 let counter = 0;
 
+// 科技属性加成 (仅玩家部队生效); 由 main.js 在研究/载入后调用
+let TECH = {};
+export function setTechBonuses(b) { TECH = b || {}; }
+
+// 敌人等级: 默认 5, boss 级 8 (无成长)
+const ENEMY_LEVEL = { risen_elite: 8, dragon_solo: 8 };
+
 export class Squad {
   constructor(template, placement, db) {
     this.uid = `${template.id}#${++counter}`;
@@ -30,14 +37,48 @@ export class Squad {
     this.x = placement.x;
     this.y = placement.y;
     this.done = false;
-    this.artifacts = (template.artifacts || [])
-      .map(id => db.itemsById[id])
-      .filter(a => a && a.type === 'artifact');
-    this.members = template.members.map(m => this._makeMember(m));
-    this.leader = this.members.find(m => m.def.id === template.leader) || this.members[0];
+    // 玩家部队从战役编队 (army) 构建单位实例; 敌人维持模板 (无养成)
+    const roster = this.team === 0 && db.army ? db.army.rosters[template.id] : null;
+    if (roster) {
+      this.artifacts = (roster.artifacts || [])
+        .map(id => db.itemsById[id])
+        .filter(a => a && a.type === 'artifact');
+      this.members = Object.entries(roster.members)
+        .map(([slot, uid]) => this._makeInstanceMember(db.army.units[uid], +slot))
+        .filter(Boolean);
+      this.leader = this.members.find(m => m.uid === roster.leader) || this.members[0];
+    } else {
+      this.artifacts = (template.artifacts || [])
+        .map(id => db.itemsById[id])
+        .filter(a => a && a.type === 'artifact');
+      this.members = template.members.map(m => this._makeMember(m));
+      this.leader = this.members.find(m => m.def.id === template.leader) || this.members[0];
+    }
     this.mov = this.leader.def.base.mov;   // 移动力 = 队长 MOV
     this.walking = false;
     this._build();
+  }
+
+  _baseMaxhp(member) {
+    return member.def.base.hp + (member.gains.hp || 0) + (this.team === 0 ? (TECH.hp || 0) : 0);
+  }
+
+  // 玩家单位实例 -> 战斗成员
+  _makeInstanceMember(inst, slot) {
+    if (!inst) return null;
+    const def = this.db.unitsById[inst.classId];
+    if (!def) return null;
+    const wid = (this.template.weapon_items || {})[inst.classId];
+    const weapon = (wid && this.db.itemsById[wid]) || defaultWeapon(def, this.db);
+    const skills = (def.skills || []).map(id => this.db.skillsById[id]).filter(Boolean);
+    const m = {
+      uid: inst.uid, inst, def, slot, weapon, skills,
+      level: inst.level, exp: inst.exp, gains: inst.gains,
+      maxhp: 0, hp: 0, alive: true,
+    };
+    m.maxhp = this._baseMaxhp(m);
+    m.hp = inst.hp == null ? m.maxhp : Math.min(inst.hp, m.maxhp);
+    return m;
   }
 
   _makeMember(m) {
@@ -45,11 +86,13 @@ export class Squad {
     const wid = (this.template.weapon_items || {})[m.unit];
     const weapon = (wid && this.db.itemsById[wid]) || defaultWeapon(def, this.db);
     const skills = (def.skills || []).map(id => this.db.skillsById[id]).filter(Boolean);
-    return {
-      def, slot: m.slot, weapon, skills,
+    const mm = {
+      uid: null, inst: null, def, slot: m.slot, weapon, skills,
+      level: ENEMY_LEVEL[this.template.id] || 5, exp: 0, gains: {},
       maxhp: def.base.hp, hp: def.base.hp,
       alive: true,
     };
+    return mm;
   }
 
   aliveMembers() { return this.members.filter(m => m.alive); }
@@ -65,9 +108,9 @@ export class Squad {
 
   hasFlag(member, flag) { return member.skills.some(s => s.flag === flag); }
 
-  // 有效属性 = 基础 + 自身 passive + 全队 aura + 神器加成
+  // 有效属性 = 基础 + 成长 + 自身 passive + 全队 aura + 神器加成 + 科技 (玩家)
   eff(member, key) {
-    let v = member.def.base[key] || 0;
+    let v = (member.def.base[key] || 0) + (member.gains[key] || 0);
     for (const s of member.skills) {
       if (s.type === 'passive' && s.effect && s.effect.stat === key) v += s.effect.mod;
     }
@@ -79,7 +122,34 @@ export class Squad {
     for (const a of this.artifacts) {
       if (a.bonuses && a.bonuses[key]) v += a.bonuses[key];
     }
+    if (this.team === 0) v += TECH[key] || 0;
     return v;
+  }
+
+  // 战斗结算经验 (仅攻击方、仅玩家单位实例): 命中 +10, 击杀 +30; 100 升 1 级,
+  // 按该职业 growth% 每项属性独立掷点 +1 (SPEC「养成系统」); 升级事件进 playback 供飘字
+  grantStrikeExp(member, results, playback, side) {
+    if (!member.inst) return;
+    let exp = 0;
+    if (results.some(t => !t.miss)) exp += 10;
+    exp += 30 * results.filter(t => t.killed).length;
+    if (!exp) return;
+    member.exp += exp;
+    member.inst.exp = member.exp;
+    while (member.exp >= 100) {
+      member.exp -= 100;
+      member.inst.exp = member.exp;
+      member.level++;
+      member.inst.level = member.level;
+      const g = member.def.growth || {};
+      for (const k of ['hp', 'str', 'mag', 'skl', 'arm', 'ldr']) {
+        if (Math.random() * 100 < (g[k] || 0)) {
+          member.gains[k] = (member.gains[k] || 0) + 1;
+          if (k === 'hp') { member.maxhp += 1; member.hp += 1; }
+        }
+      }
+      playback.events.push({ kind: 'levelup', side, actorSlot: member.slot, level: member.level });
+    }
   }
 
   // 威胁度 = 存活成员战力合计 (SPEC: 暂不影响数值, 仅面板显示)

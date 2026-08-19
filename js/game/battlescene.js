@@ -196,6 +196,13 @@ export class BattleScene {
     const actor = this.memberOf(ev.side, ev.actorSlot);
     if (!actor) return;
 
+    if (ev.kind === 'levelup') {
+      this.float(actor, 'LEVEL UP!', 'kill');
+      this.addShake(2);
+      await this.sleepD(650);
+      return;
+    }
+
     if (ev.kind === 'heal') {
       const target = this.memberOf(ev.side, ev.targetSlot);
       const st = this.state[ev.side].find(m => m.slot === ev.targetSlot);

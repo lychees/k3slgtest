@@ -139,7 +139,10 @@ async function main() {
   await send('Runtime.enable');
   await send('Page.enable');
   await send('Page.navigate', { url: URL });
-  await sleep(3500);
+  await sleep(3000);
+  await evaljs(`localStorage.removeItem('sow_army')`);   // 清战役存档, 保证默认编队
+  await send('Page.navigate', { url: URL });
+  await sleep(3000);
   await realClick(500, 300);   // 跳过 intro
   check(await waitPlayerTurn(1) !== null, 'turn 1 玩家阶段就绪');
 

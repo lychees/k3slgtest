@@ -113,5 +113,6 @@ function doStrike(playback, squad, member, foe, side, ctx) {
     results.push({ slot: t.slot, dmg, miss: !hit, killed, hpAfter: t.hp });
   }
   playback.events.push({ kind: 'strike', side, actorSlot: member.slot, targets: results });
+  if (squad.team === 0 && squad.grantStrikeExp) squad.grantStrikeExp(member, results, playback, side);
   return targets[0];
 }

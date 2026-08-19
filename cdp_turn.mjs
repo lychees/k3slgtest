@@ -80,7 +80,10 @@ async function main() {
   await send('Runtime.enable');
   await send('Page.enable');
   await send('Page.navigate', { url: URL });
-  await sleep(3500);
+  await sleep(3000);
+  await evaljs(`localStorage.removeItem('sow_army')`);   // 清战役存档, 保证默认编队
+  await send('Page.navigate', { url: URL });
+  await sleep(3000);
 
   // 跳过 intro, 等阶段横幅
   await realClick(500, 300);

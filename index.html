@@ -389,6 +389,83 @@
   }
   #level-btn:hover { color: #f0c75e; }
 
+  /* army / 整备界面 */
+  #army-ui {
+    position: absolute; inset: 0;
+    display: none;
+    align-items: center; justify-content: center;
+    background: rgba(4,6,16,.85);
+    z-index: 56;
+  }
+  .au-panel {
+    width: 860px; height: 500px;
+    padding: 12px 16px;
+    display: flex; flex-direction: column;
+  }
+  .au-head {
+    display: flex; align-items: center; gap: 16px;
+    border-bottom: 2px solid #c99b2f;
+    padding-bottom: 8px; margin-bottom: 8px;
+  }
+  .au-title { font-size: 22px; letter-spacing: 6px; color: #f0c75e; }
+  .au-tabs { display: flex; gap: 4px; flex: 1; }
+  .au-tab { padding: 4px 14px; font-size: 14px; cursor: default; }
+  .au-tab.sel { background: rgba(240,199,94,.22); outline: 1px solid #f0c75e; }
+  .au-close { padding: 4px 10px; font-size: 13px; cursor: pointer; }
+  .au-close:hover { color: #f0c75e; }
+  #au-body { flex: 1; overflow-y: auto; }
+  .au-squads { display: flex; gap: 8px; margin-bottom: 8px; }
+  .au-sqbtn { padding: 4px 10px; border: 1px solid rgba(201,155,47,.4); font-size: 13px; }
+  .au-sqbtn.sel { background: rgba(240,199,94,.22); outline: 1px solid #f0c75e; }
+  .au-form-wrap { display: flex; gap: 14px; align-items: flex-start; }
+  .au-grid { display: grid; grid-template-columns: repeat(3, 64px); gap: 4px; flex: none; }
+  .au-cell {
+    width: 64px; height: 64px;
+    position: relative;
+    background: rgba(8,12,32,.6);
+    border: 1px solid rgba(201,155,47,.3);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .au-cell img { width: 56px; height: 56px; image-rendering: pixelated; }
+  .au-cell.sm { height: 78px; flex-direction: column; }
+  .au-cell.sm img { width: 44px; height: 44px; }
+  .au-cell.sel { outline: 2px solid #f5d878; }
+  .au-lv {
+    position: absolute; right: 1px; bottom: 0;
+    font-size: 10px; color: #f0c75e; text-shadow: 1px 1px 0 #000;
+  }
+  .au-cell.sm .au-lv { position: static; font-size: 10px; }
+  .au-crown { position: absolute; left: 1px; top: 0; color: #f5d878; font-size: 13px; }
+  .au-ops { display: flex; flex-direction: column; gap: 8px; width: 190px; flex: none; }
+  .au-btn {
+    padding: 4px 12px;
+    border: 1px solid #c99b2f;
+    font-size: 13px; text-align: center;
+    cursor: default;
+  }
+  .au-btn:not(.disabled):hover { background: rgba(240,199,94,.18); }
+  .au-btn.disabled { color: #6a76a0; border-color: rgba(201,155,47,.3); }
+  .au-hint { font-size: 12px; color: #93a0c8; padding: 2px 0; }
+  .au-pool { flex: 1; min-width: 0; }
+  .au-pool-grid { display: flex; flex-wrap: wrap; gap: 4px; }
+  .au-list { display: flex; flex-direction: column; }
+  .au-row {
+    display: flex; align-items: center; gap: 10px;
+    padding: 4px 8px;
+    border-bottom: 1px solid rgba(201,155,47,.2);
+    font-size: 13px;
+  }
+  .au-row img { width: 28px; height: 28px; image-rendering: pixelated; }
+  .au-row-name { min-width: 140px; }
+  .au-row-sub { color: #93a0c8; font-size: 12px; }
+  .au-row-desc { flex: 1; font-size: 12px; color: #c8d0f0; }
+  .au-row.done { opacity: .55; }
+  .au-art-slot { padding: 3px 10px; border: 1px solid rgba(201,155,47,.4); font-size: 12px; }
+  .au-art-slot.empty { color: #6a76a0; }
+  .ls-foot { display: flex; gap: 10px; margin-top: 10px; justify-content: center; }
+  .ls-foot span { padding: 4px 16px; border: 1px solid #c99b2f; font-size: 13px; }
+  .ls-foot span:hover { background: rgba(240,199,94,.18); }
+
   #script-result {
     left: 50%; bottom: 40px;
     transform: translateX(-50%);
@@ -485,6 +562,26 @@
         <div class="ls-title">选 择 关 卡</div>
         <input id="ls-search" placeholder="搜索章节名…">
         <div id="ls-list"></div>
+        <div class="ls-foot">
+          <span id="army-btn">整 备</span>
+          <span id="reset-btn">重置战役</span>
+        </div>
+      </div>
+    </div>
+
+    <div id="army-ui">
+      <div class="au-panel fe-panel">
+        <div class="au-head">
+          <span class="au-title">整 备</span>
+          <span class="au-tabs">
+            <span class="au-tab" data-tab="formation">编队</span>
+            <span class="au-tab" data-tab="promote">转职</span>
+            <span class="au-tab" data-tab="artifact">神器</span>
+            <span class="au-tab" data-tab="tech">科技树</span>
+          </span>
+          <span class="au-close">关闭 ✕</span>
+        </div>
+        <div id="au-body"></div>
       </div>
     </div>
   </div>

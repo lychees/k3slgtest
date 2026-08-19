@@ -25,7 +25,7 @@ export function updateSquadPanel(squad) {
   const tag = p.querySelector('.uteam');
   tag.textContent = squad.team === 0 ? '我军' : '敌军';
   tag.classList.toggle('enemy', squad.team !== 0);
-  p.querySelector('.uleader').textContent = squad.leader.def.name;
+  p.querySelector('.uleader').textContent = `${squad.leader.def.name} Lv.${squad.leader.level}`;
   p.querySelector('.ucount').textContent = `${squad.aliveMembers().length}/${squad.members.length}`;
   p.querySelector('.umov').textContent = squad.mov;
   p.querySelector('.urange').textContent = squad.rangeMax();
@@ -96,13 +96,18 @@ export function showIntro(map) {
   });
 }
 
-// 胜负横幅: 点击或 Enter 刷新重开
-export function showEnd(win) {
+// 胜负横幅: 胜利 -> 点击进整备 (onWin); 败北 -> 点击或 Enter 刷新重开
+export function showEnd(win, onWin) {
   const b = $('end-banner');
   b.className = win ? 'win' : 'lose';
   b.querySelector('.end-title').textContent = win ? '胜 利' : '败 北';
+  b.querySelector('.end-hint').textContent = win && onWin ? '点击进入整备' : '点击或按 Enter 重新开始';
   b.style.display = 'flex';
   endOn = true;
+  if (win && onWin) {
+    b.addEventListener('click', () => { endOn = false; onWin(); }, { once: true });
+    return;
+  }
   const reload = () => location.reload();
   b.addEventListener('click', reload);
   window.addEventListener('keydown', e => {

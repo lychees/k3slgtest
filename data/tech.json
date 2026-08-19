@@ -1,0 +1,14 @@
+{
+  "techs": [
+    { "id": "mil1",      "name": "军事训练 I", "icon": "tech_1",  "cost": 3, "requires": [],          "effect": { "stat": "str", "mod": 1 }, "unlockClass": "",          "description": "全军力量 +1。" },
+    { "id": "mil2",      "name": "军事训练 II","icon": "tech_2",  "cost": 5, "requires": ["mil1"],    "effect": { "stat": "str", "mod": 2 }, "unlockClass": "",          "description": "全军力量再 +2。" },
+    { "id": "shield1",   "name": "盾牌工艺",   "icon": "tech_10", "cost": 4, "requires": [],          "effect": { "stat": "arm", "mod": 1 }, "unlockClass": "",          "description": "全军护甲 +1。" },
+    { "id": "arcane1",   "name": "奥术研究",   "icon": "tech_20", "cost": 4, "requires": [],          "effect": { "stat": "mag", "mod": 2 }, "unlockClass": "",          "description": "全军魔力 +2。" },
+    { "id": "drill1",    "name": "队列操练",   "icon": "tech_15", "cost": 3, "requires": [],          "effect": { "stat": "skl", "mod": 2 }, "unlockClass": "",          "description": "全军技巧 +2。" },
+    { "id": "veteran",   "name": "老兵传承",   "icon": "tech_30", "cost": 6, "requires": ["mil1"],    "effect": { "stat": "hp",  "mod": 3 }, "unlockClass": "",          "description": "全军生命 +3。" },
+    { "id": "unlock_knight",   "name": "重骑士建制", "icon": "tech_25", "cost": 4, "requires": ["shield1"],  "effect": { "stat": "", "mod": 0 }, "unlockClass": "knight",   "description": "解锁兵种：重骑士（可在整备时转职/编入）。" },
+    { "id": "unlock_sentinel", "name": "重甲卫兵建制","icon": "tech_26", "cost": 6, "requires": ["unlock_knight"], "effect": { "stat": "", "mod": 0 }, "unlockClass": "sentinel", "description": "解锁兵种：重甲卫兵。" },
+    { "id": "unlock_mage",     "name": "法师团",     "icon": "tech_35", "cost": 5, "requires": ["arcane1"],  "effect": { "stat": "", "mod": 0 }, "unlockClass": "mage",     "description": "解锁兵种：法师。" },
+    { "id": "unlock_t2",       "name": "晋升仪式",   "icon": "tech_40", "cost": 8, "requires": ["mil2"],     "effect": { "stat": "", "mod": 0 }, "unlockClass": "T2",       "description": "解锁二转：T1 职业 10 级可晋升为上级职业。" }
+  ]
+}
