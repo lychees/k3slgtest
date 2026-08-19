@@ -52,7 +52,7 @@
 ## 5. 地图数据（Map00X.rvdata2 / .json）
 
 - `data` 是 Table：`dim=3, x=宽, y=高, z=4`，扁平数组下标 = `x + y*宽 + z*宽*高`（x 最快）。
-- 层序：z0/z1 = 地层（先画），z3 = **阴影层**（4bit：bit0 左上、bit1 右上、bit2 左下、bit3 右下，各盖 16×16 半透明黑 #000@50%），z2 = 上层（树梢等，最后画）。
+- 层序：读取顺序 z0 → z1 → z3(**阴影层**，4bit：bit0 左上、bit1 右上、bit2 左下、bit3 右下，各盖 16×16 半透明黑 #000@50%) → z2；但**盖上/盖下不按层**：任何层里带 ☆ 星标 flag(0x10) 的格画在角色上方（树梢），非星标格一律画在角色脚下（桥甲板因此在单位下方，见 mkxp tileatlasvx.cpp `OVER_PLAYER_FLAG`）。
 - `tileset_id` 指向 Tilesets 表；`parallax_name` 为远景图（可循环滚动）。
 
 ## 6. 通行/功能 flags（Tilesets 的 flags 表，8192 项按 tileID 索引）

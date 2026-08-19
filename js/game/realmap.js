@@ -1,6 +1,6 @@
 // realmap.js — 真实 VX Ace 地图渲染 (?map=rm004)
 // 移植自 D:/dev/k3/zq/vxace_render.py (规则见 VXACE_ASSETS.md, 与 mkxp-z 一致):
-//   9 表图集(1024x2048) + autotile 48 模式 16px 子块展开 + 阴影层 + 分层合成。
+//   9 表图集(1024x2048) + autotile 48 模式 16px 子块展开 + 阴影层 + 星标分层合成。
 // 通行规则同 VX Ace checkPassage: 自上而下(z2→z1→z0)跳过空/星标(0x10), 首个决定格
 //   flag & 0x0f == 0x0f 则不可通行 (桥盖水面因此可通行)。
 import { RECTS_A, RECTS_B, RECTS_C } from './autotiles.js';
@@ -138,7 +138,12 @@ export async function loadRealMap() {
   const data = m.data.data;   // 扁平: x + y*W + z*W*H
   const at = (x, y, z) => data[x + y * W + z * W * H];
 
-  // 底图: z0 + z1 + 阴影层(z3); 顶层: z2 (盖在单位上方)
+  // 底图/顶层 split 与 mkxp tileatlasvx.cpp 一致: 由 tile 的 ☆ 星标 flag(0x10) 决定,
+  // 不是按层 — 任何层的星标格画在单位上方(树梢), 非星标格一律在单位脚下(桥甲板!)
+  const flags = ts.flags.data || ts.flags;
+  const isStar = t => t > 0 && (flags[t] & 0x10);
+
+  // 底图: z0 + z1 + 阴影层(z3) + 非星标 z2; 顶层: 星标格 (盖在单位上方)
   const ground = document.createElement('canvas');
   ground.width = W * TS; ground.height = H * TS;
   const gg = ground.getContext('2d');
@@ -150,7 +155,10 @@ export async function loadRealMap() {
 
   for (const z of [0, 1]) {
     for (let y = 0; y < H; y++) {
-      for (let x = 0; x < W; x++) drawTile(gg, atlas, at(x, y, z), x, y);
+      for (let x = 0; x < W; x++) {
+        const t = at(x, y, z);
+        drawTile(isStar(t) ? tg : gg, atlas, t, x, y);
+      }
     }
   }
   // 阴影层 z3: 4bit 象限各盖 16x16 半透明黑
@@ -165,11 +173,13 @@ export async function loadRealMap() {
     }
   }
   for (let y = 0; y < H; y++) {
-    for (let x = 0; x < W; x++) drawTile(tg, atlas, at(x, y, 2), x, y);
+    for (let x = 0; x < W; x++) {
+      const t = at(x, y, 2);
+      drawTile(isStar(t) ? tg : gg, atlas, t, x, y);
+    }
   }
 
   // ---- 通行/地形 (VX Ace checkPassage: 自上而下首个非星标格决定) ----
-  const flags = ts.flags.data || ts.flags;
   function decideFlag(x, y) {
     for (const z of [2, 1, 0]) {
       const t = at(x, y, z);

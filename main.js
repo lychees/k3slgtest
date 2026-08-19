@@ -214,7 +214,7 @@ function buildGround() {
   }
 }
 
-// 真实地图模式: 底图 (z0+z1+阴影) + 顶层 (z2, 盖在单位上方)
+// 真实地图模式: 底图 (非星标格+阴影) + 顶层 (星标格, 盖在单位上方)
 function buildRealGround() {
   const gtex = new THREE.CanvasTexture(realMap.groundCanvas);
   gtex.magFilter = THREE.NearestFilter;
@@ -398,7 +398,7 @@ const state = {
 };
 
 // 调试钩子: 供 CDP/手动测试读取内部状态 (只读引用, 不影响逻辑)
-window.__tactics = { cam, state, squads: () => squads };
+window.__tactics = { cam, state, squads: () => squads, realMap: () => realMap };
 
 function busy() {
   return state.moving || state.battle || state.ai || state.over || UI.locked();
