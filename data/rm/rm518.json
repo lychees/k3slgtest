@@ -1,0 +1,7120 @@
+{
+ "__class__": "RPG::Map",
+ "parallax_name": "",
+ "height": 28,
+ "events": {
+  "1": {
+   "__class__": "RPG::Event",
+   "id": 1,
+   "name": "EV001",
+   "x": 0,
+   "y": 0,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<SCENARIO SETUP>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<scn mission id 18>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<scn level 23>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "2": {
+   "__class__": "RPG::Event",
+   "id": 2,
+   "name": "ENEMY",
+   "x": 18,
+   "y": 23,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<SQUAD SETUP 18light>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<squad id 18light1> "
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<faction Empire of Archaelus>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<home base 122>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<commander squad 18boss>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<stars 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<squad turnpriority 108>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<aimove division ch18division2>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "3": {
+   "__class__": "RPG::Event",
+   "id": 3,
+   "name": "BOSS",
+   "x": 19,
+   "y": 2,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<SQUAD SETUP 18boss>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<squad id 18boss> "
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<faction Empire of Archaelus>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<home base 122>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<commander squad 18boss>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<stars 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<boss>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<aimove division ch18defense>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "4": {
+   "__class__": "RPG::Event",
+   "id": 4,
+   "name": "ENEMY",
+   "x": 10,
+   "y": 24,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<SQUAD SETUP 18light>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<squad id 18light2> "
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<faction Empire of Archaelus>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<home base 122>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<commander squad 18boss>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<stars 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<squad turnpriority 109>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<aimove division ch18division1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "5": {
+   "__class__": "RPG::Event",
+   "id": 5,
+   "name": "ENEMY",
+   "x": 11,
+   "y": 25,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<SQUAD SETUP 18light>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<squad id 18light3> "
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<faction Empire of Archaelus>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<home base 122>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<commander squad 18boss>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<stars 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<squad turnpriority 109>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<aimove division ch18division1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "6": {
+   "__class__": "RPG::Event",
+   "id": 6,
+   "name": "ENEMY",
+   "x": 17,
+   "y": 22,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<SQUAD SETUP 18light>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<squad id 18light4> "
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<faction Empire of Archaelus>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<home base 122>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<commander squad 18boss>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<stars 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<squad turnpriority 108>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<aimove division ch18division2>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "7": {
+   "__class__": "RPG::Event",
+   "id": 7,
+   "name": "ENEMY",
+   "x": 10,
+   "y": 20,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<SQUAD SETUP 18light>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<squad id 18light5> "
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<faction Empire of Archaelus>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<home base 122>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<commander squad 18boss>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<stars 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<squad turnpriority 106>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "8": {
+   "__class__": "RPG::Event",
+   "id": 8,
+   "name": "ENEMY",
+   "x": 6,
+   "y": 16,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<SQUAD SETUP 18light>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<squad id 18light6> "
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<faction Empire of Archaelus>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<home base 122>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<commander squad 18boss>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<stars 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<squad turnpriority 106>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "9": {
+   "__class__": "RPG::Event",
+   "id": 9,
+   "name": "ENEMY",
+   "x": 18,
+   "y": 24,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<SQUAD SETUP 18heavy>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<squad id 18heavy1> "
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<faction Empire of Archaelus>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<home base 122>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<commander squad 18boss>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<stars 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<squad scorable>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<squad turnpriority 108>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<aimove division ch18division2>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "10": {
+   "__class__": "RPG::Event",
+   "id": 10,
+   "name": "ENEMY",
+   "x": 22,
+   "y": 23,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<SQUAD SETUP 18heavy>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<squad id 18heavy2> "
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<faction Empire of Archaelus>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<home base 122>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<commander squad 18boss>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<stars 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<squad turnpriority 108>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<aimove division ch18defense>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "11": {
+   "__class__": "RPG::Event",
+   "id": 11,
+   "name": "ENEMY",
+   "x": 8,
+   "y": 12,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<SQUAD SETUP 18heavy>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<squad id 18heavy3> "
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<faction Empire of Archaelus>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<home base 122>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<commander squad 18boss>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<stars 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<squad turnpriority 105>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<aimove division ch18defense>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "12": {
+   "__class__": "RPG::Event",
+   "id": 12,
+   "name": "ENEMY",
+   "x": 15,
+   "y": 16,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<SQUAD SETUP 18heavy>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<squad id 18heavy4> "
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<faction Empire of Archaelus>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<home base 122>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<commander squad 18boss>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<stars 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<squad turnpriority 108>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<aimove division ch18defense>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "13": {
+   "__class__": "RPG::Event",
+   "id": 13,
+   "name": "ENEMY",
+   "x": 19,
+   "y": 8,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<SQUAD SETUP 18heavy>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<squad id 18heavy5> "
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<faction Empire of Archaelus>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<home base 122>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<commander squad 18boss>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<stars 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<squad turnpriority 104>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<aimove division ch18defense>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "14": {
+   "__class__": "RPG::Event",
+   "id": 14,
+   "name": "ENEMY",
+   "x": 13,
+   "y": 19,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<SQUAD SETUP 18archer>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<squad id 18archer1> "
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<faction Empire of Archaelus>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<home base 122>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<commander squad 18boss>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<stars 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<squad turnpriority 106>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<aimove division ch18division4>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "15": {
+   "__class__": "RPG::Event",
+   "id": 15,
+   "name": "ENEMY",
+   "x": 12,
+   "y": 18,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<SQUAD SETUP 18archer>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<squad id 18archer2> "
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<faction Empire of Archaelus>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<home base 122>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<commander squad 18boss>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<stars 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<squad scorable>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<squad turnpriority 106>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "16": {
+   "__class__": "RPG::Event",
+   "id": 16,
+   "name": "ENEMY",
+   "x": 10,
+   "y": 11,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<SQUAD SETUP 18archer>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<squad id 18archer3> "
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<faction Empire of Archaelus>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<home base 122>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<commander squad 18boss>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<stars 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<squad turnpriority 104>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<aimove division ch18wallarcher1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "17": {
+   "__class__": "RPG::Event",
+   "id": 17,
+   "name": "ENEMY",
+   "x": 15,
+   "y": 11,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<SQUAD SETUP 18archer>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<squad id 18archer4> "
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<faction Empire of Archaelus>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<home base 122>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<commander squad 18boss>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<stars 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<squad turnpriority 104>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<aimove division ch18wallarcher1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "18": {
+   "__class__": "RPG::Event",
+   "id": 18,
+   "name": "ENEMY",
+   "x": 17,
+   "y": 8,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<SQUAD SETUP 18archer>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<squad id 18archer5> "
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<faction Empire of Archaelus>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<home base 122>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<commander squad 18boss>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<stars 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<squad turnpriority 104>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<aimove division ch18wallarcher1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "19": {
+   "__class__": "RPG::Event",
+   "id": 19,
+   "name": "ENEMY",
+   "x": 14,
+   "y": 17,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<SQUAD SETUP 18archer>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<squad id 18archer6> "
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<faction Empire of Archaelus>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<home base 122>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<commander squad 18boss>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<stars 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<squad turnpriority 106>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<aimove division ch18division4>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "20": {
+   "__class__": "RPG::Event",
+   "id": 20,
+   "name": "ENEMY",
+   "x": 12,
+   "y": 8,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<SQUAD SETUP 18archer>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<squad id 18archer7> "
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<faction Empire of Archaelus>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<home base 122>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<commander squad 18boss>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<stars 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<squad turnpriority 104>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<aimove division ch18wallarcher1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "25": {
+   "__class__": "RPG::Event",
+   "id": 25,
+   "name": "ENEMY",
+   "x": 22,
+   "y": 16,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<SQUAD SETUP 18lightcav>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<squad id 18lightcav3> "
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<faction Empire of Archaelus>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<home base 122>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<commander squad 18boss>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<stars 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<squad turnpriority 107>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<aimove division ch18division3>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "26": {
+   "__class__": "RPG::Event",
+   "id": 26,
+   "name": "ENEMY",
+   "x": 21,
+   "y": 16,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<SQUAD SETUP 18lightcav>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<squad id 18lightcav4> "
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<faction Empire of Archaelus>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<home base 122>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<commander squad 18boss>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<stars 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<squad scorable>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<squad turnpriority 107>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<aimove division ch18division3>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "27": {
+   "__class__": "RPG::Event",
+   "id": 27,
+   "name": "ENEMY",
+   "x": 21,
+   "y": 15,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<SQUAD SETUP 18heavycav>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<squad id 18heavycav3> "
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<faction Empire of Archaelus>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<home base 122>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<commander squad 18boss>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<stars 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<squad turnpriority 107>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<aimove division ch18division3>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "28": {
+   "__class__": "RPG::Event",
+   "id": 28,
+   "name": "ENEMY",
+   "x": 22,
+   "y": 15,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<SQUAD SETUP 18heavycav>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<squad id 18heavycav4> "
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<faction Empire of Archaelus>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<home base 122>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<commander squad 18boss>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<stars 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<squad turnpriority 107>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<aimove division ch18division3>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "29": {
+   "__class__": "RPG::Event",
+   "id": 29,
+   "name": "ENEMY",
+   "x": 5,
+   "y": 7,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<SQUAD SETUP 18cavarcher>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<squad id 18cavarcher1> "
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<faction Empire of Archaelus>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<home base 122>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<commander squad 18boss>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<stars 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<squad turnpriority 105>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<aimove division ch18division5>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "30": {
+   "__class__": "RPG::Event",
+   "id": 30,
+   "name": "ENEMY",
+   "x": 6,
+   "y": 7,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<SQUAD SETUP 18cavarcher>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<squad id 18cavarcher2> "
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<faction Empire of Archaelus>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<home base 122>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<commander squad 18boss>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<stars 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<squad scorable>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<squad turnpriority 105>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<aimove division ch18division5>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "31": {
+   "__class__": "RPG::Event",
+   "id": 31,
+   "name": "ENEMY",
+   "x": 7,
+   "y": 6,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<SQUAD SETUP 18cavarcher>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<squad id 18cavarcher3> "
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<faction Empire of Archaelus>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<home base 122>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<commander squad 18boss>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<stars 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<squad turnpriority 105>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<aimove division ch18division5>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "32": {
+   "__class__": "RPG::Event",
+   "id": 32,
+   "name": "ENEMY",
+   "x": 4,
+   "y": 6,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<SQUAD SETUP 18cavarcher>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<squad id 18cavarcher4> "
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<faction Empire of Archaelus>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<home base 122>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<commander squad 18boss>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<stars 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<squad turnpriority 105>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<aimove division ch18division5>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "21": {
+   "__class__": "RPG::Event",
+   "id": 21,
+   "name": "asggsg",
+   "x": 3,
+   "y": 22,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 8,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<psquad start protag_ch1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "22": {
+   "__class__": "RPG::Event",
+   "id": 22,
+   "name": "EV022",
+   "x": 1,
+   "y": 0,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<!region switch 11 762 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "23": {
+   "__class__": "RPG::Event",
+   "id": 23,
+   "name": "asggsg",
+   "x": 3,
+   "y": 23,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 8,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<psquad start stefan_ch4>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<psquad trigger talk 575 hero>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "24": {
+   "__class__": "RPG::Event",
+   "id": 24,
+   "name": "asggsg",
+   "x": 4,
+   "y": 22,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 8,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<psquad start diana_ch4>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<psquad trigger talk 574 hero>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "33": {
+   "__class__": "RPG::Event",
+   "id": 33,
+   "name": "ENEMY",
+   "x": 12,
+   "y": 6,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<SQUAD SETUP 18archer>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<squad id 18archer71a> "
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<faction Empire of Archaelus>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<home base 122>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<commander squad 18boss>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<stars 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<squad turnpriority 104>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<aimove division ch18wallarcher1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "parallax_sx": 0,
+ "bgm": {
+  "__class__": "RPG::BGM",
+  "name": "",
+  "volume": 100,
+  "pitch": 100
+ },
+ "tileset_id": 2,
+ "encounter_step": 30,
+ "width": 27,
+ "data": {
+  "__class__": "Table",
+  "dim": 3,
+  "x": 27,
+  "y": 28,
+  "z": 4,
+  "data": [
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3300,
+   3324,
+   3334,
+   2066,
+   2076,
+   2076,
+   2076,
+   2073,
+   3312,
+   3296,
+   3296,
+   3296,
+   0,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3300,
+   3334,
+   2083,
+   2081,
+   2087,
+   3330,
+   3316,
+   3332,
+   2675,
+   3336,
+   3304,
+   3296,
+   3296,
+   0,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3320,
+   2083,
+   2087,
+   3330,
+   3316,
+   3297,
+   3296,
+   3320,
+   2089,
+   2085,
+   3336,
+   3304,
+   3296,
+   0,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3320,
+   2080,
+   2958,
+   3312,
+   3296,
+   3296,
+   3296,
+   3298,
+   3332,
+   2089,
+   2085,
+   3312,
+   3296,
+   0,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3320,
+   2092,
+   1636,
+   3312,
+   3296,
+   3296,
+   3296,
+   3296,
+   3320,
+   2958,
+   2675,
+   3312,
+   3296,
+   0,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3300,
+   3324,
+   3306,
+   3332,
+   1626,
+   3336,
+   3304,
+   3296,
+   3296,
+   3296,
+   3320,
+   1636,
+   2675,
+   3336,
+   3304,
+   0,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3320,
+   1636,
+   3312,
+   3320,
+   1632,
+   1618,
+   3336,
+   3304,
+   3296,
+   3300,
+   3334,
+   1626,
+   2089,
+   2085,
+   3336,
+   0,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3320,
+   1626,
+   3312,
+   3298,
+   3332,
+   1632,
+   1618,
+   3336,
+   3308,
+   3334,
+   1616,
+   1634,
+   3338,
+   2089,
+   2070,
+   0,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3320,
+   1628,
+   3312,
+   3296,
+   3298,
+   3332,
+   1632,
+   1627,
+   3328,
+   1635,
+   1634,
+   3330,
+   3299,
+   3332,
+   2673,
+   0,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3300,
+   3324,
+   3326,
+   3318,
+   3297,
+   3296,
+   3296,
+   3298,
+   3316,
+   3316,
+   3299,
+   3316,
+   3316,
+   3297,
+   3300,
+   3334,
+   2064,
+   0,
+   3296,
+   3296,
+   3300,
+   3324,
+   3304,
+   3300,
+   3324,
+   3324,
+   3304,
+   3320,
+   1616,
+   1627,
+   3312,
+   3296,
+   3300,
+   3324,
+   3324,
+   3304,
+   3296,
+   3296,
+   3300,
+   3324,
+   3324,
+   3334,
+   2083,
+   2077,
+   0,
+   3300,
+   3324,
+   3334,
+   4010,
+   3336,
+   3334,
+   2955,
+   2957,
+   3336,
+   3334,
+   1626,
+   3330,
+   3297,
+   3296,
+   3320,
+   1635,
+   1618,
+   3312,
+   3300,
+   3324,
+   3334,
+   2083,
+   2081,
+   2081,
+   2087,
+   3330,
+   0,
+   3334,
+   4002,
+   3988,
+   3971,
+   3988,
+   3989,
+   4001,
+   4001,
+   4013,
+   2958,
+   1628,
+   3312,
+   3296,
+   3296,
+   3302,
+   3341,
+   1628,
+   3336,
+   3334,
+   2083,
+   2081,
+   2087,
+   3330,
+   3316,
+   3316,
+   3297,
+   0,
+   2957,
+   3984,
+   3972,
+   3996,
+   3996,
+   4006,
+   2082,
+   2069,
+   2081,
+   2081,
+   2085,
+   3336,
+   3324,
+   3324,
+   3334,
+   2083,
+   2081,
+   2081,
+   2071,
+   2087,
+   3330,
+   3316,
+   3297,
+   3296,
+   3296,
+   3296,
+   0,
+   4001,
+   3997,
+   4006,
+   2082,
+   2068,
+   2069,
+   2077,
+   2086,
+   4010,
+   2958,
+   2089,
+   2081,
+   2081,
+   2081,
+   2081,
+   2087,
+   2947,
+   2957,
+   2080,
+   3330,
+   3297,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   0,
+   2069,
+   2081,
+   2081,
+   2057,
+   2052,
+   2086,
+   2946,
+   2948,
+   4009,
+   4001,
+   4005,
+   2946,
+   2932,
+   2932,
+   2933,
+   2945,
+   2939,
+   2083,
+   2087,
+   3312,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   3296,
+   0,
+   2086,
+   2946,
+   2948,
+   2088,
+   2073,
+   2946,
+   2913,
+   2914,
+   2932,
+   2948,
+   4000,
+   2928,
+   2916,
+   2940,
+   2950,
+   4010,
+   2944,
+   2080,
+   2958,
+   3336,
+   3324,
+   3324,
+   3304,
+   3296,
+   3296,
+   3296,
+   0,
+   2932,
+   2913,
+   2914,
+   2948,
+   2080,
+   2952,
+   2920,
+   2912,
+   2912,
+   2936,
+   4000,
+   2952,
+   2937,
+   4003,
+   4001,
+   4007,
+   2944,
+   2089,
+   2085,
+   2947,
+   2945,
+   2949,
+   3336,
+   3324,
+   3304,
+   3296,
+   0,
+   2916,
+   2940,
+   2940,
+   2950,
+   2065,
+   2084,
+   2928,
+   2912,
+   2912,
+   2936,
+   4009,
+   4013,
+   2944,
+   4012,
+   2946,
+   2932,
+   2915,
+   2948,
+   2080,
+   2944,
+   4010,
+   2953,
+   2945,
+   2949,
+   3336,
+   3304,
+   0,
+   2950,
+   2083,
+   2081,
+   2081,
+   2077,
+   2073,
+   2952,
+   2920,
+   2912,
+   2914,
+   2932,
+   2932,
+   2915,
+   2932,
+   2913,
+   2912,
+   2912,
+   2936,
+   2080,
+   2956,
+   4009,
+   4001,
+   4005,
+   2929,
+   2948,
+   3336,
+   0,
+   2069,
+   2087,
+   2946,
+   2932,
+   2948,
+   2089,
+   2085,
+   2952,
+   2940,
+   2920,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2936,
+   2089,
+   2081,
+   2085,
+   2954,
+   4000,
+   2952,
+   2942,
+   2934,
+   0,
+   2072,
+   2946,
+   2913,
+   2912,
+   2914,
+   2948,
+   2089,
+   2081,
+   2085,
+   2928,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2914,
+   2932,
+   2948,
+   2080,
+   2956,
+   4009,
+   4001,
+   4005,
+   2928,
+   0,
+   2072,
+   2928,
+   2912,
+   2912,
+   2912,
+   2914,
+   2932,
+   2948,
+   2080,
+   2952,
+   2940,
+   2940,
+   2920,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2916,
+   2950,
+   2089,
+   2085,
+   2947,
+   2957,
+   4000,
+   2952,
+   0,
+   2072,
+   2952,
+   2920,
+   2912,
+   2916,
+   2940,
+   2940,
+   2950,
+   2067,
+   2081,
+   2081,
+   2085,
+   2952,
+   2920,
+   2912,
+   2912,
+   2912,
+   2912,
+   2936,
+   4003,
+   4013,
+   2080,
+   2956,
+   4011,
+   3999,
+   4001,
+   0,
+   2050,
+   2084,
+   2928,
+   2916,
+   2950,
+   2083,
+   2081,
+   2081,
+   2087,
+   2946,
+   2948,
+   2089,
+   2085,
+   2928,
+   2912,
+   2912,
+   2912,
+   2916,
+   2950,
+   4012,
+   2954,
+   2089,
+   2081,
+   2085,
+   2946,
+   2932,
+   0,
+   2048,
+   2072,
+   2952,
+   2950,
+   2083,
+   2087,
+   2946,
+   2932,
+   2932,
+   2913,
+   2914,
+   2948,
+   2080,
+   2928,
+   2912,
+   2912,
+   2916,
+   2950,
+   4010,
+   2946,
+   2915,
+   2932,
+   2948,
+   2080,
+   2952,
+   2920,
+   0,
+   2048,
+   2054,
+   2081,
+   2081,
+   2087,
+   2946,
+   2913,
+   2912,
+   2912,
+   2912,
+   2912,
+   2936,
+   2080,
+   2928,
+   2912,
+   2912,
+   2936,
+   4011,
+   4007,
+   2928,
+   2912,
+   2912,
+   2936,
+   2089,
+   2085,
+   2928,
+   0,
+   2048,
+   2072,
+   2946,
+   2932,
+   2932,
+   2913,
+   2912,
+   2912,
+   2912,
+   2912,
+   2912,
+   2936,
+   2080,
+   2928,
+   2912,
+   2912,
+   2914,
+   2932,
+   2932,
+   2913,
+   2912,
+   2912,
+   2914,
+   2948,
+   2080,
+   2928,
+   0,
+   3392,
+   3392,
+   3392,
+   3396,
+   3420,
+   3420,
+   3420,
+   3420,
+   3420,
+   3400,
+   3392,
+   3392,
+   3392,
+   3392,
+   3396,
+   3420,
+   3430,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3408,
+   3392,
+   3392,
+   3392,
+   0,
+   3392,
+   3396,
+   3420,
+   3430,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3432,
+   3400,
+   3392,
+   3392,
+   3396,
+   3430,
+   0,
+   0,
+   0,
+   3427,
+   3425,
+   3429,
+   0,
+   3432,
+   3400,
+   3392,
+   3392,
+   0,
+   3396,
+   3430,
+   0,
+   0,
+   0,
+   3426,
+   3428,
+   0,
+   0,
+   0,
+   3432,
+   3404,
+   3420,
+   3417,
+   0,
+   0,
+   3426,
+   3412,
+   3418,
+   0,
+   3424,
+   0,
+   0,
+   3432,
+   3400,
+   3392,
+   0,
+   3416,
+   0,
+   0,
+   0,
+   3435,
+   3401,
+   3416,
+   0,
+   0,
+   0,
+   0,
+   3436,
+   0,
+   3436,
+   0,
+   3006,
+   3432,
+   3400,
+   3416,
+   0,
+   3409,
+   3428,
+   0,
+   0,
+   3408,
+   3392,
+   0,
+   3394,
+   3428,
+   0,
+   0,
+   0,
+   3432,
+   3430,
+   0,
+   3426,
+   3428,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3432,
+   3417,
+   0,
+   3410,
+   3430,
+   3006,
+   0,
+   3408,
+   3392,
+   0,
+   3392,
+   3394,
+   3413,
+   3437,
+   0,
+   0,
+   0,
+   0,
+   3408,
+   3394,
+   3428,
+   0,
+   0,
+   0,
+   0,
+   0,
+   4251,
+   4245,
+   3436,
+   0,
+   3436,
+   0,
+   0,
+   0,
+   3432,
+   3400,
+   0,
+   3392,
+   3396,
+   3430,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3432,
+   3420,
+   3430,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   4249,
+   4245,
+   3866,
+   4243,
+   4253,
+   0,
+   0,
+   0,
+   3432,
+   0,
+   3396,
+   3430,
+   0,
+   0,
+   0,
+   4290,
+   4276,
+   4292,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   4252,
+   3856,
+   4252,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3416,
+   0,
+   0,
+   0,
+   4290,
+   4257,
+   4260,
+   4294,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3859,
+   3857,
+   3861,
+   0,
+   0,
+   0,
+   3856,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3394,
+   3428,
+   0,
+   0,
+   4296,
+   4284,
+   4294,
+   0,
+   0,
+   3859,
+   3857,
+   3869,
+   0,
+   3868,
+   0,
+   3865,
+   3869,
+   0,
+   0,
+   3856,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3392,
+   3416,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3868,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3867,
+   3863,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3396,
+   3430,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   4290,
+   4292,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3430,
+   4242,
+   4244,
+   0,
+   4242,
+   4244,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   4290,
+   4257,
+   4262,
+   4301,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3053,
+   4248,
+   4222,
+   4241,
+   4237,
+   4246,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   4296,
+   4284,
+   4294,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3426,
+   0,
+   0,
+   0,
+   4252,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   4243,
+   4253,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3426,
+   3393,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3042,
+   3044,
+   0,
+   0,
+   0,
+   0,
+   3042,
+   3028,
+   3044,
+   0,
+   4252,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3432,
+   3420,
+   0,
+   0,
+   3042,
+   3044,
+   0,
+   0,
+   3042,
+   3009,
+   3010,
+   3044,
+   0,
+   0,
+   3042,
+   3013,
+   3036,
+   3046,
+   0,
+   3050,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3028,
+   3009,
+   3010,
+   3044,
+   0,
+   3048,
+   3016,
+   3012,
+   3046,
+   3002,
+   0,
+   3048,
+   3046,
+   0,
+   0,
+   0,
+   3052,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3012,
+   3036,
+   3036,
+   3046,
+   0,
+   0,
+   3048,
+   3046,
+   2995,
+   2999,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3003,
+   2997,
+   0,
+   4250,
+   0,
+   4254,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3046,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3004,
+   3042,
+   3044,
+   0,
+   2994,
+   2996,
+   3042,
+   3044,
+   0,
+   3004,
+   0,
+   4252,
+   0,
+   0,
+   0,
+   4290,
+   4292,
+   0,
+   0,
+   0,
+   0,
+   3427,
+   3425,
+   3429,
+   0,
+   0,
+   0,
+   3051,
+   3017,
+   3010,
+   3044,
+   3000,
+   2998,
+   3024,
+   3010,
+   3044,
+   0,
+   0,
+   0,
+   0,
+   4254,
+   0,
+   4296,
+   4294,
+   0,
+   0,
+   0,
+   3435,
+   3431,
+   0,
+   3433,
+   3437,
+   0,
+   0,
+   0,
+   3024,
+   3012,
+   3046,
+   0,
+   0,
+   3048,
+   3036,
+   3018,
+   3044,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3042,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3048,
+   3046,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3024,
+   3032,
+   3198,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3048,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3042,
+   3009,
+   3010,
+   3044,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3042,
+   3044,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3006,
+   0,
+   3048,
+   3016,
+   3012,
+   3046,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3042,
+   3028,
+   0,
+   0,
+   0,
+   3048,
+   3046,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3048,
+   3046,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3048,
+   3016,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3050,
+   0,
+   0,
+   0,
+   3042,
+   3028,
+   3044,
+   0,
+   3194,
+   0,
+   0,
+   3198,
+   0,
+   0,
+   0,
+   3042,
+   3028,
+   3044,
+   0,
+   0,
+   3024,
+   0,
+   0,
+   0,
+   3042,
+   3028,
+   3028,
+   3011,
+   3044,
+   0,
+   3042,
+   3009,
+   3008,
+   3032,
+   0,
+   3169,
+   3188,
+   0,
+   0,
+   0,
+   3042,
+   3028,
+   3009,
+   3008,
+   3010,
+   3044,
+   0,
+   3024,
+   0,
+   9,
+   9,
+   9,
+   9,
+   9,
+   9,
+   9,
+   9,
+   9,
+   9,
+   9,
+   9,
+   9,
+   9,
+   9,
+   9,
+   9,
+   0,
+   0,
+   0,
+   0,
+   0,
+   9,
+   9,
+   9,
+   9,
+   0,
+   9,
+   9,
+   9,
+   9,
+   0,
+   0,
+   0,
+   0,
+   0,
+   9,
+   9,
+   9,
+   9,
+   9,
+   9,
+   0,
+   336,
+   337,
+   9,
+   9,
+   9,
+   0,
+   9,
+   9,
+   9,
+   9,
+   0,
+   9,
+   9,
+   0,
+   0,
+   0,
+   9,
+   9,
+   0,
+   0,
+   0,
+   9,
+   9,
+   9,
+   9,
+   0,
+   115,
+   344,
+   345,
+   9,
+   0,
+   9,
+   337,
+   0,
+   9,
+   9,
+   9,
+   0,
+   9,
+   0,
+   0,
+   0,
+   9,
+   9,
+   9,
+   0,
+   0,
+   0,
+   0,
+   9,
+   0,
+   9,
+   0,
+   123,
+   9,
+   352,
+   0,
+   0,
+   344,
+   345,
+   115,
+   0,
+   9,
+   9,
+   0,
+   9,
+   9,
+   0,
+   0,
+   0,
+   9,
+   9,
+   0,
+   9,
+   9,
+   0,
+   0,
+   0,
+   0,
+   0,
+   380,
+   381,
+   9,
+   352,
+   0,
+   352,
+   9,
+   123,
+   0,
+   9,
+   9,
+   0,
+   9,
+   9,
+   9,
+   9,
+   0,
+   0,
+   0,
+   0,
+   9,
+   9,
+   9,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   9,
+   0,
+   9,
+   372,
+   373,
+   0,
+   9,
+   9,
+   0,
+   9,
+   9,
+   9,
+   0,
+   0,
+   0,
+   0,
+   0,
+   9,
+   9,
+   9,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   332,
+   0,
+   9,
+   0,
+   9,
+   9,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   380,
+   381,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   9,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   352,
+   0,
+   0,
+   0,
+   9,
+   9,
+   9,
+   9,
+   9,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   9,
+   9,
+   9,
+   9,
+   9,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   9,
+   9,
+   9,
+   0,
+   9,
+   0,
+   338,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   352,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   9,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   380,
+   381,
+   0,
+   0,
+   0,
+   0,
+   380,
+   381,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   321,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   9,
+   0,
+   0,
+   9,
+   0,
+   0,
+   0,
+   0,
+   332,
+   0,
+   0,
+   0,
+   0,
+   0,
+   603,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   9,
+   9,
+   0,
+   0,
+   0,
+   331,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   611,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   9,
+   9,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   360,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   610,
+   9,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   360,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   338,
+   611,
+   0,
+   0,
+   0,
+   360,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   9,
+   9,
+   9,
+   0,
+   0,
+   603,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   9,
+   9,
+   0,
+   9,
+   9,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   611,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   603,
+   0,
+   603,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   346,
+   0,
+   0,
+   0,
+   0,
+   360,
+   0,
+   329,
+   0,
+   0,
+   0,
+   0,
+   0,
+   347,
+   603,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   339,
+   0,
+   0,
+   0,
+   0,
+   0,
+   360,
+   0,
+   360,
+   0,
+   0,
+   0,
+   360,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   329,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   321,
+   0,
+   0,
+   0,
+   346,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   360,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   346,
+   0,
+   0,
+   0,
+   0,
+   329,
+   0,
+   338,
+   0,
+   0,
+   0,
+   0,
+   347,
+   0,
+   0,
+   603,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   346,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   2816,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   256,
+   256,
+   256,
+   256,
+   256,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   256,
+   256,
+   256,
+   256,
+   256,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   256,
+   256,
+   256,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   256,
+   256,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ]
+ },
+ "bgs": {
+  "__class__": "RPG::BGS",
+  "name": "",
+  "volume": 80,
+  "pitch": 100
+ },
+ "parallax_loop_y": false,
+ "autoplay_bgm": false,
+ "encounter_list": [],
+ "autoplay_bgs": false,
+ "parallax_show": false,
+ "scroll_type": 0,
+ "parallax_loop_x": false,
+ "disable_dashing": false,
+ "parallax_sy": 0,
+ "display_name": "Shadowmap - Chapter 18: Emborian Dawn",
+ "specify_battleback": false,
+ "note": "",
+ "battleback1_name": "",
+ "battleback2_name": ""
+}

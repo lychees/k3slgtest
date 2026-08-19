@@ -1,0 +1,9824 @@
+{
+ "__class__": "RPG::Map",
+ "parallax_name": "airship_clouds2",
+ "height": 26,
+ "events": {
+  "6": {
+   "__class__": "RPG::Event",
+   "id": 6,
+   "name": "EV006",
+   "x": 23,
+   "y": 25,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 3,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "cutscene_start"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 223,
+       "parameters": [
+        {
+         "__class__": "Tone",
+         "r": -34.0,
+         "g": -34.0,
+         "b": 0.0,
+         "gray": 17.0
+        },
+        100,
+        true
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 205,
+       "parameters": [
+        20,
+        {
+         "__class__": "RPG::MoveRoute",
+         "repeat": false,
+         "skippable": false,
+         "wait": true,
+         "list": [
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 29,
+           "parameters": [
+            3
+           ]
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 15,
+           "parameters": [
+            60
+           ]
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 29,
+           "parameters": [
+            5
+           ]
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 29,
+           "parameters": [
+            4
+           ]
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 29,
+           "parameters": [
+            3
+           ]
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 0,
+           "parameters": []
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 29,
+         "parameters": [
+          3
+         ]
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 15,
+         "parameters": [
+          60
+         ]
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 29,
+         "parameters": [
+          5
+         ]
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 29,
+         "parameters": [
+          4
+         ]
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 29,
+         "parameters": [
+          3
+         ]
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "init_mood(3)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<DIALOGUE 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<DIALOGUE SETTINGS>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":actor_name 14"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":source_character 20"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":left"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 101,
+       "parameters": [
+        "faces_stefan",
+        3,
+        0,
+        2
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 401,
+       "parameters": [
+        "Diana..."
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "init_mood(3)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<DIALOGUE 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<DIALOGUE SETTINGS>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":actor_name 14"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":source_character 20"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":left"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 101,
+       "parameters": [
+        "faces_stefan",
+        5,
+        0,
+        2
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 401,
+       "parameters": [
+        "Diana...?!?!"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "init_mood(0)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<DIALOGUE 2>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<DIALOGUE SETTINGS>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":actor_name 13"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":source_character 19"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":left"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 101,
+       "parameters": [
+        "faces_diana",
+        6,
+        0,
+        2
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 401,
+       "parameters": [
+        "..."
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 205,
+       "parameters": [
+        20,
+        {
+         "__class__": "RPG::MoveRoute",
+         "repeat": false,
+         "skippable": false,
+         "wait": true,
+         "list": [
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 29,
+           "parameters": [
+            2
+           ]
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 1,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 0,
+           "parameters": []
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 29,
+         "parameters": [
+          2
+         ]
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 1,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 204,
+       "parameters": [
+        2,
+        2,
+        2
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "init_mood(-2)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<DIALOGUE 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<DIALOGUE SETTINGS>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":actor_name 14"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":source_character 20"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":left"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 101,
+       "parameters": [
+        "faces_stefan",
+        3,
+        0,
+        2
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 401,
+       "parameters": [
+        "Curse all this..."
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 250,
+       "parameters": [
+        {
+         "__class__": "RPG::SE",
+         "name": "ClothesEquip4",
+         "pitch": 100,
+         "volume": 80
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 121,
+       "parameters": [
+        165,
+        165,
+        0
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 121,
+       "parameters": [
+        166,
+        166,
+        0
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 250,
+       "parameters": [
+        {
+         "__class__": "RPG::SE",
+         "name": "explosion4",
+         "pitch": 100,
+         "volume": 80
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 224,
+       "parameters": [
+        {
+         "__class__": "Color",
+         "r": 255.0,
+         "g": 0.0,
+         "b": 0.0,
+         "a": 102.0
+        },
+        60,
+        false
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 225,
+       "parameters": [
+        1,
+        5,
+        60,
+        false
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "init_mood(-2)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<DIALOGUE 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<DIALOGUE SETTINGS>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":actor_name 14"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":source_character 20"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":left"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 101,
+       "parameters": [
+        "faces_stefan",
+        1,
+        0,
+        2
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 401,
+       "parameters": [
+        "Are you hearing me, gods above?!\\! Can you not read my heart and soul?!\\! I'll gladly throw my bits and baubles to the ground and desire no more...\\! I am cleansed, a new man!\\! I will walk the path of righteousness!\\! Why do you not grant this accursed world clemency?!\\! Why must you take her away?!\\! Could you instead cause a quake here, or a flood there,\\| why must you see fit to let her die?!"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 121,
+       "parameters": [
+        167,
+        167,
+        0
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        20
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 121,
+       "parameters": [
+        168,
+        168,
+        0
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 121,
+       "parameters": [
+        169,
+        169,
+        0
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 121,
+       "parameters": [
+        170,
+        170,
+        0
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 205,
+       "parameters": [
+        20,
+        {
+         "__class__": "RPG::MoveRoute",
+         "repeat": false,
+         "skippable": false,
+         "wait": true,
+         "list": [
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 19,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 0,
+           "parameters": []
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 19,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 204,
+       "parameters": [
+        8,
+        2,
+        2
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 205,
+       "parameters": [
+        20,
+        {
+         "__class__": "RPG::MoveRoute",
+         "repeat": false,
+         "skippable": false,
+         "wait": true,
+         "list": [
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 29,
+           "parameters": [
+            2
+           ]
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 2,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 18,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 0,
+           "parameters": []
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 29,
+         "parameters": [
+          2
+         ]
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 2,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 18,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 205,
+       "parameters": [
+        20,
+        {
+         "__class__": "RPG::MoveRoute",
+         "repeat": false,
+         "skippable": false,
+         "wait": true,
+         "list": [
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 16,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 0,
+           "parameters": []
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 16,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        20
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 250,
+       "parameters": [
+        {
+         "__class__": "RPG::SE",
+         "name": "ArmorDrop1",
+         "pitch": 100,
+         "volume": 80
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 121,
+       "parameters": [
+        171,
+        171,
+        0
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 121,
+       "parameters": [
+        172,
+        172,
+        0
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "init_mood(3)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<DIALOGUE 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<DIALOGUE SETTINGS>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":actor_name 14"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":source_character 20"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":left"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 101,
+       "parameters": [
+        "faces_stefan",
+        3,
+        0,
+        2
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 401,
+       "parameters": [
+        "Alright, Diana...\\| Have it your way...\\! Let's just sleep it off, eh?"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 121,
+       "parameters": [
+        173,
+        173,
+        0
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 204,
+       "parameters": [
+        2,
+        4,
+        4
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 205,
+       "parameters": [
+        21,
+        {
+         "__class__": "RPG::MoveRoute",
+         "repeat": false,
+         "skippable": false,
+         "wait": false,
+         "list": [
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 29,
+           "parameters": [
+            2
+           ]
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 0,
+           "parameters": []
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 29,
+         "parameters": [
+          2
+         ]
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 205,
+       "parameters": [
+        22,
+        {
+         "__class__": "RPG::MoveRoute",
+         "repeat": false,
+         "skippable": false,
+         "wait": false,
+         "list": [
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 29,
+           "parameters": [
+            2
+           ]
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 0,
+           "parameters": []
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 29,
+         "parameters": [
+          2
+         ]
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 205,
+       "parameters": [
+        23,
+        {
+         "__class__": "RPG::MoveRoute",
+         "repeat": false,
+         "skippable": false,
+         "wait": false,
+         "list": [
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 29,
+           "parameters": [
+            2
+           ]
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 0,
+           "parameters": []
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 29,
+         "parameters": [
+          2
+         ]
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 205,
+       "parameters": [
+        24,
+        {
+         "__class__": "RPG::MoveRoute",
+         "repeat": false,
+         "skippable": false,
+         "wait": false,
+         "list": [
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 29,
+           "parameters": [
+            2
+           ]
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 0,
+           "parameters": []
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 29,
+         "parameters": [
+          2
+         ]
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 205,
+       "parameters": [
+        25,
+        {
+         "__class__": "RPG::MoveRoute",
+         "repeat": false,
+         "skippable": false,
+         "wait": false,
+         "list": [
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 29,
+           "parameters": [
+            2
+           ]
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 0,
+           "parameters": []
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 29,
+         "parameters": [
+          2
+         ]
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 205,
+       "parameters": [
+        26,
+        {
+         "__class__": "RPG::MoveRoute",
+         "repeat": false,
+         "skippable": false,
+         "wait": true,
+         "list": [
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 29,
+           "parameters": [
+            2
+           ]
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 0,
+           "parameters": []
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 29,
+         "parameters": [
+          2
+         ]
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 121,
+       "parameters": [
+        173,
+        173,
+        1
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "init_mood(-3)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<DIALOGUE 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<DIALOGUE SETTINGS>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":actor_name 104"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":source_character 26"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":left"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 101,
+       "parameters": [
+        "",
+        1,
+        0,
+        2
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 401,
+       "parameters": [
+        "There they are.\\! The last two souls in the resistance.\\! End them..."
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 204,
+       "parameters": [
+        8,
+        3,
+        2
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 205,
+       "parameters": [
+        21,
+        {
+         "__class__": "RPG::MoveRoute",
+         "repeat": false,
+         "skippable": false,
+         "wait": false,
+         "list": [
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 29,
+           "parameters": [
+            2
+           ]
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 0,
+           "parameters": []
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 29,
+         "parameters": [
+          2
+         ]
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 205,
+       "parameters": [
+        22,
+        {
+         "__class__": "RPG::MoveRoute",
+         "repeat": false,
+         "skippable": false,
+         "wait": false,
+         "list": [
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 29,
+           "parameters": [
+            2
+           ]
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 0,
+           "parameters": []
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 29,
+         "parameters": [
+          2
+         ]
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 205,
+       "parameters": [
+        23,
+        {
+         "__class__": "RPG::MoveRoute",
+         "repeat": false,
+         "skippable": false,
+         "wait": false,
+         "list": [
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 29,
+           "parameters": [
+            2
+           ]
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 0,
+           "parameters": []
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 29,
+         "parameters": [
+          2
+         ]
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 205,
+       "parameters": [
+        24,
+        {
+         "__class__": "RPG::MoveRoute",
+         "repeat": false,
+         "skippable": false,
+         "wait": false,
+         "list": [
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 29,
+           "parameters": [
+            2
+           ]
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 0,
+           "parameters": []
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 29,
+         "parameters": [
+          2
+         ]
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 205,
+       "parameters": [
+        25,
+        {
+         "__class__": "RPG::MoveRoute",
+         "repeat": false,
+         "skippable": false,
+         "wait": false,
+         "list": [
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 29,
+           "parameters": [
+            2
+           ]
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 0,
+           "parameters": []
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 29,
+         "parameters": [
+          2
+         ]
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 205,
+       "parameters": [
+        26,
+        {
+         "__class__": "RPG::MoveRoute",
+         "repeat": false,
+         "skippable": false,
+         "wait": true,
+         "list": [
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 29,
+           "parameters": [
+            2
+           ]
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 4,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 0,
+           "parameters": []
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 29,
+         "parameters": [
+          2
+         ]
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 4,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 242,
+       "parameters": [
+        10
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 246,
+       "parameters": [
+        10
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 225,
+       "parameters": [
+        1,
+        9,
+        60,
+        false
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 250,
+       "parameters": [
+        {
+         "__class__": "RPG::SE",
+         "name": "thndr_cls",
+         "pitch": 100,
+         "volume": 80
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 224,
+       "parameters": [
+        {
+         "__class__": "Color",
+         "r": 0.0,
+         "g": 255.0,
+         "b": 255.0,
+         "a": 255.0
+        },
+        5,
+        false
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 205,
+       "parameters": [
+        26,
+        {
+         "__class__": "RPG::MoveRoute",
+         "repeat": false,
+         "skippable": false,
+         "wait": true,
+         "list": [
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 16,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 15,
+           "parameters": [
+            30
+           ]
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 18,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 15,
+           "parameters": [
+            30
+           ]
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 17,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 0,
+           "parameters": []
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 16,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 15,
+         "parameters": [
+          30
+         ]
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 18,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 15,
+         "parameters": [
+          30
+         ]
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 17,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "init_mood(-3)"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 108,
+       "parameters": [
+        "<DIALOGUE 1>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        "<DIALOGUE SETTINGS>"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":actor_name 104"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":source_character 26"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 408,
+       "parameters": [
+        ":left"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 101,
+       "parameters": [
+        "",
+        1,
+        0,
+        2
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 401,
+       "parameters": [
+        "A storm... now?!"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 205,
+       "parameters": [
+        26,
+        {
+         "__class__": "RPG::MoveRoute",
+         "repeat": false,
+         "skippable": false,
+         "wait": true,
+         "list": [
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 16,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 0,
+           "parameters": []
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 16,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 205,
+       "parameters": [
+        22,
+        {
+         "__class__": "RPG::MoveRoute",
+         "repeat": false,
+         "skippable": false,
+         "wait": false,
+         "list": [
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 17,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 0,
+           "parameters": []
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 17,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 205,
+       "parameters": [
+        23,
+        {
+         "__class__": "RPG::MoveRoute",
+         "repeat": false,
+         "skippable": false,
+         "wait": false,
+         "list": [
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 16,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 0,
+           "parameters": []
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 16,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 205,
+       "parameters": [
+        24,
+        {
+         "__class__": "RPG::MoveRoute",
+         "repeat": false,
+         "skippable": false,
+         "wait": false,
+         "list": [
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 18,
+           "parameters": []
+          },
+          {
+           "__class__": "RPG::MoveCommand",
+           "code": 0,
+           "parameters": []
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 505,
+       "parameters": [
+        {
+         "__class__": "RPG::MoveCommand",
+         "code": 18,
+         "parameters": []
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 250,
+       "parameters": [
+        {
+         "__class__": "RPG::SE",
+         "name": "Stare",
+         "pitch": 50,
+         "volume": 100
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 225,
+       "parameters": [
+        1,
+        9,
+        60,
+        false
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 250,
+       "parameters": [
+        {
+         "__class__": "RPG::SE",
+         "name": "thndr_cls",
+         "pitch": 100,
+         "volume": 80
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 224,
+       "parameters": [
+        {
+         "__class__": "Color",
+         "r": 0.0,
+         "g": 255.0,
+         "b": 255.0,
+         "a": 255.0
+        },
+        5,
+        false
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 121,
+       "parameters": [
+        174,
+        174,
+        0
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 223,
+       "parameters": [
+        {
+         "__class__": "Tone",
+         "r": -68.0,
+         "g": -68.0,
+         "b": -68.0,
+         "gray": 34.0
+        },
+        180,
+        false
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 212,
+       "parameters": [
+        27,
+        284,
+        false
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        20
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 212,
+       "parameters": [
+        28,
+        284,
+        false
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        10
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 212,
+       "parameters": [
+        29,
+        284,
+        false
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        60
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 212,
+       "parameters": [
+        30,
+        284,
+        false
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        50
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 212,
+       "parameters": [
+        27,
+        284,
+        false
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        40
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 212,
+       "parameters": [
+        28,
+        284,
+        false
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        30
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 212,
+       "parameters": [
+        29,
+        284,
+        false
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        20
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 212,
+       "parameters": [
+        30,
+        284,
+        false
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        18
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 212,
+       "parameters": [
+        27,
+        284,
+        false
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        16
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 212,
+       "parameters": [
+        28,
+        284,
+        false
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        14
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 212,
+       "parameters": [
+        29,
+        284,
+        false
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        12
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 212,
+       "parameters": [
+        30,
+        284,
+        false
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        10
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 212,
+       "parameters": [
+        27,
+        284,
+        false
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        10
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 212,
+       "parameters": [
+        28,
+        284,
+        false
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        10
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 212,
+       "parameters": [
+        29,
+        284,
+        false
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        10
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 212,
+       "parameters": [
+        30,
+        284,
+        false
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        10
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 212,
+       "parameters": [
+        27,
+        284,
+        false
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        10
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 212,
+       "parameters": [
+        28,
+        284,
+        false
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        10
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 121,
+       "parameters": [
+        176,
+        176,
+        0
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 250,
+       "parameters": [
+        {
+         "__class__": "RPG::SE",
+         "name": "powerup1",
+         "pitch": 120,
+         "volume": 100
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 250,
+       "parameters": [
+        {
+         "__class__": "RPG::SE",
+         "name": "Flash3",
+         "pitch": 90,
+         "volume": 80
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 246,
+       "parameters": [
+        3
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 225,
+       "parameters": [
+        1,
+        9,
+        120,
+        false
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 121,
+       "parameters": [
+        174,
+        174,
+        1
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 223,
+       "parameters": [
+        {
+         "__class__": "Tone",
+         "r": 255.0,
+         "g": 255.0,
+         "b": 255.0,
+         "gray": 0.0
+        },
+        120,
+        true
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 121,
+       "parameters": [
+        176,
+        176,
+        1
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        20
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        20
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        20
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        20
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 355,
+       "parameters": [
+        "cutscene_stop"
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        1
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 201,
+       "parameters": [
+        0,
+        101,
+        13,
+        14,
+        0,
+        1
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 123,
+       "parameters": [
+        "A",
+        0
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    },
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": true,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "1": {
+   "__class__": "RPG::Event",
+   "id": 1,
+   "name": "EV001",
+   "x": 22,
+   "y": 14,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "!&snow_tree5",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 1,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "2": {
+   "__class__": "RPG::Event",
+   "id": 2,
+   "name": "EV002",
+   "x": 5,
+   "y": 22,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "!&snow_tree5",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 1,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "3": {
+   "__class__": "RPG::Event",
+   "id": 3,
+   "name": "EV003",
+   "x": 10,
+   "y": 23,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "!&snow_tree6",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 1,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "4": {
+   "__class__": "RPG::Event",
+   "id": 4,
+   "name": "EV004",
+   "x": 3,
+   "y": 15,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "!&snow_tree6",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 1,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "5": {
+   "__class__": "RPG::Event",
+   "id": 5,
+   "name": "EV005",
+   "x": 4,
+   "y": 17,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "!&snow_tree6",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 1,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "7": {
+   "__class__": "RPG::Event",
+   "id": 7,
+   "name": "EV007",
+   "x": 20,
+   "y": 21,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "!&snow_tree6",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 1,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "8": {
+   "__class__": "RPG::Event",
+   "id": 8,
+   "name": "EV008",
+   "x": 18,
+   "y": 22,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "!&snow_tree2",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 1,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "12": {
+   "__class__": "RPG::Event",
+   "id": 12,
+   "name": "EV012",
+   "x": 13,
+   "y": 10,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "!$Gate2snow",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 1
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 1,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "10": {
+   "__class__": "RPG::Event",
+   "id": 10,
+   "name": "EV010",
+   "x": 11,
+   "y": 8,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 197,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 1,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "11": {
+   "__class__": "RPG::Event",
+   "id": 11,
+   "name": "EV011",
+   "x": 15,
+   "y": 8,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 197,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 1,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "16": {
+   "__class__": "RPG::Event",
+   "id": 16,
+   "name": "EV016",
+   "x": 18,
+   "y": 15,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "!&snow_tree4",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 1,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "17": {
+   "__class__": "RPG::Event",
+   "id": 17,
+   "name": "EV017",
+   "x": 9,
+   "y": 17,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "!&snow_tree2",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 1,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "9": {
+   "__class__": "RPG::Event",
+   "id": 9,
+   "name": "EV009",
+   "x": 23,
+   "y": 20,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 197,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 1,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "13": {
+   "__class__": "RPG::Event",
+   "id": 13,
+   "name": "EV013",
+   "x": 9,
+   "y": 20,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 197,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 1,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "18": {
+   "__class__": "RPG::Event",
+   "id": 18,
+   "name": "EV018",
+   "x": 18,
+   "y": 18,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 197,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 1,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "19": {
+   "__class__": "RPG::Event",
+   "id": 19,
+   "name": "DIANA",
+   "x": 13,
+   "y": 11,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "!&diana_mountain8",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 5,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": false,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": true,
+     "priority_type": 1,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    },
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": true,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 171,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "!&diana_mountain9",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 5,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": false,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": true,
+     "priority_type": 1,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    },
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": true,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 172,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "!&diana_mountain10",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 5,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": false,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": true,
+     "priority_type": 1,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    },
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": true,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 173,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "!&diana_mountain11",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 5,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": false,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": true,
+     "priority_type": 1,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "20": {
+   "__class__": "RPG::Event",
+   "id": 20,
+   "name": "STEFAN",
+   "x": 13,
+   "y": 21,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "$1stefan",
+      "character_index": 0,
+      "direction": 8,
+      "pattern": 1
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": true,
+     "priority_type": 1,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    },
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": true,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 165,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "!&diana_mountain_stefan1",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": true,
+     "priority_type": 1,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    },
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": true,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 166,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "!&diana_mountain_stefan2",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": true,
+     "priority_type": 1,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    },
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": true,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 167,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "!&diana_mountain_stefan3",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": true,
+     "priority_type": 1,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    },
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": true,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 168,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "!&diana_mountain_stefan4",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": true,
+     "priority_type": 1,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    },
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": true,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 169,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "!&diana_mountain_stefan5",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": true,
+     "priority_type": 1,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    },
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": true,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 170,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "$1stefan",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 1
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": true,
+     "priority_type": 1,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    },
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": true,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 171,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 1
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": true,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "21": {
+   "__class__": "RPG::Event",
+   "id": 21,
+   "name": "IMPERIAL top left",
+   "x": 12,
+   "y": 23,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "1imperialsoldiers_red",
+      "character_index": 3,
+      "direction": 8,
+      "pattern": 1
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": true,
+     "priority_type": 1,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "22": {
+   "__class__": "RPG::Event",
+   "id": 22,
+   "name": "IMPERIAL bot left",
+   "x": 12,
+   "y": 24,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "1imperialsoldiers_red",
+      "character_index": 3,
+      "direction": 8,
+      "pattern": 1
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": true,
+     "priority_type": 1,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "23": {
+   "__class__": "RPG::Event",
+   "id": 23,
+   "name": "IMPERIAL bot center",
+   "x": 13,
+   "y": 24,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "1imperialsoldiers_red",
+      "character_index": 3,
+      "direction": 8,
+      "pattern": 1
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": true,
+     "priority_type": 1,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "24": {
+   "__class__": "RPG::Event",
+   "id": 24,
+   "name": "IMPERIAL bot rigt",
+   "x": 14,
+   "y": 24,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "1imperialsoldiers_red",
+      "character_index": 3,
+      "direction": 8,
+      "pattern": 1
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": true,
+     "priority_type": 1,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "25": {
+   "__class__": "RPG::Event",
+   "id": 25,
+   "name": "IMPERIAL top rigt",
+   "x": 14,
+   "y": 23,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "1imperialsoldiers_red",
+      "character_index": 3,
+      "direction": 8,
+      "pattern": 1
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": true,
+     "priority_type": 1,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "26": {
+   "__class__": "RPG::Event",
+   "id": 26,
+   "name": "IMPERIAL top center",
+   "x": 13,
+   "y": 23,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "templepeople",
+      "character_index": 2,
+      "direction": 8,
+      "pattern": 1
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": true,
+     "priority_type": 1,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "27": {
+   "__class__": "RPG::Event",
+   "id": 27,
+   "name": "lightning top left",
+   "x": 11,
+   "y": 13,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": true,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "28": {
+   "__class__": "RPG::Event",
+   "id": 28,
+   "name": "lightning top right",
+   "x": 15,
+   "y": 13,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": true,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "29": {
+   "__class__": "RPG::Event",
+   "id": 29,
+   "name": "lightning bot right",
+   "x": 15,
+   "y": 16,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": true,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "30": {
+   "__class__": "RPG::Event",
+   "id": 30,
+   "name": "lightning bot left",
+   "x": 11,
+   "y": 16,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": true,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "31": {
+   "__class__": "RPG::Event",
+   "id": 31,
+   "name": "EV031",
+   "x": 22,
+   "y": 25,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": true,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 174,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 4,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 245,
+       "parameters": [
+        {
+         "__class__": "RPG::BGS",
+         "name": "Alien Alarm",
+         "volume": 100,
+         "pitch": 90
+        }
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 112,
+       "parameters": []
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 225,
+       "parameters": [
+        1,
+        9,
+        60,
+        false
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 224,
+       "parameters": [
+        {
+         "__class__": "Color",
+         "r": 0.0,
+         "g": 255.0,
+         "b": 255.0,
+         "a": 102.0
+        },
+        60,
+        true
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 1,
+       "code": 0,
+       "parameters": []
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 413,
+       "parameters": []
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "32": {
+   "__class__": "RPG::Event",
+   "id": 32,
+   "name": "EV032",
+   "x": 21,
+   "y": 25,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": true,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 176,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 0,
+     "trigger": 4,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 212,
+       "parameters": [
+        29,
+        284,
+        false
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        5
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 212,
+       "parameters": [
+        30,
+        284,
+        false
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        5
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 212,
+       "parameters": [
+        27,
+        284,
+        false
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        5
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 212,
+       "parameters": [
+        28,
+        284,
+        false
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 230,
+       "parameters": [
+        5
+       ]
+      },
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "14": {
+   "__class__": "RPG::Event",
+   "id": 14,
+   "name": "rock aftermath",
+   "x": 13,
+   "y": 6,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "!&snow_rock2",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": true,
+     "priority_type": 0,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "15": {
+   "__class__": "RPG::Event",
+   "id": 15,
+   "name": "EV015",
+   "x": 13,
+   "y": 7,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 0,
+      "character_name": "!&snow_rock1",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 1,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "33": {
+   "__class__": "RPG::Event",
+   "id": 33,
+   "name": "EV033",
+   "x": 24,
+   "y": 20,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 197,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 1,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  },
+  "34": {
+   "__class__": "RPG::Event",
+   "id": 34,
+   "name": "EV034",
+   "x": 26,
+   "y": 20,
+   "pages": [
+    {
+     "__class__": "RPG::Event::Page",
+     "condition": {
+      "__class__": "RPG::Event::Page::Condition",
+      "switch1_valid": false,
+      "switch2_valid": false,
+      "variable_valid": false,
+      "self_switch_valid": false,
+      "item_valid": false,
+      "actor_valid": false,
+      "switch1_id": 1,
+      "switch2_id": 1,
+      "variable_id": 1,
+      "variable_value": 0,
+      "self_switch_ch": "A",
+      "item_id": 1,
+      "actor_id": 1
+     },
+     "graphic": {
+      "__class__": "RPG::Event::Page::Graphic",
+      "tile_id": 197,
+      "character_name": "",
+      "character_index": 0,
+      "direction": 2,
+      "pattern": 0
+     },
+     "move_type": 0,
+     "move_speed": 3,
+     "move_frequency": 3,
+     "move_route": {
+      "__class__": "RPG::MoveRoute",
+      "repeat": true,
+      "skippable": false,
+      "wait": false,
+      "list": [
+       {
+        "__class__": "RPG::MoveCommand",
+        "code": 0,
+        "parameters": []
+       }
+      ]
+     },
+     "walk_anime": true,
+     "step_anime": false,
+     "direction_fix": false,
+     "through": false,
+     "priority_type": 1,
+     "trigger": 0,
+     "list": [
+      {
+       "__class__": "RPG::EventCommand",
+       "indent": 0,
+       "code": 0,
+       "parameters": []
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "parallax_sx": 1,
+ "bgm": {
+  "__class__": "RPG::BGM",
+  "name": "",
+  "volume": 100,
+  "pitch": 100
+ },
+ "tileset_id": 7,
+ "encounter_step": 30,
+ "width": 27,
+ "data": {
+  "__class__": "Table",
+  "dim": 3,
+  "x": 27,
+  "y": 26,
+  "z": 4,
+  "data": [
+   0,
+   0,
+   0,
+   3984,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3992,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3984,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3992,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3984,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3992,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3984,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3972,
+   3996,
+   3996,
+   3996,
+   3976,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3992,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3984,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3992,
+   1537,
+   1537,
+   1537,
+   3984,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3992,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3984,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3972,
+   4006,
+   1537,
+   1537,
+   1537,
+   4008,
+   3976,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3992,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3984,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3992,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   3984,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3992,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3984,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3974,
+   4001,
+   4001,
+   3991,
+   4001,
+   4001,
+   3977,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3992,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3984,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3992,
+   1537,
+   1537,
+   4000,
+   1537,
+   1537,
+   3984,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3992,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3984,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3972,
+   4006,
+   1537,
+   1537,
+   4012,
+   1537,
+   1537,
+   4008,
+   3976,
+   3968,
+   3968,
+   3968,
+   3968,
+   3992,
+   0,
+   0,
+   4011,
+   4001,
+   0,
+   0,
+   0,
+   3984,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3992,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   3984,
+   3968,
+   3968,
+   3968,
+   3968,
+   3970,
+   3989,
+   4013,
+   1537,
+   1537,
+   4013,
+   0,
+   0,
+   3984,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3992,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   3984,
+   3968,
+   3968,
+   3968,
+   3968,
+   3972,
+   4006,
+   1537,
+   1537,
+   1537,
+   1537,
+   4014,
+   0,
+   3984,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3992,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   3984,
+   3968,
+   3968,
+   3968,
+   3968,
+   3992,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   4011,
+   3977,
+   3968,
+   3968,
+   3968,
+   3968,
+   3968,
+   3992,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   3984,
+   3968,
+   3968,
+   3968,
+   3972,
+   4006,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   4008,
+   3976,
+   3968,
+   3968,
+   3968,
+   3972,
+   4006,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   4008,
+   3976,
+   3968,
+   3968,
+   3992,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   4008,
+   3976,
+   3968,
+   3968,
+   3992,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   4008,
+   3976,
+   3968,
+   3992,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   3984,
+   3968,
+   3972,
+   4006,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   4008,
+   3980,
+   4006,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   3984,
+   3968,
+   3992,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   4012,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   4008,
+   3980,
+   4006,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   4012,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   1537,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   128,
+   129,
+   129,
+   129,
+   130,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   136,
+   0,
+   0,
+   0,
+   138,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   136,
+   0,
+   0,
+   0,
+   138,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   128,
+   131,
+   0,
+   0,
+   0,
+   132,
+   130,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   144,
+   145,
+   145,
+   145,
+   145,
+   145,
+   146,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   152,
+   153,
+   153,
+   153,
+   153,
+   153,
+   154,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   152,
+   153,
+   153,
+   153,
+   153,
+   153,
+   154,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   128,
+   129,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   128,
+   160,
+   161,
+   161,
+   161,
+   161,
+   161,
+   162,
+   130,
+   0,
+   0,
+   0,
+   0,
+   0,
+   128,
+   129,
+   131,
+   0,
+   130,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   136,
+   126,
+   58,
+   0,
+   0,
+   0,
+   0,
+   127,
+   138,
+   0,
+   0,
+   0,
+   0,
+   128,
+   131,
+   0,
+   218,
+   219,
+   132,
+   130,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   136,
+   127,
+   667,
+   0,
+   0,
+   0,
+   667,
+   58,
+   138,
+   0,
+   0,
+   0,
+   0,
+   136,
+   0,
+   0,
+   226,
+   227,
+   241,
+   132,
+   129,
+   130,
+   0,
+   0,
+   0,
+   0,
+   0,
+   136,
+   0,
+   675,
+   0,
+   0,
+   0,
+   675,
+   0,
+   138,
+   0,
+   0,
+   0,
+   128,
+   131,
+   242,
+   218,
+   219,
+   0,
+   0,
+   242,
+   0,
+   132,
+   130,
+   0,
+   0,
+   0,
+   128,
+   131,
+   127,
+   0,
+   0,
+   0,
+   0,
+   0,
+   126,
+   132,
+   130,
+   0,
+   0,
+   136,
+   0,
+   0,
+   226,
+   227,
+   57,
+   0,
+   0,
+   0,
+   0,
+   132,
+   130,
+   0,
+   0,
+   136,
+   0,
+   126,
+   667,
+   0,
+   0,
+   0,
+   667,
+   58,
+   127,
+   132,
+   130,
+   0,
+   136,
+   169,
+   0,
+   0,
+   64,
+   65,
+   0,
+   0,
+   0,
+   242,
+   169,
+   138,
+   0,
+   128,
+   131,
+   0,
+   0,
+   675,
+   0,
+   0,
+   0,
+   675,
+   0,
+   0,
+   189,
+   138,
+   0,
+   144,
+   139,
+   0,
+   242,
+   72,
+   73,
+   242,
+   0,
+   0,
+   126,
+   0,
+   138,
+   0,
+   136,
+   58,
+   0,
+   242,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   140,
+   145,
+   146,
+   129,
+   152,
+   147,
+   127,
+   0,
+   80,
+   81,
+   218,
+   219,
+   242,
+   169,
+   140,
+   146,
+   0,
+   144,
+   139,
+   189,
+   0,
+   0,
+   0,
+   0,
+   0,
+   127,
+   189,
+   148,
+   153,
+   154,
+   0,
+   152,
+   147,
+   169,
+   0,
+   88,
+   89,
+   226,
+   227,
+   0,
+   140,
+   156,
+   154,
+   129,
+   152,
+   155,
+   145,
+   145,
+   139,
+   127,
+   0,
+   0,
+   140,
+   145,
+   156,
+   153,
+   154,
+   0,
+   160,
+   155,
+   145,
+   145,
+   145,
+   145,
+   241,
+   140,
+   145,
+   156,
+   164,
+   154,
+   0,
+   152,
+   163,
+   153,
+   153,
+   155,
+   145,
+   145,
+   145,
+   156,
+   153,
+   172,
+   161,
+   162,
+   0,
+   241,
+   152,
+   153,
+   153,
+   153,
+   153,
+   145,
+   156,
+   153,
+   164,
+   172,
+   162,
+   240,
+   160,
+   171,
+   153,
+   153,
+   163,
+   199,
+   199,
+   199,
+   164,
+   153,
+   154,
+   168,
+   0,
+   0,
+   127,
+   152,
+   153,
+   153,
+   153,
+   153,
+   153,
+   164,
+   153,
+   172,
+   162,
+   0,
+   0,
+   168,
+   160,
+   161,
+   161,
+   171,
+   199,
+   199,
+   199,
+   172,
+   161,
+   162,
+   0,
+   0,
+   0,
+   0,
+   160,
+   161,
+   161,
+   161,
+   161,
+   153,
+   172,
+   161,
+   162,
+   0,
+   242,
+   168,
+   0,
+   126,
+   242,
+   0,
+   160,
+   207,
+   207,
+   207,
+   162,
+   241,
+   0,
+   0,
+   218,
+   219,
+   0,
+   0,
+   0,
+   0,
+   127,
+   0,
+   161,
+   162,
+   0,
+   241,
+   140,
+   145,
+   145,
+   145,
+   139,
+   0,
+   126,
+   240,
+   0,
+   220,
+   221,
+   222,
+   56,
+   57,
+   0,
+   226,
+   227,
+   140,
+   145,
+   145,
+   145,
+   145,
+   145,
+   0,
+   127,
+   0,
+   140,
+   156,
+   153,
+   153,
+   153,
+   155,
+   145,
+   139,
+   134,
+   135,
+   228,
+   229,
+   230,
+   64,
+   65,
+   140,
+   145,
+   145,
+   156,
+   153,
+   153,
+   153,
+   153,
+   153,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ]
+ },
+ "bgs": {
+  "__class__": "RPG::BGS",
+  "name": "A_tent_in_an_artic_blizzard",
+  "volume": 90,
+  "pitch": 100
+ },
+ "parallax_loop_y": false,
+ "autoplay_bgm": false,
+ "encounter_list": [],
+ "autoplay_bgs": true,
+ "parallax_show": true,
+ "scroll_type": 0,
+ "parallax_loop_x": true,
+ "disable_dashing": false,
+ "parallax_sy": 0,
+ "display_name": "",
+ "specify_battleback": false,
+ "note": "",
+ "battleback1_name": "",
+ "battleback2_name": ""
+}

@@ -302,6 +302,7 @@
   #stage.in-battle #unit-panel,
   #stage.in-battle #hint,
   #stage.in-battle #cursor,
+  #stage.in-battle #level-btn,
   #stage.in-battle #action-menu { display: none !important; }
 
   /* map cursor (gold brackets) */
@@ -332,6 +333,61 @@
     color: #93a0c8;
     z-index: 15;
   }
+
+  /* 未 boot (选关界面) 时隐藏游戏内 UI */
+  #stage:not(.booted) #turn-panel,
+  #stage:not(.booted) #terrain-panel,
+  #stage:not(.booted) #hint,
+  #stage:not(.booted) #level-btn,
+  #stage:not(.booted) #zoom-label { visibility: hidden; }
+
+  /* level select (选关覆盖层) */
+  #level-select {
+    position: absolute; inset: 0;
+    display: none;
+    align-items: center; justify-content: center;
+    background: rgba(4,6,16,.85);
+    z-index: 55;
+  }
+  .ls-panel {
+    width: 580px; max-height: 470px;
+    padding: 14px 16px;
+    display: flex; flex-direction: column;
+  }
+  .ls-title {
+    font-size: 24px; letter-spacing: 6px; text-align: center;
+    color: #f0c75e;
+    border-bottom: 2px solid #c99b2f;
+    padding-bottom: 8px; margin-bottom: 10px;
+  }
+  #ls-search {
+    background: rgba(8,12,32,.8);
+    border: 1px solid #c99b2f;
+    color: #eef1ff;
+    font-family: inherit; font-size: 14px;
+    padding: 5px 10px; margin-bottom: 8px;
+    outline: none;
+  }
+  #ls-list { overflow-y: auto; flex: 1; }
+  .ls-item {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 10px;
+    padding: 5px 10px;
+    font-size: 14px;
+    border-bottom: 1px solid rgba(201,155,47,.2);
+    cursor: default;
+  }
+  .ls-item:hover { background: rgba(240,199,94,.15); }
+  .ls-item .ls-meta { color: #93a0c8; font-size: 12px; white-space: nowrap; }
+
+  /* 游戏内选关按钮 (回合面板右侧) */
+  #level-btn {
+    left: calc(50% + 150px); top: 8px;
+    padding: 4px 12px;
+    font-size: 13px;
+    z-index: 15;
+    cursor: pointer;
+  }
+  #level-btn:hover { color: #f0c75e; }
 
   #script-result {
     left: 50%; bottom: 40px;
@@ -420,8 +476,17 @@
     <div id="cursor"><div class="c tl"></div><div class="c tr"></div><div class="c bl"></div><div class="c br"></div></div>
 
     <div id="hint" class="fe-panel">方向键/鼠标移动 · Z/点击确认 · X/Esc 取消 · 滚轮缩放 · 双击空地结束回合</div>
+    <div id="level-btn" class="fe-panel">选关</div>
     <div id="zoom-label" class="fe-panel">2x</div>
     <div id="script-result" class="fe-panel"></div>
+
+    <div id="level-select">
+      <div class="ls-panel fe-panel">
+        <div class="ls-title">选 择 关 卡</div>
+        <input id="ls-search" placeholder="搜索章节名…">
+        <div id="ls-list"></div>
+      </div>
+    </div>
   </div>
 
   <script type="module" src="main.js"></script>

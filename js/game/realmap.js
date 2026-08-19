@@ -122,17 +122,129 @@ function drawTile(g, atlas, tileId, x, y) {
   }
 }
 
-export async function loadRealMap() {
-  const [m, tilesets] = await Promise.all([
-    fetch('data/Map004.json').then(r => r.json()),
-    fetch('data/Tilesets.json').then(r => r.json()),
+// ---- 缓存: Tilesets/catalog 只取一次, 图集按 tileset_id, 地图按 num ----
+let tilesetsP = null, catalogP = null;
+const atlasCache = {};   // tileset_id -> 图集 canvas
+const mapCache = {};     // num -> Promise<realMap>
+
+export function loadRealMap(num) {
+  if (!mapCache[num]) mapCache[num] = buildRealMap(num);
+  return mapCache[num];
+}
+
+// 自动摆位: 最大连通可通行域内, 玩家 3 支放南部开阔处, 敌方 3-5 支放北部开阔处,
+// 同队间隔 ≥2 格, 敌我默认隔 ≥8 (区域小时逐步放宽/减员, 优雅降级)
+function autoPlacement(terrainAt, W, H) {
+  const DIRS = [[1, 0], [-1, 0], [0, 1], [0, -1]];
+  const pass = (x, y) => x >= 0 && y >= 0 && x < W && y < H && terrainAt(x, y).pass;
+
+  // 连通域标记 (BFS)
+  const comp = new Int32Array(W * H).fill(-1);
+  const sizes = [];
+  for (let y = 0; y < H; y++) {
+    for (let x = 0; x < W; x++) {
+      if (!pass(x, y) || comp[x + y * W] >= 0) continue;
+      const id = sizes.length;
+      let size = 0;
+      const q = [[x, y]];
+      comp[x + y * W] = id;
+      while (q.length) {
+        const [cx, cy] = q.pop();
+        size++;
+        for (const [dx, dy] of DIRS) {
+          const nx = cx + dx, ny = cy + dy;
+          if (pass(nx, ny) && comp[nx + ny * W] < 0) { comp[nx + ny * W] = id; q.push([nx, ny]); }
+        }
+      }
+      sizes.push(size);
+    }
+  }
+  if (!sizes.length) return [];
+  const big = sizes.indexOf(Math.max(...sizes));
+
+  const region = [];
+  let minY = H, maxY = 0;
+  for (let y = 0; y < H; y++) {
+    for (let x = 0; x < W; x++) {
+      if (comp[x + y * W] === big) {
+        region.push({ x, y });
+        if (y < minY) minY = y;
+        if (y > maxY) maxY = y;
+      }
+    }
+  }
+
+  // 开阔度: 5x5 邻域内可通行格数
+  const open = (x, y) => {
+    let c = 0;
+    for (let dy = -2; dy <= 2; dy++) for (let dx = -2; dx <= 2; dx++) if (pass(x + dx, y + dy)) c++;
+    return c;
+  };
+
+  const span = Math.max(4, Math.round((maxY - minY) * 0.25));
+  let south = region.filter(c => c.y >= maxY - span);
+  let north = region.filter(c => c.y <= minY + span);
+  if (!south.length) south = region;
+  if (!north.length) north = region;
+  // 开阔优先, 南区靠南/北区靠北, 坐标兜底 — 排序确定性 (测试可复现)
+  south.sort((a, b) => open(b.x, b.y) - open(a.x, a.y) || b.y - a.y || a.x - b.x);
+  north.sort((a, b) => open(b.x, b.y) - open(a.x, a.y) || a.y - b.y || a.x - b.x);
+
+  const taken = [];
+  const dist = (a, b) => Math.abs(a.x - b.x) + Math.abs(a.y - b.y);
+  const pickFrom = (cands, n, minGap) => {
+    const out = [];
+    for (const c of cands) {
+      if (out.length >= n) break;
+      if (taken.every(t => dist(t, c) >= minGap) && out.every(t => dist(t, c) >= 2)) {
+        out.push(c); taken.push(c);
+      }
+    }
+    return out;
+  };
+
+  const regionSize = sizes[big];
+  const nPlayers = regionSize >= 24 ? 3 : regionSize >= 12 ? 2 : 1;
+  const nEnemies = regionSize >= 250 ? 5 : regionSize >= 120 ? 4 : regionSize >= 40 ? 3 : regionSize >= 16 ? 2 : 1;
+
+  const PLAYER_REFS = ['zelos_guard', 'diana_squad', 'knight_wall'];
+  const ENEMY_REFS = ['risen_pack', 'risen_elite', 'dragon_solo'];
+  const squads = [];
+  pickFrom(south, nPlayers, 2)
+    .forEach((c, i) => squads.push({ ref: PLAYER_REFS[i], x: c.x, y: c.y, team: 0 }));
+  // 敌我间距不足则放宽; 至少保证 1 支敌军
+  let es = [];
+  for (const gap of [8, 5, 3, 2]) {
+    es = pickFrom(north, nEnemies, gap);
+    if (es.length >= Math.min(nEnemies, 2)) break;
+  }
+  if (!es.length) es = pickFrom(north, 1, 2);
+  es.forEach((c, i) => squads.push({ ref: ENEMY_REFS[i % ENEMY_REFS.length], x: c.x, y: c.y, team: 1 }));
+  return squads;
+}
+
+async function buildRealMap(num) {
+  const id3 = String(num).padStart(3, '0');
+  tilesetsP = tilesetsP || fetch('data/Tilesets.json').then(r => r.json());
+  catalogP = catalogP || fetch('data/rm/catalog.json').then(r => r.json());
+  const [m, tilesets, catalog] = await Promise.all([
+    fetch(`data/rm/rm${id3}.json`).then(r => {
+      if (!r.ok) throw new Error(`data/rm/rm${id3}.json: HTTP ${r.status}`);
+      return r.json();
+    }),
+    tilesetsP, catalogP,
   ]);
   const ts = tilesets[m.tileset_id];
-  const sheets = {};
-  await Promise.all(ts.tileset_names.map((n, i) =>
-    n ? loadImage(`assets/tilesets/${n}.png`).then(im => { sheets[SHEET_KEYS[i]] = im; }).catch(() => {}) : null
-  ));
-  const atlas = buildAtlas(sheets);
+
+  let atlas = atlasCache[m.tileset_id];
+  if (!atlas) {
+    const sheets = {};
+    await Promise.all(ts.tileset_names.map((n, i) =>
+      n ? loadImage(`assets/tilesets/${n}.png`).then(im => { sheets[SHEET_KEYS[i]] = im; }).catch(() => {}) : null
+    ));
+    atlas = buildAtlas(sheets);
+    atlasCache[m.tileset_id] = atlas;
+  }
 
   const W = m.width, H = m.height;
   const data = m.data.data;   // 扁平: x + y*W + z*W*H
@@ -195,23 +307,27 @@ export async function loadRealMap() {
     return PLAIN;
   }
 
-  // 摆位经 BFS 验证: 同一连通域 (316 格), 开阔点
+  // rm004 保留手调摆位/intro (有专门的 E2E 测试依赖其精确出生点); 其余图自动摆位
+  const entry = (catalog.find(e => e.num === num)) || {};
+  const RM004_SQUADS = [
+    { ref: 'zelos_guard', x: 4,  y: 16, team: 0 },
+    { ref: 'diana_squad', x: 3,  y: 14, team: 0 },
+    { ref: 'knight_wall', x: 6,  y: 17, team: 0 },
+    { ref: 'risen_pack',  x: 9,  y: 2,  team: 1 },
+    { ref: 'risen_pack',  x: 12, y: 1,  team: 1 },
+    { ref: 'risen_elite', x: 13, y: 4,  team: 1 },
+    { ref: 'dragon_solo', x: 8,  y: 3,  team: 1 },
+  ];
   const mapMeta = {
-    id: 'rm004',
-    name: '世界地图·草原（真实渲染）',
+    id: `rm${id3}`,
+    name: entry.name || `Map ${num}`,
     cols: W, rows: H,
-    squads: [
-      { ref: 'zelos_guard', x: 4,  y: 16, team: 0 },
-      { ref: 'diana_squad', x: 3,  y: 14, team: 0 },
-      { ref: 'knight_wall', x: 6,  y: 17, team: 0 },
-      { ref: 'risen_pack',  x: 9,  y: 2,  team: 1 },
-      { ref: 'risen_pack',  x: 12, y: 1,  team: 1 },
-      { ref: 'risen_elite', x: 13, y: 4,  team: 1 },
-      { ref: 'dragon_solo', x: 8,  y: 3,  team: 1 },
-    ],
+    squads: num === 4 ? RM004_SQUADS : autoPlacement(terrainAt, W, H),
     objective: { type: 'rout' },
-    intro: '复生军越过了边境河, 出现在草原世界图的北方。泽洛斯率领亲卫队迎战, 必须全歼来敌!',
+    intro: num === 4
+      ? '复生军越过了边境河, 出现在草原世界图的北方。泽洛斯率领亲卫队迎战, 必须全歼来敌!'
+      : '复生军盘踞于此。全歼来敌!',
   };
 
-  return { groundCanvas: ground, topCanvas: top, cols: W, rows: H, terrainAt, mapMeta };
+  return { groundCanvas: ground, topCanvas: top, cols: W, rows: H, terrainAt, mapMeta, tilesetName: ts.name || entry.tileset || '' };
 }

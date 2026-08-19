@@ -481,7 +481,13 @@ function cancelMove() {
 
 // ---------------------------------------------------------------- combat flow
 function battleTheme() {
-  if (realMap) return 'grassland';
+  if (realMap) {
+    // 按 tileset 主题选战斗背景 (没有雪原背景, 雪原沿用草原)
+    const t = (realMap.tilesetName || '').toLowerCase();
+    if (/lava|venom|dungeon|cave|depths/.test(t)) return 'dungeon';
+    if (/castle|palace|temple|fort|church|indoor|town|ship/.test(t)) return 'fort';
+    return 'grassland';
+  }
   const s = (db.map.id + ' ' + db.map.name).toLowerCase();
   if (/fort|堡|城/.test(s)) return 'fort';
   if (/dungeon|洞|地牢/.test(s)) return 'dungeon';
@@ -998,11 +1004,12 @@ async function runScript() {
 }
 
 // ---------------------------------------------------------------- boot
-async function boot() {
-  db = await loadData(mapId);
+async function boot(bootId) {
+  stage.classList.add('booted');
+  db = await loadData(bootId);
   if (!db.map) {
-    // 真实 VX Ace 地图模式 (?map=rm004)
-    realMap = await loadRealMap();
+    // 真实 VX Ace 地图模式 (?map=rmNNN, 数据在 data/rm/)
+    realMap = await loadRealMap(parseInt(bootId.slice(2), 10));
     db.map = realMap.mapMeta;
     COLS = realMap.cols;
     ROWS = realMap.rows;
@@ -1073,9 +1080,72 @@ async function boot() {
   UI.showPhaseBanner('玩家阶段', false);
 }
 
-boot().catch(err => {
+// ---------------------------------------------------------------- level select
+// 不带 ?map= (且无 debug) 启动时显示: 搜索 + 按战役顺序的关卡列表, 点击直接 boot
+async function showLevelSelect() {
+  const overlay = $('level-select');
+  const list = $('ls-list');
+  const search = $('ls-search');
+  overlay.style.display = 'flex';
+  // 覆盖层事件不穿透到舞台 (未 boot 时键盘/鼠标 handler 仍在)
+  for (const t of ['click', 'mousemove', 'wheel', 'contextmenu', 'keydown']) {
+    overlay.addEventListener(t, e => e.stopPropagation());
+  }
+
+  let entries;
+  try {
+    const cat = await fetch('data/rm/catalog.json').then(r => r.json());
+    entries = cat.slice().sort((a, b) => a.order - b.order);
+  } catch (e) {
+    list.textContent = `关卡目录加载失败: ${e.message}`;
+    return;
+  }
+  entries.unshift({ id: 'ch1', name: '手绘演示地图', w: 0, h: 0, tileset: '手绘演示' });
+
+  function render(filter) {
+    const f = (filter || '').trim().toLowerCase();
+    list.innerHTML = '';
+    let shown = 0;
+    for (const e of entries) {
+      if (f && !e.name.toLowerCase().includes(f)) continue;
+      shown++;
+      const div = document.createElement('div');
+      div.className = 'ls-item';
+      const name = document.createElement('span');
+      name.textContent = e.name;
+      const meta = document.createElement('span');
+      meta.className = 'ls-meta';
+      meta.textContent = e.w ? `${e.w}×${e.h} · ${e.tileset}` : e.tileset;
+      div.append(name, meta);
+      div.addEventListener('click', () => {
+        overlay.style.display = 'none';
+        boot(e.id).catch(bootFail);
+      });
+      list.appendChild(div);
+    }
+    if (!shown) list.textContent = '没有匹配的关卡';
+  }
+  search.addEventListener('input', () => render(search.value));
+  search.addEventListener('keydown', e => e.stopPropagation());
+  render('');
+}
+
+function bootFail(err) {
   console.error('boot failed:', err);
   const hint = $('hint');
   hint.textContent = `加载失败: ${err.message}`;
   hint.style.color = '#ff8a7a';
+}
+
+// 游戏内"选关"按钮: 回到无参数地址即选关界面 (刷新即干净的状态重置)
+$('level-btn').addEventListener('click', e => {
+  e.stopPropagation();
+  location.href = location.pathname;
 });
+
+// 带 ?map= 或 ?debug= 直链直接进图; 否则先进选关界面
+if (params.has('map') || DEBUG) {
+  boot(mapId).catch(bootFail);
+} else {
+  showLevelSelect();
+}
