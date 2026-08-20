@@ -558,6 +558,7 @@
   .end-btns span:hover { background: rgba(240,199,94,.2); color: #f0c75e; }
   /* 选关列表剧情标记 */
   .ls-story { color: #f0c75e; font-size: 12px; margin-right: 6px; }
+  .ls-done-grey { color: #6a76a0; }
 
   /* inspect 部队详情 */
   #inspect-ui {
@@ -615,6 +616,35 @@
   .in-cls { font-size: 13px; }
   .in-memhp { font-size: 11px; color: #93a0c8; }
   .in-crown { position: absolute; right: 5px; top: 3px; color: #f5d878; }
+  .in-boss { color: #f0c75e; font-weight: bold; }
+  .in-boss-score { color: #ff6a5a; font-weight: bold; }
+  /* 章节挑战目标 (回合面板下方小字) */
+  #bonus-label {
+    left: 50%; top: 34px; transform: translateX(-50%);
+    padding: 2px 14px;
+    font-size: 12px;
+    color: #c8a04a;
+    z-index: 15;
+    display: none;
+    white-space: nowrap;
+  }
+  /* 战中对话条 (非阻塞, 点击关闭) */
+  #interlude {
+    position: absolute; left: 24px; bottom: 20px;
+    width: 560px; min-height: 72px;
+    padding: 12px 16px 10px;
+    font-size: 14px; line-height: 1.6;
+    z-index: 40;
+    display: none;
+    cursor: default;
+  }
+  #interlude .il-name {
+    position: absolute; left: 14px; top: -12px;
+    padding: 0 12px;
+    font-size: 13px; color: #f0c75e;
+    background: linear-gradient(180deg, #2a3d80, #1a2650);
+    border: 1px solid #c99b2f;
+  }
   .in-stats { display: flex; flex-wrap: wrap; gap: 3px 8px; margin-top: 4px; font-size: 12px; }
   .in-stat.up { color: #f0c75e; }
   .in-skills { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
@@ -799,6 +829,7 @@
     </div>
 
     <div id="turn-panel" class="fe-panel">第 <span id="turn-num" class="fe-label">1</span> 回合 — <span id="phase-name">玩家阶段</span></div>
+    <div id="bonus-label" class="fe-panel"></div>
 
     <div id="action-menu" class="fe-panel"></div>
 
@@ -847,6 +878,11 @@
 
     <div id="inspect-ui">
       <div class="in-panel fe-panel" id="in-panel"></div>
+    </div>
+
+    <div id="interlude" class="fe-panel">
+      <span class="il-name"></span>
+      <div class="il-text"></div>
     </div>
 
     <div id="forecast-ui">
@@ -915,9 +951,11 @@
             <span class="au-tab" data-tab="formation">编队</span>
             <span class="au-tab" data-tab="promote">转职</span>
             <span class="au-tab" data-tab="recruit">招募</span>
+            <span class="au-tab" data-tab="weapon">武器</span>
             <span class="au-tab" data-tab="artifact">神器</span>
             <span class="au-tab" data-tab="shop">商店</span>
             <span class="au-tab" data-tab="tech">科技树</span>
+            <span class="au-tab" data-tab="arena">竞技场</span>
           </span>
           <span class="au-close">关闭 ✕</span>
         </div>

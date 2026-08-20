@@ -15,7 +15,7 @@ import { planAction } from './js/game/ai.js';
 import * as UI from './js/game/ui.js';
 import { loadTex, hash } from './js/game/gfx.js';
 import { DIR, SPRITE_MAP, frameRect } from './js/game/sprites.js';
-import { loadRealMap } from './js/game/realmap.js';
+import { loadRealMap, loadCustomMap } from './js/game/realmap.js';
 
 // ---------------------------------------------------------------- config
 const STAGE_W = 960, STAGE_H = 540;
@@ -434,6 +434,10 @@ const state = {
   seizePoint: null,    // {x, y} 占领点 (seize 目标)
   danger: false,       // V 键: 敌方危险范围覆盖层
   dangerCount: 0,      // 覆盖格数 (测试断言用)
+  playerDeaths: 0,     // 阵亡玩家部队数 (挑战目标用)
+  bossDown: false,     // Boss 队已讨伐 (D1)
+  seizedByCapture: false,   // 本图以「占领」获胜 (seize5 挑战用)
+  reinforced: false,   // 敌方增援已刷 (D3)
   phase: 0,            // 0 player, 1 enemy
   turn: 1,
 };
@@ -497,7 +501,7 @@ function openMenu(squad, tileX, tileY) {
   const onSeize = state.seizePoint && squad.team === 0
     && tileX === state.seizePoint.x && tileY === state.seizePoint.y;
   state.menuItems = [
-    ...(onSeize ? [{ label: '占领', enabled: true, act: () => winGame() }] : []),
+    ...(onSeize ? [{ label: '占领', enabled: true, act: () => { state.seizedByCapture = true; winGame(); } }] : []),
     { label: target ? `攻击 ${target.name}` : '攻击', enabled: !!target, act: () => openForecast(squad, tileX, tileY) },
     { label: '待机', enabled: true, act: () => { state.pending = null; endAction(squad); } },
     { label: '取消', enabled: true, act: () => cancelMove() },
@@ -680,12 +684,32 @@ async function doAttack(squad, target) {
 
 function afterCombat(s) {
   s.syncDeadVisuals();
-  if (s.wiped) removeSquad(s);
+  if (s.wiped) {
+    if (s.isBoss) onBossDown(s);   // Boss 队全灭 -> 讨伐奖励
+    removeSquad(s);
+  }
+}
+
+// Boss 讨伐奖励: +500 金 + 随机一件神器进库存
+function onBossDown(squad) {
+  if (state.bossDown) return;
+  state.bossDown = true;
+  const a = Army.army;
+  if (a) {
+    a.gold += 500;
+    const arts = db.itemList.filter(i => i.type === 'artifact');
+    const pick = arts[(Math.random() * arts.length) | 0];
+    if (pick) a.inventory.push(pick.id);
+    state.bossLoot = pick ? pick.name : '';
+    Army.saveArmy();
+  }
+  Audio.sfx('gold');
 }
 
 function removeSquad(s) {
   unitGroup.remove(s.group);
   squads.splice(squads.indexOf(s), 1);
+  if (s.team === 0) state.playerDeaths++;
 }
 
 function endAction(squad) {
@@ -716,6 +740,14 @@ function updateTurnPanel() {
   if (obj.type === 'seize') objTxt = '占领要点';
   else if (obj.type === 'survive') objTxt = `坚守 剩${Math.max(0, 9 - state.turn)}回合`;
   $('phase-name').textContent = `${state.phase === 0 ? '玩家阶段' : '敌方阶段'} · ${objTxt}`;
+  // 章节挑战目标 (D2)
+  const bl = $('bonus-label');
+  if (db && db.map.bonus) {
+    bl.textContent = `挑战: ${db.map.bonus.text}`;
+    bl.style.display = 'block';
+  } else {
+    bl.style.display = 'none';
+  }
 }
 
 function startEnemyPhase() {
@@ -725,7 +757,14 @@ function startEnemyPhase() {
   renderDanger();
   deselect();
   updateTurnPanel();
-  UI.showPhaseBanner('敌方阶段', true, async () => {
+  // D3 敌方增援: seize/survive 图第 3 回合刷 1 支 risen_pack
+  let reinforced = false;
+  const objType = (db.map.objective || {}).type;
+  if (!state.reinforced && state.turn === 3 && (objType === 'seize' || objType === 'survive')) {
+    state.reinforced = true;
+    reinforced = spawnReinforcement();
+  }
+  UI.showPhaseBanner(reinforced ? '敌方增援!' : '敌方阶段', true, async () => {
     state.ai = true;
     await runEnemyAI();
     state.ai = false;
@@ -737,7 +776,26 @@ function startEnemyPhase() {
     squads.forEach(s => { s.setDone(false); s._spent = 0; s._cantered = false; });
     updateTurnPanel();
     UI.showPhaseBanner('玩家阶段', false);
+    if (state.turn === 2) Story.playInterlude(mapId);   // D3 战中对话 (非阻塞)
   });
+}
+
+// 增援: 北半图随机可通行空格刷一支 risen_pack
+function spawnReinforcement() {
+  const cands = [];
+  for (let y = 0; y < Math.floor(ROWS / 2); y++) {
+    for (let x = 0; x < COLS; x++) {
+      if (terrainAt(x, y).pass && !squadAt(x, y)) cands.push({ x, y });
+    }
+  }
+  if (!cands.length) return false;
+  const c = cands[(state.turn * 7919 + 13) % cands.length];
+  const s = new Squad(db.squadsById.risen_pack, { ref: 'risen_pack', x: c.x, y: c.y, team: 1 }, db);
+  s.updateHpBar();
+  squads.push(s);
+  unitGroup.add(s.group);
+  Audio.sfx('smack');
+  return true;
 }
 
 async function runEnemyAI() {
@@ -767,12 +825,26 @@ function winGame() {
   hideMenu();
   state.forecast = null;
   $('forecast-ui').style.display = 'none';
+  // 章节挑战目标判定 (D2)
+  const bonus = db.map.bonus || null;
+  let bonusOk = false;
+  if (bonus) {
+    if (bonus.type === 'speed10') bonusOk = state.turn <= 10;
+    else if (bonus.type === 'noDeath') bonusOk = state.playerDeaths === 0;
+    else if (bonus.type === 'seize5') bonusOk = state.seizedByCapture && state.turn <= 5;
+    else if (bonus.type === 'bossKill') bonusOk = state.bossDown;
+    if (bonusOk && Army.army) { Army.army.gold += 300; Army.saveArmy(); }
+  }
   Army.addVictory();        // +5 科技点, +1000 金币
-  Army.markCleared(mapId);  // 通关记录
+  Army.markCleared(mapId, bonusOk);  // 通关记录 (含挑战标记)
   Audio.sfx('gold');
   Audio.bgm('victory', { loop: false, onEnded: () => Audio.bgm(mapBgmName()) });
+  let hint = '+1000 金币 · 通关已记录';
+  if (state.bossDown) hint += ` · Boss 讨伐! +500 金${state.bossLoot ? ' 获 ' + state.bossLoot : ''}`;
+  if (bonus) hint += bonusOk ? ` · ★ 挑战达成：+300 金` : ` · 挑战未达成（${bonus.text}）`;
   UI.showEnd(true, {
-    hint: '+1000 金币 · 通关已记录',
+    title: state.bossDown ? 'Boss 讨伐!' : null,
+    hint,
     onArmy: () => openArmy(true),
     nextLabel: nextChapterId ? '下一章 »' : '回选关',
     onNext: () => { location.href = nextChapterId ? `?map=${nextChapterId}` : location.pathname; },
@@ -1303,6 +1375,12 @@ async function boot(bootId, opts = {}) {
     db.map = realMap.mapMeta;
     COLS = realMap.cols;
     ROWS = realMap.rows;
+  } else if (db.map.format === 'vxace') {
+    // 编辑器真实模式地图 (data/maps/<id>.json)
+    realMap = await loadCustomMap(db.map);
+    db.map = realMap.mapMeta;
+    COLS = realMap.cols;
+    ROWS = realMap.rows;
   } else {
     COLS = db.map.cols;
     ROWS = db.map.rows;
@@ -1378,12 +1456,16 @@ async function boot(bootId, opts = {}) {
     return;
   }
 
-  // ?debug=combatsettle: 完整打一场并结算 (经验/科技点/存档), 供养成 E2E
+  // ?debug=combatsettle: 完整打到分出胜负并结算 (经验/科技点/存档), 供养成 E2E; 有 Boss 队优先打 Boss
   if (DEBUG === 'combatsettle') {
-    const foe = squads.find(s => s.team === 1);
+    const foe = squads.find(s => s.isBoss) || squads.find(s => s.team === 1);
     if (first && foe) {
       state.pending = null;
-      await playCombat(first, foe);
+      let rounds = 0;
+      while (!first.wiped && !foe.wiped && rounds < 6) {
+        rounds++;
+        if (await playCombat(first, foe)) break;
+      }
       if (!state.over) endAction(first);
     }
     return;
@@ -1429,8 +1511,64 @@ async function boot(bootId, opts = {}) {
 async function openArmy(fromVictory) {
   await openArmyUI(db, {
     onTechChange: () => setTechBonuses(Army.techBonuses(db.techs)),
+    onArena: ref => runArena(ref),
     onClose: () => { if (fromVictory) location.href = location.pathname; },
   });
+}
+
+// ---------------------------------------------------------------- arena
+// 竞技场: 选一支部队 200 金连打 3 波 (fort 主题), 敌强度随玩家平均等级缩放
+// 胜场 +300 金 +30 经验/人, 全胜 +1 科技点; 不致命 (0 HP 成员留 1 HP)
+const ARENA_FOES = ['risen_pack', 'risen_elite', 'dark_coven'];
+
+async function runArena(ref) {
+  const a = Army.army;
+  if (!a || a.gold < 200) return null;
+  a.gold -= 200;
+  Army.saveArmy();
+
+  const player = new Squad(db.squadsById[ref], { team: 0, x: 0, y: 0 }, db);
+  const avgLv = Math.round(player.members.reduce((s, m) => s + m.level, 0) / player.members.length);
+  const result = { wins: 0, gold: 0 };
+
+  $('army-ui').style.display = 'none';
+  Audio.bgm(`battle${1 + (battleCount++ % 2)}`);
+  const noAvo = { terrainAvo: () => 0 };
+  for (let w = 0; w < ARENA_FOES.length; w++) {
+    const enemy = new Squad(db.squadsById[ARENA_FOES[w]], { team: 1, x: 0, y: 0 }, db);
+    // 强度缩放: 等级 = 玩家平均等级 +0/+1/+2 (扁平加成)
+    const lvl = avgLv + w;
+    for (const m of enemy.members) {
+      const d = lvl - m.level;
+      if (d <= 0) continue;
+      m.level = lvl;
+      m.maxhp += 2 * d;
+      m.hp = m.maxhp;
+      for (const k of ['str', 'mag', 'skl', 'arm']) m.gains[k] = (m.gains[k] || 0) + d;
+    }
+    let rounds = 0;
+    while (!player.wiped && !enemy.wiped && rounds < 6) {   // 一波打到分出胜负 (一轮≠一场)
+      const pb = resolveCombat(player, enemy, noAvo);
+      await battleScene.play(pb, 'fort');
+      rounds++;
+    }
+    const enemyDown = enemy.wiped;
+    // 不致命: 双方 0 HP 成员留 1 HP 复活
+    for (const s of [player, enemy]) {
+      for (const m of s.members) if (m.hp <= 0) { m.hp = 1; m.alive = true; }
+    }
+    if (!enemyDown) break;
+    result.wins++;
+    a.gold += 300;
+    result.gold += 300;
+    for (const m of player.members) player.gainExp(m, 30);
+  }
+  if (result.wins === ARENA_FOES.length) a.techPoints += 1;
+  // 玩家成员 HP 写回实例 (至少 1)
+  for (const m of player.members) Army.syncMemberHp(ref, m.slot, m.hp);
+  Army.saveArmy();
+  Audio.bgm('title');
+  return result;
 }
 
 // ---------------------------------------------------------------- title / settings
@@ -1546,7 +1684,18 @@ async function showLevelSelect() {
     return;
   }
   entries.unshift({ id: 'ch1', name: '手绘演示地图', w: 0, h: 0, tileset: '手绘演示', order: -1 });
-  const cleared = Army.clearedSet();
+  // 自定义组: 编辑器真实模式地图 (server.py /api/list; 静态托管没有该 API 时静默跳过)
+  try {
+    const files = await fetch('/api/list?dir=data/maps').then(r => r.ok ? r.json() : []);
+    for (const f of files) {
+      if (f === 'ch1.json') continue;
+      const m = await fetch(`data/maps/${f}`).then(r => r.ok ? r.json() : null).catch(() => null);
+      if (m && m.format === 'vxace') {
+        entries.splice(1, 0, { id: m.id || f.replace(/\.json$/, ''), name: m.name || f, w: m.cols, h: m.rows, tileset: '自定义', order: -1 });
+      }
+    }
+  } catch { /* 无目录 API 时跳过自定义组 */ }
+  const cleared = Army.clearedMap();
   // 目标标签规则与 realmap.js 一致: order%3=占领, %5=坚守, 其余全歼
   const objTag = e => e.order > 0 && e.order % 3 === 0 ? '占领' : e.order > 0 && e.order % 5 === 0 ? '坚守' : '全歼';
 
@@ -1561,11 +1710,18 @@ async function showLevelSelect() {
       div.className = 'ls-item';
       const name = document.createElement('span');
       name.textContent = e.name;
-      if (cleared.has(e.id)) {   // 通关记录
+      const rec = cleared[e.id];
+      if (rec && rec.done) {   // 通关记录: 金 ✓ = 挑战达成, 灰 ✓ = 仅通关
         const tag = document.createElement('span');
-        tag.className = 'ls-story';
+        tag.className = 'ls-story' + (rec.bonus ? '' : ' ls-done-grey');
         tag.textContent = '✓';
         name.prepend(tag);
+      }
+      if (e.order > 0 && e.order % 10 === 0) {   // Boss 章
+        const tag = document.createElement('span');
+        tag.className = 'ls-story';
+        tag.textContent = '💀Boss';
+        name.appendChild(tag);
       }
       if (Story.hasStory(e.id)) {
         const tag = document.createElement('span');
@@ -1594,7 +1750,10 @@ async function showLevelSelect() {
   $('army-btn').onclick = async e => {
     e.stopPropagation();
     if (!db) db = await loadData('ch1');
-    openArmy(false);
+    await openArmyUI(db, {
+      onTechChange: () => setTechBonuses(Army.techBonuses(db.techs)),
+      onArena: ref => runArena(ref),
+    });
   };
   // 重置战役: 双击确认
   const resetBtn = $('reset-btn');

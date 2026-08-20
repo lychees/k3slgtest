@@ -85,7 +85,7 @@ async function main() {
   await nav(BASE + '?notitle=1', 3000);
   await evaljs(`localStorage.removeItem('sow_army'); localStorage.removeItem('sow_cleared');`);
   await nav(BASE + '?notitle=1', 3000);
-  const marked = await evaljs(`document.querySelectorAll('#ls-list .ls-story').length`);
+  const marked = await evaljs(`[...document.querySelectorAll('#ls-list .ls-story')].filter(t => t.textContent === '★剧情').length`);
   check(marked === 138, `选关列表剧情标记 (实际 ${marked}/138)`);
   await shot('select_mark');
 

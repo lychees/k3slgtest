@@ -25,7 +25,8 @@ let TECH = {};
 export function setTechBonuses(b) { TECH = b || {}; }
 
 // 敌人等级: 默认 5, boss 级 8 (无成长)
-const ENEMY_LEVEL = { risen_elite: 8, dragon_solo: 8, dark_coven: 8, darklance_guard: 8 };
+const ENEMY_LEVEL = { risen_elite: 8, dragon_solo: 8, dark_coven: 8, darklance_guard: 8,
+  boss_warlord: 10, boss_archfiend: 10, boss_wyrm: 10 };
 
 export class Squad {
   constructor(template, placement, db) {
@@ -71,8 +72,16 @@ export class Squad {
     if (!inst) return null;
     const def = this.db.unitsById[inst.classId];
     if (!def) return null;
-    const wid = (this.template.weapon_items || {})[inst.classId];
-    const weapon = (wid && this.db.itemsById[wid]) || defaultWeapon(def, this.db);
+    // 武器: 实例装备槽优先 (必须与职业类型匹配, 防呆), 老存档回退模板映射, 再回退职业默认
+    let weapon = null;
+    if (inst.weapon && this.db.itemsById[inst.weapon]
+        && this.db.itemsById[inst.weapon].weapon === def.weapon) {
+      weapon = this.db.itemsById[inst.weapon];
+    }
+    if (!weapon) {
+      const wid = (this.template.weapon_items || {})[inst.classId];
+      weapon = (wid && this.db.itemsById[wid]) || defaultWeapon(def, this.db);
+    }
     const skills = (def.skills || []).map(id => this.db.skillsById[id]).filter(Boolean);
     const traits = (inst.traits || []).map(id => this.db.traitsById[id]).filter(Boolean);
     const m = {
@@ -91,16 +100,21 @@ export class Squad {
     const weapon = (wid && this.db.itemsById[wid]) || defaultWeapon(def, this.db);
     const skills = (def.skills || []).map(id => this.db.skillsById[id]).filter(Boolean);
     const mm = {
-      uid: null, inst: null, def, slot: m.slot, weapon, skills, traits: [],
+      uid: null, inst: null, def, slot: m.slot, weapon, skills,
+      traits: (def.fixedTraits || []).map(id => this.db.traitsById[id]).filter(Boolean),   // Boss 固定特性
       level: ENEMY_LEVEL[this.template.id] || 5, exp: 0, gains: {},
       maxhp: def.base.hp, hp: def.base.hp,
       alive: true,
     };
+    mm.maxhp = this._baseMaxhp(mm);
+    mm.hp = mm.maxhp;
     return mm;
   }
 
   aliveMembers() { return this.members.filter(m => m.alive); }
   get wiped() { return this.aliveMembers().length === 0; }
+  // Boss 队: 成员含 boss 职业 (D1)
+  get isBoss() { return this.members.some(m => m.def.boss); }
   totalHp() { return this.aliveMembers().reduce((s, m) => s + m.hp, 0); }
   totalMaxHp() { return this.members.reduce((s, m) => s + m.maxhp, 0); }
 
@@ -154,15 +168,20 @@ export class Squad {
     return v;
   }
 
-  // 战斗结算经验 (仅攻击方、仅玩家单位实例): 命中 +10, 击杀 +30; 100 升 1 级,
-  // 按该职业 growth% 每项属性独立掷点 +1 (SPEC「养成系统」); 升级事件进 playback 供飘字
+  // 战斗结算经验 (仅攻击方、仅玩家单位实例): 命中 +10, 击杀 +30 (SPEC「养成系统」)
   grantStrikeExp(member, results, playback, side) {
     if (!member.inst) return;
     let exp = 0;
     if (results.some(t => !t.miss)) exp += 10;
     exp += 30 * results.filter(t => t.killed).length;
-    if (!exp) return;
-    member.exp += exp;
+    this.gainExp(member, exp, m =>
+      playback.events.push({ kind: 'levelup', side, actorSlot: m.slot, level: m.level }));
+  }
+
+  // 加经验并处理升级: 100 升 1 级, 按该职业 growth% 每项属性独立掷点 +1
+  gainExp(member, amount, onLevelUp) {
+    if (!member.inst || amount <= 0) return;
+    member.exp += amount;
     member.inst.exp = member.exp;
     while (member.exp >= 100) {
       member.exp -= 100;
@@ -176,7 +195,7 @@ export class Squad {
           if (k === 'hp') { member.maxhp += 1; member.hp += 1; }
         }
       }
-      playback.events.push({ kind: 'levelup', side, actorSlot: member.slot, level: member.level });
+      if (onLevelUp) onLevelUp(member);
     }
   }
 

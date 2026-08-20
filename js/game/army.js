@@ -36,7 +36,7 @@ function newUnit(classId, level = UNIT_LEVEL) {
 }
 
 function defaultArmy(db) {
-  const a = { units: {}, rosters: {}, tech: [], techPoints: 0, gold: INITIAL_GOLD, inventory: INITIAL_ARTIFACTS.slice() };
+  const a = { units: {}, rosters: {}, tech: [], techPoints: 0, gold: INITIAL_GOLD, inventory: INITIAL_ARTIFACTS.slice(), weaponStock: {} };
   for (const ref of PLAYER_SQUADS) {
     const tpl = db.squadsById[ref];
     if (!tpl) continue;
@@ -44,6 +44,12 @@ function defaultArmy(db) {
     let leader = null;
     for (const m of tpl.members) {
       const u = newUnit(m.unit);
+      // 模板 weapon_items 折算成武器库存 + 装备
+      const wid = (tpl.weapon_items || {})[m.unit];
+      if (wid && db.itemsById[wid]) {
+        a.weaponStock[wid] = (a.weaponStock[wid] || 0) + 1;
+        u.weapon = wid;
+      }
       a.units[u.uid] = u;
       members[m.slot] = u.uid;
       if (m.unit === tpl.leader) leader = u.uid;
@@ -82,8 +88,22 @@ export function loadArmy(db) {
   army = validate(a, db) ? a : defaultArmy(db);
   if (typeof army.gold !== 'number') army.gold = INITIAL_GOLD;   // 旧存档迁移
   if (typeof army.victories !== 'number') army.victories = 0;
+  if (!army.weaponStock) army.weaponStock = {};
   for (const u of Object.values(army.units)) {
     if (!Array.isArray(u.traits)) u.traits = rollTraits();   // 老实例补抽特性
+    if (!('weapon' in u)) {   // 老实例补发武器槽 (按模板映射)
+      u.weapon = null;
+      for (const ref of PLAYER_SQUADS) {
+        const tpl = db.squadsById[ref];
+        const r = army.rosters[ref];
+        if (!tpl || !r || !Object.values(r.members).includes(u.uid)) continue;
+        const wid = (tpl.weapon_items || {})[u.classId];
+        if (wid && db.itemsById[wid]) {
+          u.weapon = wid;
+          army.weaponStock[wid] = (army.weaponStock[wid] || 0) + 1;
+        }
+      }
+    }
   }
   saveArmy();
   return army;
@@ -145,7 +165,35 @@ export function research(id, techDb) {
   return true;
 }
 
-// ---- 战斗奖励 ----
+// ---- 武器 (库存 = {id: 数量}, 实例 weapon 字段 = 已装备) ----
+export function equipWeapon(uid, itemId, db) {
+  const u = army && army.units[uid];
+  const item = itemId && db.itemsById[itemId];
+  if (!u || !item || item.type !== 'weapon') return false;
+  const def = db.unitsById[u.classId];
+  if (item.weapon !== def.weapon) return false;   // 职业武器类型必须匹配 (医护兵只能 heal 系等)
+  if (!(army.weaponStock[itemId] > 0)) return false;
+  unequipWeapon(uid);
+  army.weaponStock[itemId]--;
+  u.weapon = itemId;
+  saveArmy();
+  return true;
+}
+export function unequipWeapon(uid) {
+  const u = army && army.units[uid];
+  if (u && u.weapon) {
+    army.weaponStock[u.weapon] = (army.weaponStock[u.weapon] || 0) + 1;
+    u.weapon = null;
+    saveArmy();
+  }
+}
+export function buyWeapon(id, price) {   // 武器入库存
+  if (!army || army.gold < price) return false;
+  army.gold -= price;
+  army.weaponStock[id] = (army.weaponStock[id] || 0) + 1;
+  saveArmy();
+  return true;
+}
 export function addKills(n) {   // 击杀: +1 科技点, +50 金币
   if (army && n > 0) { army.techPoints += n; army.gold += 50 * n; saveArmy(); }
 }
@@ -217,18 +265,27 @@ export function buyArtifact(id, price) {   // 商店 -> 库存
   return true;
 }
 
-// ---- 通关记录 ----
-export function markCleared(mapId) {
+// ---- 通关记录 (sow_cleared: {mapId: {done, bonus}}; 旧数组格式自动迁移) ----
+function readCleared() {
+  let m = {};
+  try { m = JSON.parse(localStorage.getItem(CLEARED_KEY) || '{}'); } catch { m = {}; }
+  if (Array.isArray(m)) {
+    const o = {};
+    for (const id of m) o[id] = { done: true, bonus: false };
+    m = o;
+  }
+  return m;
+}
+export function markCleared(mapId, bonus) {
   try {
-    const s = new Set(JSON.parse(localStorage.getItem(CLEARED_KEY) || '[]'));
-    s.add(mapId);
-    localStorage.setItem(CLEARED_KEY, JSON.stringify([...s]));
+    const m = readCleared();
+    const prev = m[mapId] || {};
+    m[mapId] = { done: true, bonus: !!(bonus || prev.bonus) };   // 挑战达成为粘滞标记
+    localStorage.setItem(CLEARED_KEY, JSON.stringify(m));
   } catch {}
 }
-export function clearedSet() {
-  try { return new Set(JSON.parse(localStorage.getItem(CLEARED_KEY) || '[]')); }
-  catch { return new Set(); }
-}
+export function clearedMap() { return readCleared(); }
+export function clearedSet() { return new Set(Object.keys(readCleared())); }
 export function clearCleared() {
   try { localStorage.removeItem(CLEARED_KEY); } catch {}
 }

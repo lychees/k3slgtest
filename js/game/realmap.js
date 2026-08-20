@@ -127,7 +127,7 @@ function drawTile(g, atlas, tileId, x, y) {
 }
 
 // ---- 缓存: Tilesets/catalog 只取一次, 图集按 tileset_id, 地图按 num ----
-let tilesetsP = null, catalogP = null;
+let tilesetsP = null, catalogP = null, squadsP = null;
 const atlasCache = {};   // tileset_id -> 图集 canvas
 const mapCache = {};     // num -> Promise<realMap>
 
@@ -239,20 +239,73 @@ async function buildRealMap(num) {
     tilesetsP, catalogP,
   ]);
   const ts = tilesets[m.tileset_id];
-
-  let atlas = atlasCache[m.tileset_id];
-  if (!atlas) {
-    const sheets = {};
-    await Promise.all(ts.tileset_names.map((n, i) =>
-      n ? loadImage(`assets/tilesets/${n}.png`).then(im => { sheets[SHEET_KEYS[i]] = im; }).catch(() => {}) : null
-    ));
-    atlas = buildAtlas(sheets);
-    atlasCache[m.tileset_id] = atlas;
-  }
+  const atlas = await getAtlas(ts, m.tileset_id);
 
   const W = m.width, H = m.height;
   const data = m.data.data;   // 扁平: x + y*W + z*W*H
   const at = (x, y, z) => data[x + y * W + z * W * H];
+
+  // rm004 保留手调摆位/intro (有专门的 E2E 测试依赖其精确出生点); 其余图自动摆位
+  const entry = (catalog.find(e => e.num === num)) || {};
+  const RM004_SQUADS = [
+    { ref: 'zelos_guard', x: 4,  y: 16, team: 0 },
+    { ref: 'diana_squad', x: 3,  y: 14, team: 0 },
+    { ref: 'knight_wall', x: 6,  y: 17, team: 0 },
+    { ref: 'risen_pack',  x: 9,  y: 2,  team: 1 },
+    { ref: 'risen_pack',  x: 12, y: 1,  team: 1 },
+    { ref: 'risen_elite', x: 13, y: 4,  team: 1 },
+    { ref: 'dragon_solo', x: 8,  y: 3,  team: 1 },
+  ];
+  return buildFromLayers(ts, atlas, W, H, at, {
+    id: `rm${id3}`,
+    name: entry.name || `Map ${num}`,
+    order: entry.order || 0,
+    squads: num === 4 ? RM004_SQUADS : null,
+    objective: num === 4 ? { type: 'rout' } : null,
+    intro: num === 4
+      ? '复生军越过了边境河, 出现在草原世界图的北方。泽洛斯率领亲卫队迎战, 必须全歼来敌!'
+      : '复生军盘踞于此。全歼来敌!',
+    tilesetFallback: entry.tileset,
+  });
+}
+
+// 编辑器真实模式地图 (data/maps/<id>.json, format:'vxace'):
+// layers {z0,z1,z2} 扁平 tileID 数组 (无 z3 阴影层), squads/objective/seizePoint 由文件给出
+export function loadCustomMap(m) {
+  const p = (async () => {
+    tilesetsP = tilesetsP || fetch('data/Tilesets.json').then(r => r.json());
+    const tilesets = await tilesetsP;
+    const ts = tilesets[m.tileset_id];
+    if (!ts) throw new Error(`未知 tileset_id ${m.tileset_id}`);
+    const atlas = await getAtlas(ts, m.tileset_id);
+    const W = m.cols, H = m.rows;
+    const at = (x, y, z) => (z === 3 ? 0 : (m.layers['z' + z] || [])[x + y * W] || 0);
+    return buildFromLayers(ts, atlas, W, H, at, {
+      id: m.id,
+      name: m.name || m.id,
+      order: 0,
+      squads: (m.squads && m.squads.length) ? m.squads : null,
+      objective: m.objective || null,
+      seizePoint: m.seizePoint || null,
+      intro: m.intro || '',
+      tilesetFallback: '自定义',
+    });
+  })();
+  return p;
+}
+
+async function getAtlas(ts, tilesetId) {
+  if (!atlasCache[tilesetId]) {
+    const sheets = {};
+    await Promise.all(ts.tileset_names.map((n, i) =>
+      n ? loadImage(`assets/tilesets/${n}.png`).then(im => { sheets[SHEET_KEYS[i]] = im; }).catch(() => {}) : null
+    ));
+    atlasCache[tilesetId] = buildAtlas(sheets);
+  }
+  return atlasCache[tilesetId];
+}
+
+async function buildFromLayers(ts, atlas, W, H, at, meta) {
 
   // 底图/顶层 split 与 mkxp tileatlasvx.cpp 一致: 由 tile 的 ☆ 星标 flag(0x10) 决定,
   // 不是按层 — 任何层的星标格画在单位上方(树梢), 非星标格一律在单位脚下(桥甲板!)
@@ -321,28 +374,43 @@ async function buildRealMap(num) {
     return PLAIN;
   }
 
-  // rm004 保留手调摆位/intro (有专门的 E2E 测试依赖其精确出生点); 其余图自动摆位
-  const entry = (catalog.find(e => e.num === num)) || {};
-  const RM004_SQUADS = [
-    { ref: 'zelos_guard', x: 4,  y: 16, team: 0 },
-    { ref: 'diana_squad', x: 3,  y: 14, team: 0 },
-    { ref: 'knight_wall', x: 6,  y: 17, team: 0 },
-    { ref: 'risen_pack',  x: 9,  y: 2,  team: 1 },
-    { ref: 'risen_pack',  x: 12, y: 1,  team: 1 },
-    { ref: 'risen_elite', x: 13, y: 4,  team: 1 },
-    { ref: 'dragon_solo', x: 8,  y: 3,  team: 1 },
-  ];
+  // 摆位: 文件给出则用, 否则自动摆位; 目标: 文件给出则用, 否则按 order 轮换
+  const placements = meta.squads || autoPlacement(terrainAt, W, H);
   // 目标按章节轮换: order%3==0 -> seize, order%5==0 -> survive, 其余 rout
-  const order = entry.order || 0;
-  const objective = num === 4 ? { type: 'rout' }
-    : order % 3 === 0 ? { type: 'seize' }
-    : order % 5 === 0 ? { type: 'survive' }
-    : { type: 'rout' };
-  const placements = num === 4 ? RM004_SQUADS : autoPlacement(terrainAt, W, H);
+  const order = meta.order || 0;
+  const objective = meta.objective
+    || (order % 3 === 0 ? { type: 'seize' } : order % 5 === 0 ? { type: 'survive' } : { type: 'rout' });
 
-  // seize 占领点: 敌方出生重心最近的可通行空格
-  let seizePoint = null;
-  if (objective.type === 'seize') {
+  // Boss 章 (order 每 10 的倍数): 最强那支敌军换成 Boss 队 (warlord/archfiend/wyrm 轮换)
+  let bossName = null;
+  if (order > 0 && order % 10 === 0 && placements.some(p => p.team === 1)) {
+    squadsP = squadsP || fetch('data/squads.json').then(r => r.json());
+    const [sq, un] = await Promise.all([squadsP, fetch('data/units.json').then(r => r.json())]);
+    const BOSS_TPLS = ['boss_warlord', 'boss_archfiend', 'boss_wyrm'];
+    const bossTplId = BOSS_TPLS[(((order / 10) | 0) - 1) % 3];
+    const tpl = (sq.squads || sq).find(s => s.id === bossTplId);
+    if (tpl) {
+      const last = placements[placements.length - 1];
+      placements[placements.length - 1] = { ref: bossTplId, x: last.x, y: last.y, team: 1 };
+      const bossDef = (un.units || un).find(u => u.id === tpl.leader);
+      bossName = bossDef ? bossDef.name : tpl.name;
+    }
+  }
+
+  // 章节挑战目标 (D2): Boss 章=击杀 Boss; 其余按 order%3 轮换
+  let bonus = null;
+  if (order > 0) {
+    if (bossName) bonus = { type: 'bossKill', text: `击杀 ${bossName}` };
+    else if (order % 3 === 0) bonus = { type: 'speed10', text: '10 回合内获胜' };
+    else if (order % 3 === 1) bonus = { type: 'noDeath', text: '无部队阵亡获胜' };
+    else bonus = objective.type === 'seize'
+      ? { type: 'seize5', text: '5 回合内占领' }
+      : { type: 'speed10', text: '10 回合内获胜' };
+  }
+
+  // seize 占领点: 文件给出优先, 否则取敌方出生重心最近的可通行空格
+  let seizePoint = meta.seizePoint || null;
+  if (!seizePoint && objective.type === 'seize') {
     const foes = placements.filter(p => p.team === 1);
     if (foes.length) {
       const cx = foes.reduce((s, p) => s + p.x, 0) / foes.length;
@@ -361,16 +429,16 @@ async function buildRealMap(num) {
   }
 
   const mapMeta = {
-    id: `rm${id3}`,
-    name: entry.name || `Map ${num}`,
+    id: meta.id,
+    name: meta.name,
     cols: W, rows: H,
     squads: placements,
     objective,
     seizePoint,
-    intro: num === 4
-      ? '复生军越过了边境河, 出现在草原世界图的北方。泽洛斯率领亲卫队迎战, 必须全歼来敌!'
-      : '复生军盘踞于此。全歼来敌!',
+    bonus,
+    bossName,
+    intro: bossName ? `Boss：${bossName}` : (meta.intro || ''),
   };
 
-  return { groundCanvas: ground, topCanvas: top, cols: W, rows: H, terrainAt, mapMeta, tilesetName: ts.name || entry.tileset || '' };
+  return { groundCanvas: ground, topCanvas: top, cols: W, rows: H, terrainAt, mapMeta, tilesetName: ts.name || meta.tilesetFallback || '' };
 }

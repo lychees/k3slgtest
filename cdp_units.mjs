@@ -178,17 +178,27 @@ async function main() {
   await shot('statcard');
 
   // 5. 进图: 泽洛斯(含医护兵)贴到敌旁, 敌方阶段被打 -> 医护兵治疗
+  //    (敌方全 miss 则无人受伤无 heal, 允许重试至多 3 回合)
   await nav(`${BASE}?map=rm004&nostory=1`);
   await realClick(500, 300);   // skip intro
   for (let i = 0; i < 40; i++) {
     await sleep(300);
     if (await evaljs(`getComputedStyle(document.getElementById('phase-banner')).display`) === 'none') break;
   }
-  // 泽洛斯到 (9,3): risen_pack (9,2) 旁边
-  await evaljs(`(() => { const T = window.__tactics;
-    const z = T.squads().find(s => s.template.id === 'zelos_guard');
-    z.setPos(9, 3); })()`);
-  await endPhase();
+  let heal = null;
+  for (let attempt = 0; attempt < 3; attempt++) {
+    await evaljs(`(() => { const T = window.__tactics;
+      const z = T.squads().find(s => s.template.id === 'zelos_guard');
+      const foe = T.squads().filter(s => s.team === 1)
+        .sort((a, b) => (Math.abs(a.x - z.x) + Math.abs(a.y - z.y)) - (Math.abs(b.x - z.x) + Math.abs(b.y - z.y)))[0];
+      if (foe) z.setPos(foe.x, foe.y + 1); })()`);
+    await endPhase();
+    heal = await evaljs(`(() => { const p = window.__tactics.lastPlayback;
+      if (!p) return null;
+      const evs = p.events.filter(e => e.kind === 'heal');
+      return { n: evs.length, amount: evs[0] && evs[0].amount, defSide: p.events.some(e => e.side === 'def') }; })()`);
+    if (heal && heal.n > 0) break;
+  }
   // 等敌方阶段中的战斗, 抓治疗飘字
   let healShot = false;
   for (let i = 0; i < 120; i++) {
@@ -202,10 +212,10 @@ async function main() {
       return T.state.phase === 0 || T.state.over; })()`);
     if (done) break;
   }
-  const heal = await evaljs(`(() => { const p = window.__tactics.lastPlayback;
-    if (!p) return null;
-    const evs = p.events.filter(e => e.kind === 'heal');
-    return { n: evs.length, amount: evs[0] && evs[0].amount, defSide: p.events.some(e => e.side === 'def') }; })()`);
+  console.log('  [battle events]', await evaljs(`(() => { const p = window.__tactics.lastPlayback;
+    return p ? p.events.map(e => e.kind + ':' + e.side).join(' ') : 'none'; })()`));
+  console.log('  [zelos hp]', await evaljs(`(() => { const z = window.__tactics.squads().find(s => s.template.id === 'zelos_guard');
+    return z.members.map(m => m.def.id + ' ' + m.hp + '/' + m.maxhp).join(' | '); })()`));
   check(heal && heal.n > 0 && heal.amount > 0, `战斗中出现治疗事件 (${JSON.stringify(heal)})`);
   check((await evaljs(`window.__audio.sfx`)).includes('heal'), 'heal 音效已触发');
   check(healShot, '抓到治疗飘字截图');

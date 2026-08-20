@@ -16,6 +16,29 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         self.send_header('Cache-Control', 'no-cache')
         super().end_headers()
 
+    def do_GET(self):
+        u = urlparse(self.path)
+        if u.path == '/api/list':
+            qs = parse_qs(u.query)
+            rel = qs.get('dir', [''])[0]
+            norm = os.path.normpath(rel).replace('\\', '/')
+            if '..' in norm:
+                self.send_error(403)
+                return
+            d = os.path.join(ROOT, norm)
+            try:
+                files = sorted(f for f in os.listdir(d) if f.endswith('.json'))
+            except OSError:
+                files = []
+            body = json.dumps(files).encode()
+            self.send_response(200)
+            self.send_header('Content-Type', 'application/json')
+            self.send_header('Content-Length', str(len(body)))
+            self.end_headers()
+            self.wfile.write(body)
+            return
+        super().do_GET()
+
     def do_POST(self):
         u = urlparse(self.path)
         if u.path == '/api/save':

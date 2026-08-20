@@ -108,6 +108,7 @@ export function showEnd(win, opts = {}) {
   if (win) {
     hint.textContent = opts.hint || '';
     btns.style.display = 'flex';
+    if (opts.title) b.querySelector('.end-title').textContent = opts.title;
     $('end-army').onclick = e => {
       e.stopPropagation();
       endOn = false;

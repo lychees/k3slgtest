@@ -7,7 +7,7 @@ const URL = 'http://localhost:8931/editor.html?map=rx_demo#map';
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const chrome = spawn(CHROME, [
   '--headless=new', '--disable-gpu', '--use-angle=swiftshader',
-  `--remote-debugging-port=${PORT}`, '--user-data-dir=/tmp/cdp-editpaint',
+  `--remote-debugging-port=${PORT}`, '--user-data-dir=/tmp/cdp2-editpaint',
   '--window-size=1280,800', '--hide-scrollbars', 'about:blank',
 ], { stdio: 'ignore' });
 
@@ -46,12 +46,13 @@ async function main() {
   await send('Runtime.enable');
   await send('Page.enable');
   await send('Page.navigate', { url: URL });
-  await sleep(4000);
+  await sleep(9000);
 
   // 切到 水面A1 调色板页并选第一个水面块
   await evaljs(`[...document.querySelectorAll('#page-map button')].find(b => b.dataset.tab === 'A1').click()`);
   await sleep(300);
-  await evaljs(`document.querySelectorAll('#page-map .panel')[1].querySelectorAll('canvas')[0].click()`);
+  // 调色板面板 = 有 canvas 的那个 (布局可能变化, 不写死序号)
+  await evaljs(`[...document.querySelectorAll('#page-map .panel')].find(p => p.querySelectorAll('canvas').length > 0).querySelectorAll('canvas')[0].click()`);
   await sleep(300);
   const brushInfo = await evaljs(`[...document.querySelectorAll('#page-map div')].map(d => d.textContent).find(t => /^A1 水面块/.test(t)) || ''`);
   check(/A1 水面块 0/.test(brushInfo), `选中水面块: ${brushInfo}`);

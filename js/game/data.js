@@ -30,8 +30,8 @@ export async function loadData(mapId) {
   };
   db.traitsById = index(db.traits);
   for (const t of db.terrains) db.terrainByChar[t.char] = t;
-  // 规范化地图行: 每行恰好 cols 个字符 (真实地图模式 map 为 null, 由 realmap 提供)
-  if (map) map.terrain = map.terrain.map(row => row.padEnd(map.cols, '.').slice(0, map.cols));
+  // 规范化地图行: 每行恰好 cols 个字符 (真实/vxace 地图无 terrain 字段, 跳过)
+  if (map && map.terrain) map.terrain = map.terrain.map(row => row.padEnd(map.cols, '.').slice(0, map.cols));
   return db;
 }
 

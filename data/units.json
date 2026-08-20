@@ -760,6 +760,109 @@
       "attacks": 1,
       "skills": [],
       "promotesTo": ""
+    },
+    {
+      "id": "warlord",
+      "name": "军阀巴罗克",
+      "tier": 2,
+      "boss": true,
+      "sprite": "unit2_darklancer",
+      "portrait": "",
+      "weapon": "sword",
+      "attackType": "frontline",
+      "attacks": 1,
+      "skills": [],
+      "base": {
+        "hp": 45,
+        "str": 16,
+        "mag": 0,
+        "skl": 12,
+        "arm": 10,
+        "ldr": 6,
+        "mov": 6
+      },
+      "growth": {
+        "hp": 80,
+        "str": 60,
+        "mag": 0,
+        "skl": 40,
+        "arm": 50,
+        "ldr": 30
+      },
+      "fixedTraits": [
+        "vanguard_t",
+        "bloodlust"
+      ],
+      "promotesTo": ""
+    },
+    {
+      "id": "archfiend",
+      "name": "大魔导师",
+      "tier": 2,
+      "boss": true,
+      "sprite": "unit2_necromancer",
+      "portrait": "",
+      "weapon": "fire",
+      "attackType": "aoe",
+      "attacks": 1,
+      "skills": [],
+      "base": {
+        "hp": 36,
+        "str": 2,
+        "mag": 18,
+        "skl": 14,
+        "arm": 5,
+        "ldr": 5,
+        "mov": 5
+      },
+      "growth": {
+        "hp": 60,
+        "str": 10,
+        "mag": 75,
+        "skl": 50,
+        "arm": 25,
+        "ldr": 20
+      },
+      "fixedTraits": [
+        "eagle",
+        "doubles_t"
+      ],
+      "promotesTo": ""
+    },
+    {
+      "id": "wyrm",
+      "name": "远古巨龙",
+      "tier": 2,
+      "boss": true,
+      "sprite": "unit_archer_green",
+      "portrait": "",
+      "weapon": "claw",
+      "attackType": "aoe",
+      "attacks": 1,
+      "skills": [],
+      "flying": true,
+      "base": {
+        "hp": 60,
+        "str": 15,
+        "mag": 5,
+        "skl": 8,
+        "arm": 8,
+        "ldr": 4,
+        "mov": 6
+      },
+      "growth": {
+        "hp": 95,
+        "str": 60,
+        "mag": 30,
+        "skl": 30,
+        "arm": 45,
+        "ldr": 10
+      },
+      "fixedTraits": [
+        "hearty",
+        "tough"
+      ],
+      "promotesTo": ""
     }
   ]
 }

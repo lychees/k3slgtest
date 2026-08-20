@@ -6,7 +6,7 @@ import { sfx } from './audio.js';
 const $ = id => document.getElementById(id);
 
 let db = null, techDb = null;
-let onTechChange = null, onCloseCb = null;
+let onTechChange = null, onCloseCb = null, onArenaCb = null;
 let selSquad = 'zelos_guard';
 let selPool = null;    // 后备池选中的 uid
 let selSlot = null;    // 阵型中选中的格子
@@ -27,8 +27,10 @@ export async function openArmyUI(dbArg, opts = {}) {
   db = dbArg;
   onTechChange = opts.onTechChange || null;
   onCloseCb = opts.onClose || null;
+  onArenaCb = opts.onArena || null;
   await ensureTechDb();
   Army.loadArmy(db);
+  db.army = Army.army;   // loadArmy 每次重建对象, 同步引用避免游戏内 Squad 持有旧实例
   selPool = null;
   selSlot = null;
   const overlay = $('army-ui');
@@ -56,9 +58,11 @@ function showTab(name) {
   if (name === 'formation') renderFormation();
   else if (name === 'promote') renderPromote();
   else if (name === 'recruit') renderRecruit();
+  else if (name === 'weapon') renderWeapon();
   else if (name === 'artifact') renderArtifact();
   else if (name === 'shop') renderShop();
   else if (name === 'tech') renderTech();
+  else if (name === 'arena') renderArena();
 }
 
 const el = (tag, cls, text) => {
@@ -281,6 +285,10 @@ function renderPromote() {
           }
           u.gains = ng;
           u.classId = nd.id;
+          // 武器类型不匹配新职业 -> 卸下回库存
+          if (u.weapon && db.itemsById[u.weapon] && db.itemsById[u.weapon].weapon !== nd.weapon) {
+            Army.unequipWeapon(u.uid);
+          }
           sfx('levelup');
           Army.saveArmy();
           renderPromote();
@@ -292,6 +300,91 @@ function renderPromote() {
     }
   }
   body.appendChild(list);
+}
+
+// ---------------------------------------------------------------- 武器
+// 每成员 1 件 weapon 类物品 (职业武器类型必须匹配); 库存 = weaponStock
+let weaponPickerUid = null;
+const weaponDesc = item => item ? `${item.name} 威${item.might} 命${item.hit} 射${item.range}` : '（职业默认武器）';
+
+function renderWeapon() {
+  const body = $('au-body');
+  body.innerHTML = '';
+  body.appendChild(el('div', 'au-hint', '点「更换」选库存武器; 类型必须匹配职业 (医护兵仅限治疗系)'));
+  const list = el('div', 'au-list');
+  for (const ref of SQUAD_REFS) {
+    const roster = Army.rosterOf(ref);
+    for (const [slot, uid] of Object.entries(roster.members)) {
+      const u = Army.army.units[uid];
+      const def = db.unitsById[u.classId];
+      const row = el('div', 'au-row');
+      const img = el('img'); img.src = unitImg(u);
+      row.appendChild(img);
+      row.appendChild(el('span', 'au-row-name', `${unitName(u)} Lv.${u.level}`));
+      row.appendChild(el('span', 'au-row-sub', `${def.name} · ${WEAPON_LABEL[def.weapon] || def.weapon}系`));
+      const cur = u.weapon ? db.itemsById[u.weapon] : null;
+      row.appendChild(el('span', 'au-row-desc', weaponDesc(cur)));
+      const btn = el('span', 'au-btn', weaponPickerUid === uid ? '收起' : '更换');
+      btn.onclick = () => { weaponPickerUid = weaponPickerUid === uid ? null : uid; renderWeapon(); };
+      row.appendChild(btn);
+      list.appendChild(row);
+      if (weaponPickerUid === uid) {
+        const picker = el('div', 'au-row au-picker');
+        const opts = Object.entries(Army.army.weaponStock)
+          .filter(([id, n]) => n > 0 && db.itemsById[id] && db.itemsById[id].weapon === def.weapon);
+        if (!opts.length) picker.appendChild(el('span', 'au-row-sub', '库存没有匹配武器 (去商店买)'));
+        for (const [id, n] of opts) {
+          const item = db.itemsById[id];
+          const b = el('span', 'au-btn', `${weaponDesc(item)} ×${n}`);
+          b.onclick = () => {
+            if (Army.equipWeapon(uid, id, db)) {
+              sfx('equip');
+              weaponPickerUid = null;
+              renderWeapon();
+            }
+          };
+          picker.appendChild(b);
+        }
+        if (u.weapon) {
+          const un = el('span', 'au-btn', '卸下');
+          un.onclick = () => { Army.unequipWeapon(uid); sfx('equip'); weaponPickerUid = null; renderWeapon(); };
+          picker.appendChild(un);
+        }
+        list.appendChild(picker);
+      }
+    }
+  }
+  body.appendChild(list);
+}
+
+// ---------------------------------------------------------------- 竞技场
+let arenaResult = null;
+function renderArena() {
+  const body = $('au-body');
+  body.innerHTML = '';
+  body.appendChild(el('div', 'au-hint',
+    `金币: ${Army.army.gold} · 报名费 200 金 · 3 波连战, 每胜一场 +300 金 +30 经验, 全胜 +1 科技点 · 不致命 (留 1 HP)`));
+  const row = el('div', 'au-squads');
+  for (const ref of SQUAD_REFS) {
+    const b = el('span', 'au-sqbtn' + (ref === selSquad ? ' sel' : ''), db.squadsById[ref].name);
+    b.onclick = () => { selSquad = ref; renderArena(); };
+    row.appendChild(b);
+  }
+  body.appendChild(row);
+  const can = Army.army.gold >= 200 && onArenaCb;
+  const btn = el('div', 'au-btn' + (can ? '' : ' disabled'), `挑战 (${db.squadsById[selSquad].name})`);
+  if (can) {
+    btn.onclick = async () => {
+      arenaResult = await onArenaCb(selSquad);
+      $('army-ui').style.display = 'flex';   // runArena 期间整备层被战斗画面临时隐藏
+      renderArena();
+    };
+  }
+  body.appendChild(btn);
+  if (arenaResult) {
+    body.appendChild(el('div', 'au-hint',
+      `上场战绩: 胜 ${arenaResult.wins}/3 场, 得金 ${arenaResult.gold}${arenaResult.wins === 3 ? ' +1 科技点' : ''}`));
+  }
 }
 
 // ---------------------------------------------------------------- 神器
@@ -429,8 +522,28 @@ function renderRecruit() {
 function renderShop() {
   const body = $('au-body');
   body.innerHTML = '';
-  body.appendChild(el('div', 'au-hint', `金币: ${Army.army.gold} · 购买进神器库存`));
+  body.appendChild(el('div', 'au-hint', `金币: ${Army.army.gold} · 购买进神器/武器库存`));
   const list = el('div', 'au-list');
+  for (const item of db.itemList.filter(i => i.type === 'weapon' && i.price > 0)) {
+    const row = el('div', 'au-row');
+    row.appendChild(el('span', 'au-row-name', item.name));
+    row.appendChild(el('span', 'au-row-sub',
+      `${WEAPON_LABEL[item.weapon] || item.weapon}系 威${item.might} 命${item.hit} 射${item.range} · 库存 ${Army.army.weaponStock[item.id] || 0}`));
+    row.appendChild(el('span', 'au-row-desc', item.description || ''));
+    const can = Army.army.gold >= item.price;
+    const btn = el('span', 'au-btn' + (can ? '' : ' disabled'), `购买 (${item.price} 金)`);
+    if (can) {
+      btn.onclick = () => {
+        if (Army.buyWeapon(item.id, item.price)) {
+          sfx('gold');
+          renderShop();
+        }
+      };
+    }
+    row.appendChild(btn);
+    list.appendChild(row);
+  }
+  list.appendChild(el('div', 'au-hint', '—— 神器 ——'));
   for (const item of db.itemList.filter(i => i.type === 'artifact' && i.price > 0)) {
     const row = el('div', 'au-row');
     row.appendChild(el('span', 'au-row-name', item.name));

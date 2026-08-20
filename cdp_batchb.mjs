@@ -193,9 +193,9 @@ async function main() {
   check(await evaljs(`document.getElementById('end-banner').style.display`) === 'flex', '胜利横幅');
   check((await evaljs(`document.querySelector('#end-banner .end-hint').textContent`)).includes('+1000 金币'), '横幅显示 +1000 金币');
   const a1 = await armyState();
-  check(a1.gold === 3000, `金币 2000->${a1.gold}`);
+  check(a1.gold === 3300, `金币 2000->${a1.gold} (+1000 胜利 +300 挑战: rm004 加成 speed10)`);
   check(a1.techPoints === 5, `科技点 +5 (${a1.techPoints})`);
-  check(await evaljs(`JSON.parse(localStorage.getItem('sow_cleared') || '[]').includes('rm004')`), '通关记录写入 rm004');
+  check(await evaljs(`(JSON.parse(localStorage.getItem('sow_cleared') || '{}').rm004 || {}).done === true`), '通关记录写入 rm004');
 
   // 5. 胜利 -> 整备: 商店购买 + 招募
   await evaljs(`document.getElementById('end-army').dispatchEvent(new MouseEvent('click', { bubbles: true }))`);
@@ -212,7 +212,7 @@ async function main() {
   })()`);
   await sleep(300);
   const a2 = await armyState();
-  check(a2.gold === 1500 && a2.inventory.length === invBefore + 1, `商店购买勇气战旗 (金币->${a2.gold}, 库存 ${a2.inventory.length})`);
+  check(a2.gold === 1800 && a2.inventory.length === invBefore + 1, `商店购买勇气战旗 (金币->${a2.gold}, 库存 ${a2.inventory.length})`);
   // 招募
   await evaljs(`document.querySelector('.au-tab[data-tab="recruit"]').dispatchEvent(new MouseEvent('click', { bubbles: true }))`);
   await sleep(400);
@@ -224,7 +224,7 @@ async function main() {
   })()`);
   await sleep(300);
   const a3 = await armyState();
-  check(a3.gold === 1000 && Object.keys(a3.units).length === unitsBefore + 1, `招募士兵 (金币->${a3.gold}, 单位+1)`);
+  check(a3.gold === 1300 && Object.keys(a3.units).length === unitsBefore + 1, `招募士兵 (金币->${a3.gold}, 单位+1)`);
   await evaljs(`document.querySelector('.au-close').dispatchEvent(new MouseEvent('click', { bubbles: true }))`);
   await sleep(2500);   // 胜利后关闭整备 -> 回标题
 

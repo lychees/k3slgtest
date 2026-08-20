@@ -43,6 +43,36 @@ function loadLines(mapId) {
   return lineCache[mapId];
 }
 
+// D3 战中事件: 第 2 回合玩家阶段播放剧情第 9-12 行 (非阻塞, ~1.6s/行, 点击关闭)
+export async function playInterlude(mapId) {
+  if (!hasStory(mapId)) return;
+  const lines = await loadLines(mapId);
+  if (!lines || lines.length <= 12) return;
+  const seg = lines.slice(8, 12).filter(ln => (ln.zh || ln.en || '').trim());
+  if (!seg.length) return;
+  const bar = $('interlude');
+  const nameEl = bar.querySelector('.il-name');
+  const textEl = bar.querySelector('.il-text');
+  let i = 0, alive = true;
+  const close = () => {
+    alive = false;
+    bar.style.display = 'none';
+    bar.onclick = null;
+  };
+  bar.onclick = e => { e.stopPropagation(); close(); };
+  bar.style.display = 'block';
+  const step = () => {
+    if (!alive) return;
+    if (i >= seg.length) { close(); return; }
+    const ln = seg[i++];
+    nameEl.textContent = ln.name || '';
+    nameEl.style.display = ln.name ? 'block' : 'none';
+    textEl.textContent = ln.zh || ln.en || '';
+    setTimeout(step, 1600);
+  };
+  step();
+}
+
 // startOpt: undefined=从头; 数字=起始行; 'end'=最后一行
 export async function playStory(mapId, startOpt) {
   if (!hasStory(mapId)) return false;

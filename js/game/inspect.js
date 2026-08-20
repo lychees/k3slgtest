@@ -52,6 +52,7 @@ function statCell(squad, m, key, label) {
 function render(squad, db) {
   const p = $('in-panel');
   const isPlayer = squad.team === 0;
+  const isBoss = squad.isBoss;
   const hp = squad.totalHp(), max = squad.totalMaxHp();
 
   // 头部
@@ -64,7 +65,7 @@ function render(squad, db) {
     <span class="in-team${isPlayer ? '' : ' enemy'}">${isPlayer ? '我军' : '敌军'}</span>
     <span class="in-head-sub">队长 ${squad.leader.def.name} Lv.${squad.leader.level}</span>
     <span class="in-head-sub">人数 ${capTxt}</span>
-    <span class="in-head-sub">威胁 ${squad.score()}</span>
+    <span class="in-head-sub${isBoss ? ' in-boss-score' : ''}">威胁 ${squad.score()}</span>
   </div>
   <div class="in-hp"><div class="in-hp-outer"><div class="in-hp-inner" style="width:${max ? hp / max * 100 : 0}%"></div></div><span>${hp}/${max}</span></div>`;
 
@@ -99,7 +100,7 @@ function render(squad, db) {
     const dead = m.alive ? '' : ' dead';
     h += `<div class="in-cell${dead}">
       <div class="in-mem-top"><img class="in-sprite" src="assets/${m.def.sprite}.png">
-        <div><div class="in-cls">${m.def.name} Lv.${m.level}</div>
+        <div><div class="in-cls${m.def.boss ? ' in-boss' : ''}">${m.def.name} Lv.${m.level}</div>
         <div class="in-memhp">HP ${m.hp}/${m.maxhp}</div></div>
         ${squad.leader === m ? '<span class="in-crown">★</span>' : ''}
       </div>

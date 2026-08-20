@@ -51,7 +51,7 @@ async function main() {
   // 1. 覆盖层显示, 209+1 条目, ch1 在首位
   check(await evaljs(`getComputedStyle(document.getElementById('level-select')).display`) === 'flex', '选关覆盖层显示');
   const count = await evaljs(`document.querySelectorAll('#ls-list .ls-item').length`);
-  check(count === 210, `条目数 210 (实际 ${count})`);
+  check(count === 211, `条目数 211 = 209 图 + ch1 + rx_demo (实际 ${count})`);
   check((await evaljs(`document.querySelector('#ls-list .ls-item span').textContent`)).includes('手绘'), 'ch1 手绘演示在首位');
   // 未 boot 时游戏 UI 隐藏
   check(await evaljs(`getComputedStyle(document.getElementById('turn-panel')).visibility`) === 'hidden', '选关时回合面板隐藏');

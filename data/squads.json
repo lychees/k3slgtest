@@ -213,6 +213,106 @@
         "darklancer": "iron_lance",
         "risen_knight": "claw"
       }
+    },
+    {
+      "id": "boss_warlord",
+      "name": "巴罗克亲卫军",
+      "leader": "warlord",
+      "members": [
+        {
+          "unit": "warlord",
+          "slot": 4
+        },
+        {
+          "unit": "darklancer",
+          "slot": 1
+        },
+        {
+          "unit": "darklancer",
+          "slot": 7
+        },
+        {
+          "unit": "risen_soldier",
+          "slot": 3
+        },
+        {
+          "unit": "risen_soldier",
+          "slot": 5
+        }
+      ],
+      "artifacts": [],
+      "weapon_items": {
+        "warlord": "silver_sword",
+        "darklancer": "iron_lance",
+        "risen_soldier": "claw"
+      }
+    },
+    {
+      "id": "boss_archfiend",
+      "name": "魔导契约团",
+      "leader": "archfiend",
+      "members": [
+        {
+          "unit": "archfiend",
+          "slot": 4
+        },
+        {
+          "unit": "necromancer",
+          "slot": 1
+        },
+        {
+          "unit": "necromancer",
+          "slot": 7
+        },
+        {
+          "unit": "risen_soldier",
+          "slot": 3
+        },
+        {
+          "unit": "risen_soldier",
+          "slot": 5
+        }
+      ],
+      "artifacts": [],
+      "weapon_items": {
+        "archfiend": "fire_tome",
+        "necromancer": "fire_tome",
+        "risen_soldier": "claw"
+      }
+    },
+    {
+      "id": "boss_wyrm",
+      "name": "古龙眷属",
+      "leader": "wyrm",
+      "members": [
+        {
+          "unit": "wyrm",
+          "slot": 4
+        },
+        {
+          "unit": "dragon",
+          "slot": 1
+        },
+        {
+          "unit": "dragon",
+          "slot": 7
+        },
+        {
+          "unit": "risen_knight",
+          "slot": 5
+        },
+        {
+          "unit": "risen_soldier",
+          "slot": 2
+        }
+      ],
+      "artifacts": [],
+      "weapon_items": {
+        "wyrm": "claw",
+        "dragon": "claw",
+        "risen_knight": "claw",
+        "risen_soldier": "claw"
+      }
     }
   ]
 }

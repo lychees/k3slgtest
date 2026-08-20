@@ -206,3 +206,15 @@ fe-tactics/
 - 地形分类（realmap.js，按决定格 tile 分）：森林（bush flag 或 A2 块 2，回避+10 防御+1）、山地（A2 块 3，回避+20 防御+1 cost 2）、高地（A2 块 7，弓手站上去射程+1，对象 `highGround: true`）、要塞（室内 tileset 的 A4/A5 地板，回避+10 防御+2）、水面（不可通行的 A1 格）/墙（其余不可通行格）。手绘 ch1 的 t/g 字符映射同步。
 - 有效射程统一走 `squad.rangeMaxEff(terrainAt)`（高地弓 +1）；地形回避经 `ctx.terrainAvo` 已进入命中公式与预测面板。
 - V 键切换敌方危险范围覆盖层（全部敌部队移动+攻击并集，淡红）；选中时自动隐藏，敌方回合自动关闭。
+
+## 武器槽 / 自定义地图 / 竞技场（收尾包 C 新增）
+
+- **武器槽**：单位实例新增 `weapon` 字段 (item id, null=职业默认)；武器库存 `weaponStock: {id: 数量}`。装备/购买扣库存，卸下回库存；职业武器类型必须匹配 (`item.weapon === def.weapon`)。老存档实例按 squads.json `weapon_items` 映射补发。转职后类型不匹配自动卸下。战斗成员武器在 boot 时从实例构建，类型不匹配防呆回退职业默认。
+- **自定义地图**：编辑器产出 `data/maps/<id>.json` (`format:'vxace'`, tileset_id, cols, rows, layers{z0,z1,z2}, squads, objective, seizePoint?, name?, intro?)。boot 时由 `realmap.loadCustomMap` 加载 (无 z3 阴影层)；无 squads 时自动摆位。选关界面「自定义」组来自 server.py `/api/list?dir=data/maps` (静态托管无此 API 时静默跳过)。
+- **竞技场** (整备 tab)：报名费 200 金, 3 波连战 (fort 主题, 一波打到分出胜负), 敌等级 = 玩家平均等级 +0/+1/+2 (扁平加成)。每胜一场 +300 金 +全员 30 经验, 全胜 +1 科技点。不致命: 0 HP 成员留 1 HP。成员 HP 写回实例。
+
+## Boss / 章节挑战 / 战中事件（收尾包 D 新增）
+
+- **Boss**：units.json 的 `boss: true` 职业（warlord/archfiend/wyrm，另有 `fixedTraits` 固定特性 2 条）+ squads.json 的 boss_* 部队模板。order 每 10 的倍数章：自动摆位最强敌军替换为 Boss 队（按 order/10-1 轮换三 Boss），mapMeta.bossName 驱动开场横幅「Boss：xxx」。`squad.isBoss` = 成员含 boss 职业；详情页 Boss 职业名金色、威胁度红色。Boss 队全灭 → +500 金 + 随机神器进库存，胜利横幅「Boss 讨伐！」。
+- **章节挑战目标**（mapMeta.bonus）：Boss 章=击杀 Boss；其余按 order%3 轮换（0=10 回合内获胜 / 1=无部队阵亡 / 2=seize 图 5 回合内占领否则 10 回合内）。回合面板下方小字显示；达成 +300 金，胜利横幅「★ 挑战达成」。`sow_cleared` 改为 {id:{done,bonus}}（旧数组格式自动迁移），选关 ✓ 金=挑战达成、灰=仅通关。
+- **战中事件**：第 2 回合玩家阶段，剧情行 >12 的章播放第 9-12 行（#interlude 半屏对话条，非阻塞，点击关闭）。seize/survive 图第 3 回合敌方阶段刷 1 支 risen_pack（北半随机可通行格，smack.wav，横幅「敌方增援！」）。
