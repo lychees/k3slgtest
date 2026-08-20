@@ -17,8 +17,12 @@ const AE_PARTS = [[12, 0], [12, 3], [14, 0], [14, 3], [12, 6], [12, 9]];   // �
 const A4_OFFY = [0, 3, 5, 8, 10, 13];
 const SHEET_KEYS = ['A1', 'A2', 'A3', 'A4', 'A5', 'B', 'C', 'D', 'E'];
 
-const IMPASSABLE = { id: 'blocked', name: '不可进入', avo: 0, def: 0, cost: 99, pass: false, tile: '' };
-const BUSH = { id: 'bush', name: '草丛', avo: 5, def: 0, cost: 1, pass: true, tile: '' };
+const WALL = { id: 'wall', name: '墙', avo: 0, def: 0, cost: 99, pass: false, tile: '' };
+const WATER = { id: 'water', name: '水面', avo: 0, def: 0, cost: 99, pass: false, tile: '' };
+const FOREST = { id: 'forest', name: '森林', avo: 10, def: 1, cost: 1, pass: true, tile: '' };
+const MOUNTAIN = { id: 'mountain', name: '山地', avo: 20, def: 1, cost: 2, pass: true, tile: '' };
+const HIGHLAND = { id: 'highland', name: '高地', avo: 0, def: 0, cost: 1, pass: true, tile: '', highGround: true };   // 弓手射程+1
+const FORT = { id: 'fort', name: '要塞', avo: 10, def: 2, cost: 1, pass: true, tile: '' };
 const PLAIN = { id: 'plain', name: '平原', avo: 0, def: 0, cost: 1, pass: true, tile: '' };
 
 function loadImage(src) {
@@ -292,18 +296,28 @@ async function buildRealMap(num) {
   }
 
   // ---- 通行/地形 (VX Ace checkPassage: 自上而下首个非星标格决定) ----
-  function decideFlag(x, y) {
+  function decideTile(x, y) {
     for (const z of [2, 1, 0]) {
       const t = at(x, y, z);
-      if (t && !(flags[t] & 0x10)) return flags[t];
+      if (t && !(flags[t] & 0x10)) return t;
     }
     return 0;
   }
+  const indoor = /castle|palace|fort|temple|indoor|church|ship|town/i.test(ts.name || '');
+  // 地形分类 (M3): 不可通行分 水面(A1)/墙; 可通行按 autotile 块分 森林/山地/高地, 室内图地板算要塞
   function terrainAt(x, y) {
-    if (x < 0 || y < 0 || x >= W || y >= H) return IMPASSABLE;
-    const f = decideFlag(x, y);
-    if ((f & 0x0f) === 0x0f) return IMPASSABLE;
-    if (f & 0x20) return BUSH;
+    if (x < 0 || y < 0 || x >= W || y >= H) return WALL;
+    const t = decideTile(x, y);
+    const f = t ? flags[t] : 0;
+    if ((f & 0x0f) === 0x0f) return (t >= 0x800 && t < 0xB00) ? WATER : WALL;
+    if (f & 0x20) return FOREST;   // bush flag 格 -> 森林
+    if (t >= 0xB00 && t < 0x1100) {   // A2 autotile 按块号分
+      const atid = ((t - 0xB00) / 0x30) | 0;
+      if (atid === 2) return FOREST;
+      if (atid === 3) return MOUNTAIN;
+      if (atid === 7) return HIGHLAND;
+    }
+    if (indoor && ((t >= 0x1700 && t < 0x2000) || (t >= 0x600 && t < 0x680))) return FORT;   // A4/A5 地板
     return PLAIN;
   }
 

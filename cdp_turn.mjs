@@ -116,6 +116,14 @@ async function main() {
     check(menuUp, `${id} 移动完成弹出菜单`);
     check(await clickMenuItem('待机'), `${id} 点待机`);
     await sleep(400);
+    // canter 收尾: lord/scout 待机后被再移动选中 -> 点自己格二次待机
+    if (await evaljs(`(window.__tactics.state.selected || {}).template?.id === '${id}'`)) {
+      const p = await evaljs(`(() => { const s = window.__tactics.squads().find(s => s.template.id === '${id}'); return [s.x, s.y]; })()`);
+      await clickTile(p[0], p[1]);
+      await sleep(300);
+      await clickMenuItem('待机');
+      await sleep(400);
+    }
   }
 
   // 敌方阶段 (含战斗场景) — 可能十几秒

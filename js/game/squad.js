@@ -55,6 +55,7 @@ export class Squad {
       this.leader = this.members.find(m => m.def.id === template.leader) || this.members[0];
     }
     this.mov = this.leader.def.base.mov + (this.hasFlag(this.leader, 'move_plus') ? 1 : 0);   // 移动力 = 队长 MOV (+神行/疾风靴)
+    this.flying = !!this.leader.def.flying;   // 飞行 (dragon): 无视地形 cost, 不可停墙格
     this.walking = false;
     this._build();
   }
@@ -107,6 +108,22 @@ export class Squad {
   rangeMax() {
     const alive = this.aliveMembers();
     return alive.length ? Math.max(...alive.map(m => m.weapon.range || 1)) : 1;
+  }
+
+  // 最小射程: 弓手不能贴脸 (bow 最小 2)
+  rangeMin() {
+    const alive = this.aliveMembers();
+    return alive.length ? Math.min(...alive.map(m => m.weapon.weapon === 'bow' ? 2 : 1)) : 1;
+  }
+
+  // 有效射程: 高地 (highGround) 上的弓手 +1
+  rangeMaxEff(terrainAtFn) {
+    let r = this.rangeMax();
+    if (terrainAtFn && this.aliveMembers().some(m => m.weapon.weapon === 'bow')) {
+      const t = terrainAtFn(this.x, this.y);
+      if (t && t.highGround) r += 1;
+    }
+    return r;
   }
 
   // 部队 flag 并集: 成员技能 + 成员特性 + 神器 (神器 flag 全队生效)

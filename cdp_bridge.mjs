@@ -146,15 +146,25 @@ async function main() {
   await realClick(500, 300);   // 跳过 intro
   check(await waitPlayerTurn(1) !== null, 'turn 1 玩家阶段就绪');
 
-  // 回合 1: zelos (4,16) -> (10,16) 桥头, 待机; 双击空地结束回合
-  await clickTile(4, 16);
+  // 回合 1: 传送 zelos 到桥头 (山地 cost2 后 (4,16)->(10,16) 一回合走不到; 本测试关注的是过桥本身),
+  // B0 原地待机, 双击空地结束回合
+  await evaljs(`(() => { const T = window.__tactics;
+    T.squads().find(s => s.template.id === 'zelos_guard').setPos(10, 16); })()`);
+  await clickTile(10, 16);
   await sleep(300);
   check(await evaljs(`(window.__tactics.state.selected || {}).template?.id`) === 'zelos_guard', '选中 zelos');
-  check(await evaljs(`window.__tactics.state.range.move.has('10,16')`), '(10,16) 在范围内');
-  await clickTile(10, 16);
-  check(await waitMenu(), 'zelos 到桥头弹出菜单');
+  await clickTile(10, 16);   // B0 原地菜单
+  check(await waitMenu(), 'zelos 桥头原地弹出菜单');
   await clickMenuItem('待机');
   await sleep(400);
+  // canter 收尾: lord 待机后被再移动选中 -> 点自己格二次待机 (否则双击结束回合会被再移动状态吞掉)
+  if (await evaljs(`(window.__tactics.state.selected || {}).template?.id === 'zelos_guard'`)) {
+    const p = await evaljs(`(() => { const z = window.__tactics.squads().find(s => s.template.id === 'zelos_guard'); return [z.x, z.y]; })()`);
+    await clickTile(p[0], p[1]);
+    await sleep(300);
+    await clickMenuItem('待机');
+    await sleep(400);
+  }
   // 双击视野内空格结束玩家阶段
   await endPhase();
   check(await waitPlayerTurn(2) !== null, '敌方阶段完成, turn 2 就绪');
@@ -190,6 +200,14 @@ async function main() {
   // 点待机 (单位留在桥上), 菜单关闭后再截一张
   await clickMenuItem('待机');
   await sleep(400);
+  // canter 收尾: lord 待机后被再移动选中 -> 点自己格二次待机 (否则双击结束回合会被再移动状态吞掉)
+  if (await evaljs(`(window.__tactics.state.selected || {}).template?.id === 'zelos_guard'`)) {
+    const p = await evaljs(`(() => { const z = window.__tactics.squads().find(s => s.template.id === 'zelos_guard'); return [z.x, z.y]; })()`);
+    await clickTile(p[0], p[1]);
+    await sleep(300);
+    await clickMenuItem('待机');
+    await sleep(400);
+  }
   await shot('on_bridge_idle');
 
   // 回合 3: 从桥上跨到对岸
@@ -204,6 +222,14 @@ async function main() {
   check(z3.x === 13 && z3.y === 17, `zelos 抵达桥对岸 (实际 ${z3.x},${z3.y})`);
   await clickMenuItem('待机');
   await sleep(400);
+  // canter 收尾: lord 待机后被再移动选中 -> 点自己格二次待机 (否则双击结束回合会被再移动状态吞掉)
+  if (await evaljs(`(window.__tactics.state.selected || {}).template?.id === 'zelos_guard'`)) {
+    const p = await evaljs(`(() => { const z = window.__tactics.squads().find(s => s.template.id === 'zelos_guard'); return [z.x, z.y]; })()`);
+    await clickTile(p[0], p[1]);
+    await sleep(300);
+    await clickMenuItem('待机');
+    await sleep(400);
+  }
   await shot('far_side');
 
   // 回合 4: 从对岸走回来 (验证不会困在桥上)

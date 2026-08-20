@@ -140,6 +140,29 @@ fe-tactics/
 }
 ```
 
+### data/maps/<id>.json — 关卡 (vxace 真实 tileset 格式, 编辑器真实模式产出)
+```json
+{
+  "id": "rx1",
+  "name": "真实模式示例",
+  "cols": 24, "rows": 16,
+  "format": "vxace",                        // 判别字段: 有它(或有 layers)即本格式, 无 terrain
+  "tileset_id": 2,                          // data/Tilesets.json 下标
+  "layers": {
+    "z0": [2816, 2816, "..."],              // 地面/水面层: cols*rows 个 tileID (0=空), 行优先 x+y*cols
+    "z1": [0, "..."],                       // 第二 A 层 (编辑器暂未用, 保留)
+    "z2": [0, "..."]                        // 装饰层: A5/B/C/D/E 单格 tileID
+  },
+  "squads": [ { "ref": "zelos_guard", "x": 6, "y": 7, "team": 0 } ],
+  "objective": { "type": "rout" },
+  "seizePoint": { "x": 9, "y": 1 },
+  "intro": "……"
+}
+```
+- tileID 编码/autotile 展开规则见 `VXACE_ASSETS.md`；autotile 模式已由编辑器按 blob-47 规则烘焙进 tileID（运行时不做邻接计算）。
+- blob 表与刷写算法：`js/editor/blob47.js`（掩码→模式，从 209 张原版地图反推）+ `js/editor/vxauto.js`；同类判定=同表同块，地图越界视为同类。
+- 游戏端接入（读 layers + Tilesets.json 渲染，复用 js/game/realmap.js 的图集/展开）由游戏侧协调，编辑器只负责产出文件。
+
 ## 玩法规则(复刻 SoW 核心)
 
 1. **小队制**: 地图上每个棋子是一支 3x3 阵型的部队(最多 9 人), 显示为九宫格小 sprite。
@@ -157,6 +180,7 @@ fe-tactics/
 `editor.html` 单页五 tab: 关卡 / 部队 / 单位 / 技能 / 物品。
 - 全部读写 `data/*.json`(fetch GET + POST /api/save)。
 - 关卡编辑器: 画布绘制地形(调色板选地形, 左键刷, 右键擦除为平原), 点击放置/移动部队, 设置目标点, 保存为 data/maps/<id>.json。
+- 关卡编辑器另有**真实 tileset 模式**: 选 Tilesets.json 的 tileset 新建 vxace 格式地图; 调色板分 A2 地面/A1 水面(含瀑布)/A5/B/C/D/E 七栏并带素材预览; 左键刷、右键擦成 0; autotile 刷写自动按 blob-47 重算 3x3 邻域; A5/B-E 单格刷 z2 层; 支持 `editor.html?map=<id>#map` 直接载入指定地图。
 - 单位/技能/物品: 左侧列表 + 右侧表单; 新增/复制/删除。
 - 部队编辑器: 3x3 阵型格拖放单位, 选队长, 挂神器。
 - 每个编辑器有"导出下载"按钮(JSON.stringify → Blob 下载)兜底。
@@ -174,3 +198,11 @@ fe-tactics/
 - 特性效果：stat 修正进 squad.eff()；flag 进部队 flag 并集（技能+特性+神器）。
 - items.json 的 artifact 新增 `flag` 字段：move_plus/heal_boost/hit_plus/lifedrain/vanguard/doubles，作为全队 flag 生效。
 - **传说随从**：招募 tab 顶部轮换位——随机职业（已解锁 T1）、Lv.8、2 rare + 1 common 特性、2000 金，名字橙色显示；每次战役胜利后刷新候选人。
+
+## 兵种机动与地形（M2/M3 新增）
+
+- units.json 新增字段：`canter`（骑兵系，lord/scout——攻击/待机后可用完剩余移动力再行动一次，路径按实际地形 cost 计）、`flying`（dragon——移动无视地形 cost 恒 1，可穿越水面/墙，可停水面但不可停墙格）。
+- 弓手（weapon=bow）最小射程 2：不能攻击相邻 1 格目标（`squad.rangeMin()`，作用于菜单/预测/AI 的目标过滤与攻击范围显示）。
+- 地形分类（realmap.js，按决定格 tile 分）：森林（bush flag 或 A2 块 2，回避+10 防御+1）、山地（A2 块 3，回避+20 防御+1 cost 2）、高地（A2 块 7，弓手站上去射程+1，对象 `highGround: true`）、要塞（室内 tileset 的 A4/A5 地板，回避+10 防御+2）、水面（不可通行的 A1 格）/墙（其余不可通行格）。手绘 ch1 的 t/g 字符映射同步。
+- 有效射程统一走 `squad.rangeMaxEff(terrainAt)`（高地弓 +1）；地形回避经 `ctx.terrainAvo` 已进入命中公式与预测面板。
+- V 键切换敌方危险范围覆盖层（全部敌部队移动+攻击并集，淡红）；选中时自动隐藏，敌方回合自动关闭。

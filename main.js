@@ -381,6 +381,37 @@ function clearRange() {
   }
 }
 
+// ---------------------------------------------------------------- 危险范围 (V 键)
+// 全部敌部队的移动+攻击范围并集, 淡红色; 选中自己部队时自动隐藏; 敌方回合自动关闭
+const dangerGroup = new THREE.Group();
+dangerGroup.position.z = 0.18;
+scene.add(dangerGroup);
+
+function computeDangerTiles() {
+  const union = new Set();
+  for (const s of squads.filter(s => s.team === 1)) {
+    const move = computeMove(s, ctx);
+    for (const k of move.keys()) union.add(k);
+    for (const k of computeAttackTiles(move, s.rangeMaxEff(terrainAt), COLS, ROWS, s.rangeMin())) union.add(k);
+  }
+  return union;
+}
+
+function renderDanger() {
+  while (dangerGroup.children.length) {
+    const c = dangerGroup.children.pop();
+    c.geometry.dispose(); c.material.dispose();
+  }
+  state.dangerCount = 0;
+  if (!state.danger || state.selected) return;
+  const tiles = computeDangerTiles();
+  state.dangerCount = tiles.size;
+  for (const k of tiles) {
+    const [x, y] = k.split(',').map(Number);
+    dangerGroup.add(makeRangeMesh(x, y, 0xd03030, 0.3));
+  }
+}
+
 // ---------------------------------------------------------------- squads
 const unitGroup = new THREE.Group();
 unitGroup.position.z = 0.5;
@@ -398,44 +429,61 @@ const state = {
   menuSquad: null,     // squad awaiting action choice
   menuItems: [],
   menuSel: 0,
-  pending: null,       // {squad, ox, oy} 移动后待确认
+  pending: null,       // {squad, ox, oy, spentBefore} 移动后待确认
   forecast: null,      // {squad, x, y, targets, idx, info} 战斗预测面板
   seizePoint: null,    // {x, y} 占领点 (seize 目标)
+  danger: false,       // V 键: 敌方危险范围覆盖层
+  dangerCount: 0,      // 覆盖格数 (测试断言用)
   phase: 0,            // 0 player, 1 enemy
   turn: 1,
 };
 
 // 调试钩子: 供 CDP/手动测试读取内部状态 (只读引用 + 置胜/终局检查, 不影响逻辑)
 window.__tactics = { cam, state, squads: () => squads, realMap: () => realMap, nextChapter: () => nextChapterId,
-  win: () => winGame(), checkEnd: () => checkEnd() };
+  win: () => winGame(), checkEnd: () => checkEnd(),
+  moveTiles: ref => {
+    const s = squads.find(q => q.template.id === ref);
+    return s ? [...computeMove(s, ctx).keys()] : null;
+  } };
 
 function busy() {
   return state.moving || state.battle || state.ai || state.over || !!state.forecast || UI.locked();
 }
 
-function selectSquad(s) {
+function selectSquad(s, movOverride) {
   state.selected = s;
-  const move = computeMove(s, ctx);
-  const atk = computeAttackTiles(move, s.rangeMax(), COLS, ROWS);
+  const move = computeMove(s, ctx, movOverride);
+  const atk = computeAttackTiles(move, s.rangeMaxEff(terrainAt), COLS, ROWS, s.rangeMin());
   state.range = { move, atk };
-  showRange(new Set(move.keys()), atk);
+  // 显示层过滤被占格 (map 里保留友军格供寻路回溯, 但不作为可停落点显示)
+  const moveShow = new Set([...move.keys()].filter(k => {
+    const [x, y] = k.split(',').map(Number);
+    return !squads.some(q => q !== s && q.x === x && q.y === y);
+  }));
+  showRange(moveShow, atk);
   UI.updateSquadPanel(s);
+  renderDanger();   // 选中时危险范围自动隐藏
 }
 
 function deselect() {
   state.selected = null;
   state.range = null;
   clearRange();
+  renderDanger();   // 取消选中后恢复危险范围显示
 }
 
 // ---------------------------------------------------------------- action menu
 const actionMenu = $('action-menu');
 
-// 在 (x,y) 上选一个射程内的敌部队: 最近优先, 并列取总 HP 最少
+// 在 (x,y) 上选一个射程内的敌部队: 最近优先, 并列取总 HP 最少 (弓手最小射程 2, 高地弓 +1)
 function pickTarget(squad, x, y) {
-  const range = squad.rangeMax();
+  const rMax = squad.rangeMaxEff(terrainAt), rMin = squad.rangeMin();
   return squads
-    .filter(e => e.team !== squad.team && Math.abs(e.x - x) + Math.abs(e.y - y) <= range)
+    .filter(e => {
+      if (e.team === squad.team) return false;
+      const d = Math.abs(e.x - x) + Math.abs(e.y - y);
+      return d >= rMin && d <= rMax;
+    })
     .sort((a, b) =>
       (Math.abs(a.x - x) + Math.abs(a.y - y)) - (Math.abs(b.x - x) + Math.abs(b.y - y)) ||
       a.totalHp() - b.totalHp())[0] || null;
@@ -488,6 +536,7 @@ function cancelMove() {
   hideMenu();
   state.pending = null;
   if (p) {
+    p.squad._spent = p.spentBefore;   // 取消退还移动力消耗
     p.squad.setPos(p.ox, p.oy);   // 回到原地并重新选中
     selectSquad(p.squad);
   }
@@ -496,9 +545,13 @@ function cancelMove() {
 // ---------------------------------------------------------------- combat flow
 // 战斗预测面板: 选「攻击」后弹出; 多目标可 ◀▶ 切换; [开战!] 才真正结算
 function openForecast(squad, x, y) {
-  const range = squad.rangeMax();
+  const rMax = squad.rangeMaxEff(terrainAt), rMin = squad.rangeMin();
   const targets = squads
-    .filter(e => e.team !== squad.team && Math.abs(e.x - x) + Math.abs(e.y - y) <= range)
+    .filter(e => {
+      if (e.team === squad.team) return false;
+      const d = Math.abs(e.x - x) + Math.abs(e.y - y);
+      return d >= rMin && d <= rMax;
+    })
     .sort((a, b) =>
       (Math.abs(a.x - x) + Math.abs(a.y - y)) - (Math.abs(b.x - x) + Math.abs(b.y - y)) ||
       a.totalHp() - b.totalHp());
@@ -636,10 +689,21 @@ function removeSquad(s) {
 }
 
 function endAction(squad) {
+  // 骑兵再移动 (canter): 攻击/待机后若还有剩余移动力, 可再行动一次 (FE canto)
+  if (squad.team === 0 && squad.leader.def.canter && !squad._cantered
+      && (squad._spent || 0) < squad.mov && !state.over
+      && squads.includes(squad) && !squad.wiped) {
+    squad._cantered = true;
+    hideMenu();
+    deselect();
+    selectSquad(squad, squad.mov - (squad._spent || 0));
+    return;
+  }
   squad.setDone(true);
   hideMenu();
   deselect();
   if (state.over) return;
+  renderDanger();   // 行动后敌方威胁变化, 开着就重算
   if (state.phase === 0 && squads.every(s => s.team !== 0 || s.done)) startEnemyPhase();
 }
 
@@ -657,6 +721,8 @@ function updateTurnPanel() {
 function startEnemyPhase() {
   if (state.over) return;
   state.phase = 1;
+  state.danger = false;   // 敌方回合自动关闭危险范围
+  renderDanger();
   deselect();
   updateTurnPanel();
   UI.showPhaseBanner('敌方阶段', true, async () => {
@@ -668,7 +734,7 @@ function startEnemyPhase() {
     // survive: 撑过第 8 回合的敌方阶段即胜利
     if (((db.map.objective || {}).type) === 'survive' && state.turn > 8) { winGame(); return; }
     state.phase = 0;
-    squads.forEach(s => s.setDone(false));
+    squads.forEach(s => { s.setDone(false); s._spent = 0; s._cantered = false; });
     updateTurnPanel();
     UI.showPhaseBanner('玩家阶段', false);
   });
@@ -737,13 +803,18 @@ function checkEnd() {
 function startMove(squad, tx, ty) {
   const path = findPath(squad, tx, ty, state.range.move);
   const ox = squad.x, oy = squad.y;
+  const spentBefore = squad._spent || 0;
+  // 路径实际消耗 (飞行恒 1) — 骑兵再移动按它算剩余
+  let cost = 0;
+  for (let i = 1; i < path.length; i++) cost += squad.flying ? 1 : terrainAt(path[i][0], path[i][1]).cost;
+  squad._spent = spentBefore + cost;
   clearRange();
   state.selected = null;
   state.range = null;
   state.moving = true;
   animateMove(squad, path).then(() => {
     state.moving = false;
-    state.pending = { squad, ox, oy };
+    state.pending = { squad, ox, oy, spentBefore };
     openMenu(squad, tx, ty);
   });
 }
@@ -936,6 +1007,16 @@ window.addEventListener('keydown', e => {
     if (!state.menuSquad) {
       const u = squadAt(c.x, c.y);
       if (u) Inspect.open(u, db);
+    }
+    return;
+  }
+
+  // V: 切换敌方危险范围覆盖层
+  if (e.key === 'v' || e.key === 'V') {
+    if (state.phase === 0 && !state.menuSquad) {
+      state.danger = !state.danger;
+      Audio.sfx('confirm');
+      renderDanger();
     }
     return;
   }

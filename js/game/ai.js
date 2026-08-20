@@ -9,22 +9,24 @@ export function planAction(squad, ctx) {
   const foes = ctx.squads.filter(s => s.team !== squad.team);
   if (!foes.length) return null;
 
-  const range = squad.rangeMax();
+  const rMax = squad.rangeMaxEff ? squad.rangeMaxEff(ctx.terrainAt) : squad.rangeMax();
+  const rMin = squad.rangeMin ? squad.rangeMin() : 1;
   const nearest = foes.slice().sort((a, b) => dist(squad.x, squad.y, a.x, a.y) - dist(squad.x, squad.y, b.x, b.y))[0];
   const move = ctx.computeMove(squad);
 
-  // 选落脚点: 优先能打到目标的格子 (距离越近越好), 否则尽量接近
+  // 选落脚点: 优先能打到目标的格子 (距离越近越好), 否则尽量接近; 不可停在他人格子上
   let best = { x: squad.x, y: squad.y }, bestScore = Infinity;
   for (const key of move.keys()) {
     const [x, y] = key.split(',').map(Number);
+    if (ctx.squadAt && ctx.squadAt(x, y)) continue;   // 落点必须为空 (友军格只可穿越)
     const d = dist(x, y, nearest.x, nearest.y);
-    const score = d <= range ? d : 100 + d;
+    const score = (d >= rMin && d <= rMax) ? d : 100 + d;
     if (score < bestScore) { bestScore = score; best = { x, y }; }
   }
 
   // 在落脚点上选一个射程内的目标 (HP 最少者优先)
   const target = foes
-    .filter(f => dist(f.x, f.y, best.x, best.y) <= range)
+    .filter(f => { const d = dist(f.x, f.y, best.x, best.y); return d >= rMin && d <= rMax; })
     .sort((a, b) => a.totalHp() - b.totalHp())[0] || null;
 
   return { dest: best, move, target };

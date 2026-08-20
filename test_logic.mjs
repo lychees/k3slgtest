@@ -192,19 +192,65 @@ const mkSquadLive = (name, members) => Object.assign(Object.create(SIM_PROTO), {
     squadAt: (x, y) => [me, ally, enemy].find(s => s.x === x && s.y === y),
   };
   const move = computeMove(me, ctx2);
-  ok(!move.has('1,0'), '不可停在友军格子');
+  ok(move.has('1,0'), '友军格可穿越 (保留在图中供寻路回溯)');
   ok(!move.has('0,2'), '不可停在敌人格子');
   ok(!move.has('3,1'), '不可进入不可通行地形(w)');
   ok(!move.has('2,1'), '森林 cost2 超出 mov3 的两格森林不可达');
   ok(move.has('0,1'), '正常平原格可达');
+  // 路径回溯: 穿过友军格的最优路径也能正确回溯 (回归: 曾在此死循环)
+  {
+    const T2 = { '.': { pass: true, cost: 1 }, 't': { pass: true, cost: 5 } };
+    const rows2 = ['..t', '...'];
+    const me2 = { x: 0, y: 0, mov: 3, team: 0 };
+    const ally2 = { x: 1, y: 0, mov: 3, team: 0 };
+    const ctx3 = {
+      cols: 3, rows: 2, squads: [me2, ally2],
+      terrainAt: (x, y) => T2[rows2[y][x]],
+      squadAt: (x, y) => [me2, ally2].find(s => s.x === x && s.y === y),
+    };
+    const mv3 = computeMove(me2, ctx3);
+    // (2,1) 经友军 (1,0) 可达 (cost 2 < 绕行 t cost 5)
+    const path3 = findPath(me2, 2, 1, mv3);
+    ok(path3.length === 4 && path3[path3.length - 1].join() === '2,1',
+      `穿过友军的路径回溯不死循环 (长度 ${path3.length})`);
+  }
   // 路径回溯
   const m2 = computeMove(enemy, ctx2);
   const path = findPath(enemy, 2, 2, m2);
   ok(path.length > 0 && path[path.length - 1].join() === '2,2', 'findPath 终点正确');
   // 攻击范围
   const atk = computeAttackTiles(move, 2, 5, 3);
-  ok(atk.has('1,0') || move.has('1,0') === false, '攻击范围不含可达格');
+  ok(!atk.has('0,1') && atk.has('0,2'), '攻击范围不含可达格 (环上敌格包含)');
   ok(atk.has('4,0') === false || true, '');
+}
+
+// ---- range: 飞行 (无视 cost, 不可停墙) / 弓最小射程 ----
+{
+  const T = {
+    '.': { id: 'plain', pass: true, cost: 1 },
+    'w': { id: 'water', pass: false, cost: 99 },
+    '#': { id: 'wall', pass: false, cost: 99 },
+  };
+  const rows = ['.w.', '.#.', '...'];
+  const flyer = { x: 0, y: 0, mov: 3, team: 0, flying: true };
+  const ctxF = {
+    cols: 3, rows: 3, squads: [flyer],
+    terrainAt: (x, y) => T[rows[y][x]],
+    squadAt: (x, y) => [flyer].find(s => s.x === x && s.y === y),
+  };
+  const fm = computeMove(flyer, ctxF);
+  ok(fm.has('2,0'), '飞行越过水面可停对岸 (2,0)');
+  ok(fm.has('2,1') && !fm.has('2,2'), '飞行穿越墙格继续走 (2,1 可达, 2,2 超 mov)');
+  ok(!fm.has('1,1'), '飞行不可停墙格 (1,1)');
+  const walker = { x: 0, y: 0, mov: 3, team: 0 };
+  const ctxW = { ...ctxF, squads: [walker], squadAt: (x, y) => [walker].find(s => s.x === x && s.y === y) };
+  ok(!computeMove(walker, ctxW).has('2,0'), '地面部队过不了水');
+  // 弓最小射程: 2..2, 相邻 1 格不算
+  const m0 = { x: 0, y: 0, mov: 0, team: 0 };
+  const ctx0 = { ...ctxW, squads: [m0], squadAt: (x, y) => [m0].find(s => s.x === x && s.y === y) };
+  const m2 = computeMove(m0, ctx0);
+  const atk2 = computeAttackTiles(m2, 2, 3, 3, 2);
+  ok(!atk2.has('1,0') && !atk2.has('0,1') && atk2.has('2,0') && atk2.has('1,1'), '弓最小射程 2 (相邻不可)');
 }
 
 // ---- ai: 向最近敌人移动并能打则打 ----

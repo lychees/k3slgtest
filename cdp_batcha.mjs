@@ -298,6 +298,14 @@ async function main() {
       await clickMenuItem('待机');
       await sleep(300);
     }
+    // canter 收尾: lord/scout 行动后被再移动选中 -> 点自己格二次待机 (否则敌方阶段不开始)
+    if (await evaljs(`(window.__tactics.state.selected || {}).template?.id === '${ref}'`)) {
+      const p = await evaljs(`(() => { const s = window.__tactics.squads().find(s => s.template.id === '${ref}'); return [s.x, s.y]; })()`);
+      await clickTile(p[0], p[1]);
+      await sleep(300);
+      await clickMenuItem('待机');
+      await sleep(300);
+    }
     return step.canAttack;
   }
 
